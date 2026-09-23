@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>User Manual — SnappingTrail Collect</title>
+  <style>
+    :root {
+      --text: #1c2333;
+      --text-soft: #4a5568;
+      --accent: #1a3cff;
+      --border: #dde2ec;
+      --bg: #ffffff;
+      --note-bg: #f4f6fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    h1 {
+      font-size: 30px;
+      margin: 0 0 8px 0;
+      font-weight: 700;
+    }
+    .subtitle {
+      color: var(--text-soft);
+      font-size: 15px;
+      margin: 4px 0 0 0;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      color: var(--text);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 8px;
+    }
+    p, li {
+      color: var(--text-soft);
+      font-size: 16px;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text); }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    .lang-switch {
+      text-align: right;
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+    .lang-switch a { margin-left: 12px; }
+    nav.toc {
+      background: var(--note-bg);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0 40px;
+    }
+    nav.toc ol {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+    }
+    nav.toc li {
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+    .note {
+      background: var(--note-bg);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 3px;
+      font-size: 15px;
+    }
+    .note strong { display: block; margin-bottom: 4px; }
+    kbd {
+      background: #edf1f7;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      color: var(--text);
+    }
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-soft);
+      text-align: center;
+    }
+    @media (max-width: 480px) {
+      .container { padding: 24px 16px 60px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 20px; }
+      h3 { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch">
+      <a href="../../pt/manual/">Português</a>
+      <a href="../">Privacy Policy</a>
+    </div>
+
+    <header>
+      <h1>User Manual</h1>
+      <p class="subtitle">SnappingTrail Collect — field survey collection</p>
+    </header>
+
+    <p>This manual explains how to use <strong>SnappingTrail Collect</strong> to collect survey responses in the field, online or offline. It is organized from first use to more advanced situations — you can read it end to end, or jump to the section you need to consult.</p>
+
+    <nav class="toc" aria-label="Table of contents">
+      <strong>On this page</strong>
+      <ol>
+        <li><a href="#what-is">What SnappingTrail Collect is</a></li>
+        <li><a href="#before">Before you start</a></li>
+        <li><a href="#first-access">First access — setting up the app</a></li>
+        <li><a href="#collecting">Collecting responses</a></li>
+        <li><a href="#offline">Working without internet</a></li>
+        <li><a href="#sending">Sending interviews</a></li>
+        <li><a href="#settings">Other settings</a></li>
+        <li><a href="#faq">Frequently asked questions</a></li>
+        <li><a href="#support">Support and contact</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="what-is">1. What SnappingTrail Collect is</h2>
+    <p>SnappingTrail Collect is a professional application for conducting field surveys. You — the <strong>interviewer</strong> — use the app to open surveys configured by your contracting company, apply the questions to respondents, and send collected responses to the server when you have internet.</p>
+    <p>The app works with or without a connection. You can spend the whole day in low-signal areas and still collect all responses normally; when the device is back online, you send everything at once.</p>
+
+    <h2 id="before">2. Before you start</h2>
+    <p>To use the app you will need:</p>
+    <ul>
+      <li>An Android device running version 8 (Oreo) or later.</li>
+      <li><strong>Company code</strong> from the company that contracted your survey. This code is provided by the company — if you do not have it, contact whoever coordinates your survey.</li>
+      <li><strong>Access credentials</strong> (email and password) created for you by the contracting company.</li>
+      <li>Internet connection <strong>on first access</strong>. Once logged in, you can work offline for subsequent collections.</li>
+    </ul>
+
+    <h2 id="first-access">3. First access — setting up the app</h2>
+
+    <h3>3.1 Opening the app for the first time</h3>
+    <p>When you open SnappingTrail Collect for the first time, you will see the <strong>Settings</strong> screen. This is where you connect the app to your company's server.</p>
+
+    <h3>3.2 Entering the company code</h3>
+    <p>In the <strong>Company code</strong> field, type exactly the code your company provided. It is usually a short name (for example, <kbd>acme</kbd>).</p>
+    <div class="note">
+      <strong>Test environments</strong>
+      If your company is testing the system in a separate environment (not production), the code may come with a suffix like <kbd>acme@dev</kbd> or <kbd>acme@hml</kbd>. Type it exactly as given — the app understands the suffix and configures the servers automatically.
+    </div>
+
+    <h3>3.3 Validating the connection</h3>
+    <p>After entering the code, tap <strong>Validate</strong>. The app queries the server to confirm the company exists and fetches the required configuration.</p>
+    <p>If validation succeeds, a message confirms the company registration. If it fails, check that you typed the code correctly and have an internet connection.</p>
+
+    <h3>3.4 Saving and signing in</h3>
+    <p>After validating, tap <strong>Save</strong>. The app takes you back to the Login screen. Tap <strong>Sign in</strong> — an authentication screen opens in the device's browser. Enter your email and password and confirm.</p>
+    <p>After signing in, you will see the list of <strong>Projects</strong> available to you.</p>
+
+    <h2 id="collecting">4. Collecting responses</h2>
+
+    <h3>4.1 Choosing a project</h3>
+    <p>On the Projects screen, tap the project you will work on. Each project has one or more active surveys.</p>
+
+    <h3>4.2 Choosing a survey</h3>
+    <p>Inside the project, tap the survey you want to apply. The app loads the questions and shows the collection screen.</p>
+
+    <h3>4.3 Answering questions</h3>
+    <p>Each question can be of a different type:</p>
+    <ul>
+      <li><strong>Single choice</strong> — the respondent picks one option.</li>
+      <li><strong>Multiple choice</strong> — the respondent can pick several options.</li>
+      <li><strong>Free text</strong> — you type in the answer dictated by the respondent.</li>
+      <li><strong>Numeric scale or rating</strong> — the respondent picks a number (e.g., 0 to 10 in NPS).</li>
+    </ul>
+    <p>Use the <strong>Previous</strong> and <strong>Next</strong> buttons to navigate between questions. Answers are saved automatically on every change — you do not need to press "save" for each question.</p>
+
+    <h3>4.4 Finishing the interview</h3>
+    <p>On the last question, tap <strong>Finish</strong>. The interview goes into the sending queue.</p>
+
+    <h3>4.5 Resuming an interrupted interview</h3>
+    <p>If you were interrupted mid-interview (phone call, device crashed, respondent had to leave), the app saves the draft automatically. When you come back, you will see the option <strong>Continue last interview</strong> — tap to resume exactly where you left off.</p>
+
+    <h2 id="offline">5. Working without internet</h2>
+
+    <h3>5.1 Enabling offline collection</h3>
+    <p>If you will spend time in a location without signal, go to <strong>Settings</strong> and turn on <strong>Enable Offline Collection</strong>. This keeps your credentials saved on the device, allowing you to open the app without logging in again.</p>
+
+    <h3>5.2 What is available offline</h3>
+    <p>When you sign in with internet, the app automatically downloads:</p>
+    <ul>
+      <li>All projects you have access to;</li>
+      <li>All active surveys of each project;</li>
+      <li>All questions and options of each survey.</li>
+    </ul>
+    <p>This content stays saved on the device. You can conduct interviews normally without an internet connection.</p>
+
+    <h3>5.3 Updating the catalog before you leave</h3>
+    <p>Before heading out to a location without signal, it is good practice to update the catalog:</p>
+    <ol>
+      <li>Open the Projects screen with an active connection.</li>
+      <li>Pull the list downward (<strong>pull-to-refresh</strong> gesture) to sync.</li>
+      <li>Wait for the update to finish.</li>
+    </ol>
+    <p>Each project shows a line <strong>"Synced X ago"</strong>. If updated recently, you are ready to work offline.</p>
+
+    <h3>5.4 Collecting interviews offline</h3>
+    <p>With the catalog downloaded and credentials preserved, you can:</p>
+    <ul>
+      <li>Open the app without a connection;</li>
+      <li>Navigate to projects and surveys;</li>
+      <li>Conduct and finish interviews normally.</li>
+    </ul>
+    <p>Finished interviews stay stored on the device awaiting submission.</p>
+
+    <h2 id="sending">6. Sending interviews</h2>
+
+    <h3>6.1 Sending queue</h3>
+    <p>Tap the <strong>cloud icon</strong> in the top bar to open the sending queue. There you see all collected interviews not yet sent to the server.</p>
+
+    <h3>6.2 Sending</h3>
+    <p>With the device connected to the internet, use the screen's sending controls to transmit the interviews. You can send all at once or select which ones to send.</p>
+
+    <h3>6.3 Confirming the send</h3>
+    <p>After a successful send, interviews disappear from the queue. If a send fails (no signal, server error), the interview remains in the queue and you can retry later.</p>
+
+    <div class="note">
+      <strong>Your interviews, your control</strong>
+      Each interviewer only sends their own interviews — you do not see nor send other colleagues' work. The management stays with you.
+    </div>
+
+    <h2 id="settings">7. Other settings</h2>
+
+    <h3>7.1 Enable Offline Collection</h3>
+    <p>Described in section 5. Keeps login preserved between openings without requiring authentication. Leave it <em>off</em> if you prefer to sign in every time you open the app (safer on shared devices).</p>
+
+    <h3>7.2 Advanced configuration</h3>
+    <p>By default, the server addresses (API and authentication) are filled in automatically from the company code. If you need to point the app to custom servers (rare, typically only in special cases directed by the contracting company), turn on <strong>Advanced configuration</strong> — the fields become editable.</p>
+
+    <h3>7.3 Language</h3>
+    <p>The app starts in English. When you validate your company code, the language may switch automatically to the language configured by the company (Portuguese, Spanish, French, among others).</p>
+
+    <h2 id="faq">8. Frequently asked questions</h2>
+
+    <h3>I forgot the company code. How do I recover it?</h3>
+    <p>The code is provided by the company that contracted the survey. Contact your survey coordinator. Neither your password nor SnappingTrail support can recover the code.</p>
+
+    <h3>I forgot my password. How do I reset it?</h3>
+    <p>The password is managed by your contracting company's system. On the browser login screen, look for the password recovery option — there is usually a "Forgot password" link that sends a reset email.</p>
+
+    <h3>I lost internet access in the middle of an interview. Did I lose the answers?</h3>
+    <p>No. Answers are saved automatically on every question change, even without internet. You can finish the interview normally offline, and it will stay in the sending queue until you have a connection.</p>
+
+    <h3>My app is showing old surveys / I do not see new surveys.</h3>
+    <p>Pull the Projects list downward to force a sync. If an expected survey is still missing, confirm with the coordinator that the survey is actually active in the system.</p>
+
+    <h3>The app got slow or is behaving strangely.</h3>
+    <p>Fully close the app (swipe from recent apps) and open again. If it persists, restart the device. If it still persists, contact support.</p>
+
+    <h3>I need to switch devices. What about interviews on the old one?</h3>
+    <p>Interviews not yet sent are stored only on the device where they were collected. Before uninstalling the app or switching devices, send all pending interviews to the server.</p>
+
+    <h2 id="support">9. Support and contact</h2>
+    <p>For technical questions about the app, contact: <strong><a href="mailto:lsouzaf@snappingtrail.com">lsouzaf@snappingtrail.com</a></strong></p>
+    <p>For questions about your surveys (questionnaire content, target audience, collection deadline), speak directly with your contracting company's coordinator.</p>
+
+    <footer>
+      This manual is also available in <a href="../../pt/manual/">Portuguese</a>. See also the <a href="../">Privacy Policy</a>.
+    </footer>
+  </div>
+</body>
+</html>
