@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>Manual do Usuário — SnappingTrail Collect</title>
+  <style>
+    :root {
+      --text: #1c2333;
+      --text-soft: #4a5568;
+      --accent: #1a3cff;
+      --border: #dde2ec;
+      --bg: #ffffff;
+      --note-bg: #f4f6fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    h1 {
+      font-size: 30px;
+      margin: 0 0 8px 0;
+      font-weight: 700;
+    }
+    .subtitle {
+      color: var(--text-soft);
+      font-size: 15px;
+      margin: 4px 0 0 0;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      color: var(--text);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 8px;
+    }
+    p, li {
+      color: var(--text-soft);
+      font-size: 16px;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text); }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    .lang-switch {
+      text-align: right;
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+    .lang-switch a { margin-left: 12px; }
+    nav.toc {
+      background: var(--note-bg);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0 40px;
+    }
+    nav.toc ol {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+    }
+    nav.toc li {
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+    .note {
+      background: var(--note-bg);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 3px;
+      font-size: 15px;
+    }
+    .note strong { display: block; margin-bottom: 4px; }
+    kbd {
+      background: #edf1f7;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      color: var(--text);
+    }
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-soft);
+      text-align: center;
+    }
+    @media (max-width: 480px) {
+      .container { padding: 24px 16px 60px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 20px; }
+      h3 { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch">
+      <a href="../../en/manual/">English</a>
+      <a href="../">Política de Privacidade</a>
+    </div>
+
+    <header>
+      <h1>Manual do Usuário</h1>
+      <p class="subtitle">SnappingTrail Collect — coleta de pesquisas de campo</p>
+    </header>
+
+    <p>Este manual explica como usar o <strong>SnappingTrail Collect</strong> para coletar respostas de pesquisas em campo, com ou sem conexão à internet. Está organizado do primeiro uso até situações mais avançadas — você pode ler do começo ao fim, ou pular direto para a seção que precisa consultar.</p>
+
+    <nav class="toc" aria-label="Índice">
+      <strong>Nesta página</strong>
+      <ol>
+        <li><a href="#o-que-e">O que é o SnappingTrail Collect</a></li>
+        <li><a href="#antes-de-comecar">Antes de começar</a></li>
+        <li><a href="#primeiro-acesso">Primeiro acesso — configurando o app</a></li>
+        <li><a href="#coletando">Coletando respostas</a></li>
+        <li><a href="#offline">Trabalhando sem internet</a></li>
+        <li><a href="#enviando">Enviando as entrevistas</a></li>
+        <li><a href="#configuracoes">Outras configurações</a></li>
+        <li><a href="#duvidas">Dúvidas frequentes</a></li>
+        <li><a href="#suporte">Suporte e contato</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="o-que-e">1. O que é o SnappingTrail Collect</h2>
+    <p>O SnappingTrail Collect é um aplicativo profissional para conduzir pesquisas em campo. Você — o <strong>entrevistador</strong> — usa o app para abrir pesquisas configuradas pela sua empresa contratante, aplicar as perguntas aos respondentes, e enviar as respostas coletadas ao servidor quando tiver internet.</p>
+    <p>O app funciona com ou sem conexão. Você pode passar o dia inteiro em áreas com pouco sinal e ainda assim coletar todas as respostas normalmente; quando o aparelho voltar a ter internet, você envia tudo de uma vez.</p>
+
+    <h2 id="antes-de-comecar">2. Antes de começar</h2>
+    <p>Para usar o app você vai precisar de:</p>
+    <ul>
+      <li>Um aparelho Android com versão 8 (Oreo) ou mais recente.</li>
+      <li><strong>Código da empresa</strong> que contratou sua pesquisa. Esse código é fornecido pela empresa — se você não tem, entre em contato com quem coordena a sua pesquisa.</li>
+      <li><strong>Credenciais de acesso</strong> (email e senha) criadas para você pela empresa contratante.</li>
+      <li>Conexão à internet <strong>no primeiro acesso</strong>. Depois de logar uma vez, você pode trabalhar offline nas próximas coletas.</li>
+    </ul>
+
+    <h2 id="primeiro-acesso">3. Primeiro acesso — configurando o app</h2>
+
+    <h3>3.1 Abrindo o app pela primeira vez</h3>
+    <p>Ao abrir o SnappingTrail Collect pela primeira vez, você verá a tela de <strong>Configurações</strong>. É aqui que você conecta o app ao servidor da sua empresa.</p>
+
+    <h3>3.2 Digitando o código da empresa</h3>
+    <p>No campo <strong>Código da empresa</strong>, digite exatamente o código que sua empresa forneceu. Costuma ser um nome curto (por exemplo, <kbd>acme</kbd>).</p>
+    <div class="note">
+      <strong>Ambientes de teste</strong>
+      Se sua empresa está testando o sistema em um ambiente separado (não o de produção), o código pode vir com um sufixo, tipo <kbd>acme@dev</kbd> ou <kbd>acme@hml</kbd>. Digite exatamente como foi informado — o app entende o sufixo e configura os servidores automaticamente.
+    </div>
+
+    <h3>3.3 Validando a conexão</h3>
+    <p>Depois de digitar o código, toque em <strong>Validar</strong>. O app faz uma consulta ao servidor para confirmar que a empresa existe e busca as configurações necessárias.</p>
+    <p>Se a validação for bem-sucedida, uma mensagem confirma o registro da empresa. Se falhar, verifique se digitou o código corretamente e se tem conexão à internet.</p>
+
+    <h3>3.4 Salvando e fazendo login</h3>
+    <p>Após validar, toque em <strong>Salvar</strong>. O app leva você de volta à tela de Login. Toque em <strong>Entrar</strong> — uma tela de autenticação vai abrir no navegador do aparelho. Digite seu email e senha e confirme.</p>
+    <p>Após o login, você verá a lista de <strong>Projetos</strong> disponíveis para você.</p>
+
+    <h2 id="coletando">4. Coletando respostas</h2>
+
+    <h3>4.1 Escolhendo um projeto</h3>
+    <p>Na tela de Projetos, toque no projeto em que você vai trabalhar. Cada projeto tem uma ou mais pesquisas ativas.</p>
+
+    <h3>4.2 Escolhendo uma pesquisa</h3>
+    <p>Dentro do projeto, toque na pesquisa que quer aplicar. O app carrega as perguntas e mostra a tela de coleta.</p>
+
+    <h3>4.3 Respondendo as perguntas</h3>
+    <p>Cada pergunta pode ser de um tipo diferente:</p>
+    <ul>
+      <li><strong>Escolha única</strong> — o respondente escolhe uma opção.</li>
+      <li><strong>Múltipla escolha</strong> — o respondente pode escolher várias opções.</li>
+      <li><strong>Texto livre</strong> — você digita a resposta ditada pelo respondente.</li>
+      <li><strong>Escala numérica ou avaliação</strong> — o respondente escolhe um número (ex.: de 0 a 10 no NPS).</li>
+    </ul>
+    <p>Use os botões <strong>Anterior</strong> e <strong>Próxima</strong> para navegar entre as perguntas. As respostas são salvas automaticamente a cada mudança — você não precisa apertar "salvar" a cada pergunta.</p>
+
+    <h3>4.4 Finalizando a entrevista</h3>
+    <p>Na última pergunta, toque em <strong>Finalizar</strong>. A entrevista vai para a fila de envio.</p>
+
+    <h3>4.5 Retomando uma entrevista interrompida</h3>
+    <p>Se você foi interrompido no meio de uma entrevista (chamada telefônica, aparelho travou, entrevistado precisou sair), o app salva o rascunho automaticamente. Ao voltar, aparecerá a opção <strong>Continuar última entrevista</strong> — toque para retomar exatamente onde parou.</p>
+
+    <h2 id="offline">5. Trabalhando sem internet</h2>
+
+    <h3>5.1 Habilitando a coleta offline</h3>
+    <p>Se você vai passar tempo em local sem sinal, entre em <strong>Configurações</strong> e ative a opção <strong>Habilitar Coleta Offline</strong>. Isso mantém suas credenciais salvas no aparelho, permitindo que você abra o app sem precisar fazer login novamente.</p>
+
+    <h3>5.2 O que fica disponível offline</h3>
+    <p>Quando você faz login com internet, o app baixa automaticamente:</p>
+    <ul>
+      <li>Todos os projetos aos quais você tem acesso;</li>
+      <li>Todas as pesquisas ativas de cada projeto;</li>
+      <li>Todas as perguntas e opções de cada pesquisa.</li>
+    </ul>
+    <p>Esse conteúdo fica salvo no aparelho. Você pode conduzir entrevistas normalmente sem precisar de internet.</p>
+
+    <h3>5.3 Atualizando o catálogo antes de sair</h3>
+    <p>Antes de sair para uma jornada em local sem sinal, é boa prática atualizar o catálogo:</p>
+    <ol>
+      <li>Abra a tela de Projetos com conexão ativa.</li>
+      <li>Puxe a lista para baixo (gesto <strong>pull-to-refresh</strong>) para sincronizar.</li>
+      <li>Aguarde a atualização terminar.</li>
+    </ol>
+    <p>Cada projeto mostra uma linha <strong>"Sincronizado há X"</strong>. Se estiver atualizado recentemente, você está pronto para trabalhar offline.</p>
+
+    <h3>5.4 Coletando entrevistas offline</h3>
+    <p>Uma vez com o catálogo baixado e credenciais preservadas, você pode:</p>
+    <ul>
+      <li>Abrir o app sem conexão;</li>
+      <li>Navegar até projetos e pesquisas;</li>
+      <li>Conduzir e finalizar entrevistas normalmente.</li>
+    </ul>
+    <p>As entrevistas finalizadas ficam armazenadas no aparelho aguardando envio.</p>
+
+    <h2 id="enviando">6. Enviando as entrevistas</h2>
+
+    <h3>6.1 Fila de envio</h3>
+    <p>Toque no <strong>ícone de nuvem</strong> na barra superior para abrir a fila de envio. Ali você vê todas as entrevistas coletadas que ainda não foram enviadas ao servidor.</p>
+
+    <h3>6.2 Enviando</h3>
+    <p>Com o aparelho conectado à internet, use os controles de envio da tela para transmitir as entrevistas. Você pode enviar todas de uma vez ou selecionar quais quer enviar.</p>
+
+    <h3>6.3 Verificando o envio</h3>
+    <p>Depois do envio bem-sucedido, as entrevistas somem da fila. Se algum envio falhar (falta de sinal, erro do servidor), a entrevista permanece na fila e você pode tentar de novo mais tarde.</p>
+
+    <div class="note">
+      <strong>Suas entrevistas, seu controle</strong>
+      Cada entrevistador envia apenas as próprias entrevistas — você não vê nem envia o trabalho de outros colegas. A gestão fica com você.
+    </div>
+
+    <h2 id="configuracoes">7. Outras configurações</h2>
+
+    <h3>7.1 Habilitar Coleta Offline</h3>
+    <p>Descrito na seção 5. Mantém login preservado entre aberturas sem exigir autenticação. Deixa <em>desligado</em> se você prefere fazer login toda vez que abrir o app (mais seguro em aparelhos compartilhados).</p>
+
+    <h3>7.2 Configuração avançada</h3>
+    <p>Por padrão, os endereços dos servidores (API e autenticação) são preenchidos automaticamente pelo código da empresa. Se você precisa apontar o app para servidores personalizados (raro, geralmente só em casos especiais orientados pela empresa contratante), ative <strong>Configuração avançada</strong> — os campos ficarão editáveis.</p>
+
+    <h3>7.3 Idioma</h3>
+    <p>O app começa em inglês. Quando você valida o código da sua empresa, o idioma pode mudar automaticamente para o idioma configurado pela empresa (português, espanhol, francês, entre outros).</p>
+
+    <h2 id="duvidas">8. Dúvidas frequentes</h2>
+
+    <h3>Esqueci o código da empresa. Como recupero?</h3>
+    <p>O código é fornecido pela empresa que contratou a pesquisa. Entre em contato com o coordenador da sua pesquisa. Nem sua senha, nem o suporte do SnappingTrail podem recuperar o código.</p>
+
+    <h3>Esqueci minha senha. Como redefino?</h3>
+    <p>A senha é gerenciada pelo sistema da sua empresa contratante. Na tela de login do navegador, procure a opção de recuperação de senha — geralmente há um link "Esqueci minha senha" que envia um email de redefinição.</p>
+
+    <h3>Perdi acesso à internet no meio de uma entrevista. Perdi as respostas?</h3>
+    <p>Não. As respostas são salvas automaticamente a cada mudança de pergunta, mesmo sem internet. Você pode finalizar a entrevista normalmente offline, e ela ficará na fila de envio até você ter conexão.</p>
+
+    <h3>Meu app está mostrando pesquisas antigas / não vejo pesquisas novas.</h3>
+    <p>Puxe a lista de Projetos para baixo para forçar uma sincronização. Se ainda faltar alguma pesquisa esperada, confirme com o coordenador se a pesquisa está mesmo ativa no sistema.</p>
+
+    <h3>O app ficou lento ou está com comportamento estranho.</h3>
+    <p>Feche completamente o app (deslize dos aplicativos recentes) e abra de novo. Se persistir, reinicie o aparelho. Se ainda assim persistir, entre em contato com o suporte.</p>
+
+    <h3>Preciso trocar de aparelho. E as entrevistas que estão no antigo?</h3>
+    <p>Entrevistas ainda não enviadas ficam armazenadas apenas no aparelho onde foram coletadas. Antes de desinstalar o app ou trocar de aparelho, envie todas as entrevistas pendentes ao servidor.</p>
+
+    <h2 id="suporte">9. Suporte e contato</h2>
+    <p>Para questões técnicas sobre o app, entre em contato: <strong><a href="mailto:lsouzaf@snappingtrail.com">lsouzaf@snappingtrail.com</a></strong></p>
+    <p>Para questões sobre suas pesquisas (perguntas do questionário, público-alvo, prazo de coleta), fale diretamente com o coordenador da sua empresa contratante.</p>
+
+    <footer>
+      Este manual está disponível também em <a href="../../en/manual/">inglês</a>. Consulte também a <a href="../">Política de Privacidade</a>.
+    </footer>
+  </div>
+</body>
+</html>
