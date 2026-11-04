@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "Atual",
+    "description": "The label for version current"
+  },
+  "sidebar.manual.category.Collect app": {
+    "message": "App Collect",
+    "description": "The label for category 'Collect app' in sidebar 'manual'"
+  }
+}

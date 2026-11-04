@@ -1,0 +1,17 @@
+{
+  "name": "snappingtrail-docs-captures",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The manual's screenshots, taken by Playwright from the DEV tenants. Not part of the site's build.",
+  "scripts": {
+    "captures": "node run.js",
+    "browser": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}
