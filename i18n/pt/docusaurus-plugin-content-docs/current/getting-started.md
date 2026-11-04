@@ -15,6 +15,8 @@ Esta página leva você da criação da conta até a primeira pesquisa.
 3. Abra o e-mail de ativação e defina a sua senha.
 4. Entre pelo endereço da sua empresa, que vem no e-mail de boas-vindas (por exemplo, `suaempresa.app.snappingtrail.com`). Sua equipe entra pelo mesmo endereço.
 
+![O formulário de cadastro](./img/getting-started-signup-pt.png)
+
 No primeiro acesso, você aceita os **Termos de Uso** e o **Termo de Responsabilidade**, e vê a **Política de Privacidade**. Você pode relê-los a qualquer momento em **Configurações → Legal**.
 
 ## O período de teste
@@ -46,6 +48,8 @@ O menu da esquerda muda conforme o seu papel. No alto da tela, **PT / EN** troca
 Os objetivos de pesquisa, que agrupam pesquisas em torno de uma decisão que você precisa tomar, aparecem quando você liga **Ativar Insights**, no pé do menu da esquerda (veja [Resultados](../results)). Eles somem com **Modo Simples**. O selo **Avançado**, no alto, mostra em que modo você está.
 
 Sua conta já vem com um primeiro projeto, **Meu primeiro projeto**. Você pode renomeá-lo ou criar outros.
+
+![A tela de projetos](./img/getting-started-projects-pt.png)
 
 ## Defina o fuso da empresa
 

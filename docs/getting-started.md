@@ -15,6 +15,8 @@ This page takes you from creating your account to your first survey.
 3. Open the activation email and set your password.
 4. Sign in at your company's address, shown in the welcome email (for example, `yourcompany.app.snappingtrail.com`). Your teammates sign in at the same address.
 
+![The sign-up form](./img/getting-started-signup-en.png)
+
 On your first sign-in, you're asked to accept the Terms of Service and the Responsibility Terms, and to read the Privacy Policy. You can reread them at any time under **Settings → Legal**.
 
 ## Your trial
@@ -46,6 +48,8 @@ The menu on the left changes with your role. At the top, **PT / EN** switches th
 Research objectives, which group surveys around a decision you need to make (see [Results](../results)), appear when you turn on **Enable Insights**, at the bottom of the menu on the left, and disappear with **Simple Mode**. The **Advanced** badge at the top shows that mode is on.
 
 Your account comes with a first project, **My first project**. You can rename it or create others.
+
+![The projects screen](./img/getting-started-projects-en.png)
 
 ## Set your company's time zone
 
