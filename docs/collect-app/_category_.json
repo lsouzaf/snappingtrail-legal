@@ -1,0 +1,8 @@
+{
+  "label": "Collect app",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "collect-app/index"
+  }
+}

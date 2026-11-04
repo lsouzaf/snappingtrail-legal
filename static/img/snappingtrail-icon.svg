@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="140" height="140">
+  <defs>
+    <radialGradient id="burstRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   style="stop-color:#38BAFF; stop-opacity:0.55"/>
+      <stop offset="45%"  style="stop-color:#1A60FF; stop-opacity:0.20"/>
+      <stop offset="100%" style="stop-color:#1A3CFF; stop-opacity:0"/>
+    </radialGradient>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="10" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <filter id="burstBlur">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <clipPath id="sqClip">
+      <rect x="22" y="22" width="90" height="90" rx="6"/>
+    </clipPath>
+  </defs>
+
+  <!-- Card -->
+  <rect x="0" y="0" width="140" height="140" rx="18" fill="#F8F9FB" filter="url(#cardShadow)"/>
+  <rect x="0" y="0" width="140" height="140" rx="18" fill="none" stroke="#DDE2EC" stroke-width="1.5"/>
+
+  <!-- EXPLOSION -->
+  <g clip-path="url(#sqClip)">
+    <circle cx="67" cy="70" r="55" fill="url(#burstRadial)" filter="url(#burstBlur)"/>
+    <circle cx="67" cy="70" r="32" fill="#1A60FF" opacity="0.35" filter="url(#burstBlur)"/>
+    <circle cx="67" cy="70" r="16" fill="#38BAFF" opacity="0.75"/>
+    <g stroke="#1A50FF" stroke-linecap="round" stroke-width="1.6" opacity="0.85">
+      <line x1="67" y1="43"  x2="67" y2="28"/>
+      <line x1="78" y1="46"  x2="84" y2="32"/>
+      <line x1="87" y1="55"  x2="97" y2="45"/>
+      <line x1="91" y1="67"  x2="106" y2="65"/>
+      <line x1="88" y1="79"  x2="100" y2="88"/>
+      <line x1="80" y1="89"  x2="86" y2="103"/>
+      <line x1="67" y1="97"  x2="67" y2="112"/>
+      <line x1="54" y1="89"  x2="48" y2="103"/>
+      <line x1="46" y1="79"  x2="34" y2="88"/>
+      <line x1="43" y1="67"  x2="28" y2="65"/>
+      <line x1="47" y1="55"  x2="37" y2="45"/>
+      <line x1="56" y1="46"  x2="50" y2="32"/>
+    </g>
+  </g>
+
+  <!-- SQUARE BORDER -->
+  <rect x="16" y="16" width="108" height="108" rx="14"
+        fill="none" stroke="#1C2333" stroke-width="11" stroke-linejoin="round"/>
+
+  <!-- CHECKMARK -->
+  <path d="
+    M 28,52
+    C 29,46 35,42 40,45
+    C 45,47 47,53 47,57
+    L 59,84
+    L 98,30
+    C 102,24 108,22 114,25
+    C 119,28 120,36 116,41
+    L 71,98
+    C 68,103 63,105 58,103
+    C 53,101 50,95 49,91
+    L 38,63
+    C 35,55 28,57 28,52 Z"
+    fill="#1C2333"/>
+</svg>

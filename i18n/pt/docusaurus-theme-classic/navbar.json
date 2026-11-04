@@ -1,0 +1,10 @@
+{
+  "title": {
+    "message": "SnappingTrail",
+    "description": "The title in the navbar"
+  },
+  "item.label.Manual": {
+    "message": "Manual",
+    "description": "Navbar item with label Manual"
+  }
+}
