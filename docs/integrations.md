@@ -79,7 +79,7 @@ On a survey's **Reports** tab, a report card's webhook button sends that report 
 
 ## Delivery history
 
-**Delivery History** lists every export and its delivery: when, what, in which format, to which channel, and how it went. Administrators, managers, coordinators and analysts can see it.
+**Delivery History** lists every export and its delivery: when, what, in which format, to which channel, and how it went. Administrators can see it.
 
 ![The delivery history](./img/integrations-history-en.png)
 

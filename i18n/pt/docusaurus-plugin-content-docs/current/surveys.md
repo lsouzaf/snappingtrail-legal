@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Uma pesquisa é o questionário que os seus respondentes preenchem. As pesquisas ficam dentro de um **projeto**, e um projeto pode reunir várias pesquisas sobre o mesmo assunto.
 
-Só **administradores** criam e editam pesquisas. Gerentes, coordenadores e analistas podem vê-las.
+Só **administradores** criam e editam pesquisas. Os entrevistadores veem as pesquisas ativas dos seus projetos em **Minhas Pesquisas**.
 
 ## Crie uma pesquisa
 

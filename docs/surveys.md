@@ -6,7 +6,7 @@ sidebar_position: 3
 
 A survey is the questionnaire your respondents answer. Surveys live inside a **project**, and a project can hold several surveys about the same subject.
 
-Only **administrators** create and edit surveys. Managers, coordinators and analysts can see them.
+Only **administrators** create and edit surveys. Interviewers see the active surveys of their projects under **My Surveys**.
 
 ## Create a survey
 

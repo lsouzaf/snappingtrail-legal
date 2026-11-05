@@ -6,7 +6,7 @@ sidebar_position: 9
 
 ## I forgot the company code. How do I get it?
 
-The code comes from the company that runs your survey: ask your survey coordinator. SnappingTrail support cannot recover it.
+The code comes from the company that runs your survey: ask your company's account administrator. SnappingTrail support cannot recover it.
 
 ## I forgot my password. How do I reset it?
 
@@ -26,7 +26,7 @@ Your session expired ("Your session has expired. Sign in again."). Sign in again
 
 ## The app is showing old surveys, or a new survey is missing.
 
-Pull the **Projects** list down to refresh it. If the survey is still missing, check with the coordinator that it is active and that you are part of its project.
+Pull the **Projects** list down to refresh it. If the survey is still missing, check with your company's account administrator that it is active and that you are part of its project.
 
 ## The app got slow or is behaving strangely.
 

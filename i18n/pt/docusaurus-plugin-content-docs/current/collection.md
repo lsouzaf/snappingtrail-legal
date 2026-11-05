@@ -50,7 +50,7 @@ Os entrevistadores encontram as pesquisas deles em **Minhas Pesquisas**, escolhe
 
 ![As Minhas Pesquisas de um entrevistador](./img/collection-my-surveys-pt.png)
 
-Administradores, gerentes, coordenadores e analistas também podem entrevistar: na pesquisa, vá em **Entrevistas** e escolha **Iniciar Entrevista**.
+Os administradores também podem entrevistar: na pesquisa, vá em **Entrevistas** e escolha **Iniciar Entrevista**.
 
 ## Defina as suas metas
 
