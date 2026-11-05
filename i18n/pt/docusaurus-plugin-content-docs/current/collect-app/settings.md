@@ -4,14 +4,22 @@ sidebar_position: 8
 
 # Outras configurações
 
-## 7.1 Habilitar Coleta Offline
+A tela de **Configurações** tem estas seções. Toque em **Salvar** para aplicar uma mudança.
 
-Descrito na seção 5. Mantém login preservado entre aberturas sem exigir autenticação. Deixa *desligado* se você prefere fazer login toda vez que abrir o app (mais seguro em aparelhos compartilhados).
+## 7.1 Comportamento
 
-## 7.2 Configuração avançada
+**Habilitar Coleta Offline**: veja [Trabalhando sem internet](./offline.md). Deixe *desligada* num aparelho compartilhado se quiser um novo login cada vez que o app for aberto.
 
-Por padrão, os endereços dos servidores (API e autenticação) são preenchidos automaticamente pelo código da empresa. Se você precisa apontar o app para servidores personalizados (raro, geralmente só em casos especiais orientados pela empresa contratante), ative **Configuração avançada** — os campos ficarão editáveis.
+## 7.2 Empresa e servidores
 
-## 7.3 Idioma
+**Código da empresa**, com **Validar**: veja [Primeiro acesso](./first-access.md). Os endereços dos servidores (**URL Base da API**, **URL Base do Keycloak**) são preenchidos a partir do código da empresa. Só se a sua empresa pedir, ligue **Configuração avançada** para editá-los.
 
-O app começa em inglês. Quando você valida o código da sua empresa, o idioma pode mudar automaticamente para o idioma configurado pela empresa (português, espanhol, francês, entre outros).
+## 7.3 Conta e saída
+
+**Conta** mostra o seu **Último login online** e o botão **Sair**. Se ainda houver entrevistas suas aguardando envio, o app avisa antes: "Você tem N entrevista(s) ainda não sincronizada(s). Elas serão preservadas e sincronizadas na próxima vez que você fizer login. Sair mesmo assim?" Sair remove o seu acesso e as pesquisas baixadas do aparelho, mas **mantém as entrevistas que aguardam envio**.
+
+<img src={require('./img/collect-logout-pending-pt.png').default} alt="O aviso ao sair com entrevistas ainda por enviar" width="300" />
+
+## 7.4 Idioma
+
+O app começa em inglês. Ele passa para o idioma da sua empresa quando você valida o código da empresa ou entra. No Android 13 ou mais recente, você também pode escolher o idioma do app nas configurações do aparelho para o app.

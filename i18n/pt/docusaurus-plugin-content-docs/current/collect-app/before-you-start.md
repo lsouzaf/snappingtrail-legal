@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Para usar o app você vai precisar de:
 
-- Um aparelho Android com versão 8 (Oreo) ou mais recente.
-- **Código da empresa** que contratou sua pesquisa. Esse código é fornecido pela empresa — se você não tem, entre em contato com quem coordena a sua pesquisa.
-- **Credenciais de acesso** (email e senha) criadas para você pela empresa contratante.
-- Conexão à internet **no primeiro acesso**. Depois de logar uma vez, você pode trabalhar offline nas próximas coletas.
+- Um aparelho Android com a versão 8 (Oreo) ou mais recente.
+- O **código da empresa** que conduz a sua pesquisa. Se você não tiver, peça a quem coordena a pesquisa.
+- O **acesso** que a sua empresa criou para você.
+- Conexão com a internet para **entrar**: o login sempre precisa dela. Depois, você pode coletar sem conexão; para abrir o app sem internet depois, sem entrar de novo, ligue **Habilitar Coleta Offline** (veja [Trabalhando sem internet](./offline.md)).

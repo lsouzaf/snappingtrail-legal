@@ -4,36 +4,25 @@ sidebar_position: 6
 
 # Working without internet
 
-## 5.1 Enabling offline collection
+## 5.1 What the app keeps for offline use
 
-If you will spend time in a location without signal, go to **Settings** and turn on **Enable Offline Collection**. This keeps your credentials saved on the device, allowing you to open the app without logging in again.
+When you sign in, and whenever you refresh, the app downloads the active projects you take part in, their active surveys, and every question and option. You can then open projects and surveys and conduct and finish interviews without a connection. Finished interviews wait on the device and are **sent by themselves when the connection returns**, on every plan.
 
-## 5.2 What is available offline
+## 5.2 Updating before you leave
 
-When you sign in with internet, the app automatically downloads:
+Before going where there is no signal:
 
-- All projects you have access to;
-- All active surveys of each project;
-- All questions and options of each survey.
-
-This content stays saved on the device. You can conduct interviews normally without an internet connection.
-
-## 5.3 Updating the catalog before you leave
-
-Before heading out to a location without signal, it is good practice to update the catalog:
-
-1. Open the Projects screen with an active connection.
-1. Pull the list downward (**pull-to-refresh** gesture) to sync.
+1. Open the **Projects** screen with a connection.
+1. Pull the list down to refresh it.
 1. Wait for the update to finish.
 
-Each project shows a line **"Synced X ago"**. If updated recently, you are ready to work offline.
+Each project shows when it was last updated, for example **"Synced 5 min ago"**.
 
-## 5.4 Collecting interviews offline
+## 5.3 Enable Offline Collection
 
-With the catalog downloaded and credentials preserved, you can:
+**Enable Offline Collection**, under **Settings → Behavior**, decides when you must sign in again:
 
-- Open the app without a connection;
-- Navigate to projects and surveys;
-- Conduct and finish interviews normally.
+- **On**: you stay signed in, so you can open the app without a connection.
+- **Off**: you sign in again each time the app is opened, and after 15 minutes in the background. Since signing in needs a connection, turn it on before working where there is no signal.
 
-Finished interviews stay stored on the device awaiting submission.
+The change takes effect when you tap **Save**. It does not change the sending: interviews are sent by themselves either way.

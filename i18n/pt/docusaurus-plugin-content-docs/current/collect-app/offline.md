@@ -4,36 +4,25 @@ sidebar_position: 6
 
 # Trabalhando sem internet
 
-## 5.1 Habilitando a coleta offline
+## 5.1 O que o app guarda para usar sem internet
 
-Se você vai passar tempo em local sem sinal, entre em **Configurações** e ative a opção **Habilitar Coleta Offline**. Isso mantém suas credenciais salvas no aparelho, permitindo que você abra o app sem precisar fazer login novamente.
+Quando você entra, e sempre que atualiza a lista, o app baixa os projetos ativos de que você participa, as pesquisas ativas deles e todas as perguntas e opções. Depois disso, você abre projetos e pesquisas e conduz e finaliza entrevistas sem conexão. As entrevistas finalizadas aguardam no aparelho e são **enviadas sozinhas quando a conexão volta**, em qualquer plano.
 
-## 5.2 O que fica disponível offline
+## 5.2 Atualizando antes de sair
 
-Quando você faz login com internet, o app baixa automaticamente:
+Antes de ir para um lugar sem sinal:
 
-- Todos os projetos aos quais você tem acesso;
-- Todas as pesquisas ativas de cada projeto;
-- Todas as perguntas e opções de cada pesquisa.
+1. Abra a tela de **Projetos** com conexão.
+1. Puxe a lista para baixo para atualizá-la.
+1. Espere a atualização terminar.
 
-Esse conteúdo fica salvo no aparelho. Você pode conduzir entrevistas normalmente sem precisar de internet.
+Cada projeto mostra quando foi atualizado, por exemplo **"Sincronizado há 5 min"**.
 
-## 5.3 Atualizando o catálogo antes de sair
+## 5.3 Habilitar Coleta Offline
 
-Antes de sair para uma jornada em local sem sinal, é boa prática atualizar o catálogo:
+**Habilitar Coleta Offline**, em **Configurações → Comportamento**, decide quando você precisa entrar de novo:
 
-1. Abra a tela de Projetos com conexão ativa.
-1. Puxe a lista para baixo (gesto **pull-to-refresh**) para sincronizar.
-1. Aguarde a atualização terminar.
+- **Ligada**: você continua conectado, e pode abrir o app sem internet.
+- **Desligada**: você entra de novo cada vez que o app é aberto, e depois de 15 minutos em segundo plano. Como o login precisa de conexão, ligue esta opção antes de trabalhar sem sinal.
 
-Cada projeto mostra uma linha **"Sincronizado há X"**. Se estiver atualizado recentemente, você está pronto para trabalhar offline.
-
-## 5.4 Coletando entrevistas offline
-
-Uma vez com o catálogo baixado e credenciais preservadas, você pode:
-
-- Abrir o app sem conexão;
-- Navegar até projetos e pesquisas;
-- Conduzir e finalizar entrevistas normalmente.
-
-As entrevistas finalizadas ficam armazenadas no aparelho aguardando envio.
+A mudança vale quando você toca em **Salvar**. Ela não muda o envio: as entrevistas são enviadas sozinhas nos dois casos.
