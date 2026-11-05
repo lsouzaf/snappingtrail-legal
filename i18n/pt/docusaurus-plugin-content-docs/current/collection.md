@@ -21,7 +21,13 @@ As três alimentam os mesmos resultados.
 3. Se quiser, defina **Limitar respostas deste link** (não pode ultrapassar o limite da própria pesquisa) e uma data de **Expiração**. As duas são opcionais.
 4. Escolha **Copiar link**, ou **QR Code** para **Baixar PNG** ou **Imprimir** e usar em cartazes, mesas ou comprovantes.
 
+![O link de compartilhamento de uma pesquisa](./img/collection-share-pt.png)
+
+![O QR Code de um link](./img/collection-qr-pt.png)
+
 Qualquer pessoa com o link pode responder. O link abre no idioma que você usava no app quando o copiou, e o respondente não consegue trocá-lo. Só as telas mudam de idioma: as perguntas aparecem como você as escreveu.
+
+![A pesquisa como o respondente a vê pelo link](./img/collection-respondent-pt.png)
 
 Cada link mostra o status dele: **Ativo**, **Desativado** ou **Expirado**.
 
@@ -41,6 +47,8 @@ Uma pausa, um limite ou a franquia só impedem novas entrevistas: quem já está
 ## Colete pela web
 
 Os entrevistadores encontram as pesquisas deles em **Minhas Pesquisas**, escolhem **Iniciar** numa pesquisa disponível e preenchem as respostas enquanto o respondente fala. Ao terminar, podem começar uma **Nova entrevista nesta pesquisa** ou **Escolher outra pesquisa**.
+
+![As Minhas Pesquisas de um entrevistador](./img/collection-my-surveys-pt.png)
 
 Administradores, gerentes, coordenadores e analistas também podem entrevistar: na pesquisa, vá em **Entrevistas** e escolha **Iniciar Entrevista**.
 
