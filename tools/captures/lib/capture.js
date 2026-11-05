@@ -30,16 +30,21 @@ button[aria-label="Notifications"] > span.absolute { display: none !important; }
 export const test = base.extend({
   lang: ['en', {option: true}],
 
-  /** capture(doc, step, {hide, css}) writes <page>-<step>-<lang>.png in the page's img folder. */
+  /**
+   * capture(doc, step, {hide, css, page, element}) writes <page>-<step>-<lang>.png in the page's img
+   * folder: the whole screen, or only [element] (a locator).
+   */
   capture: async ({page: ownPage, lang}, use) => {
-    await use(async (doc, step, {hide = [], css = '', page = ownPage} = {}) => {
+    await use(async (doc, step, {hide = [], css = '', page = ownPage, element = null} = {}) => {
       const hidden = hide.map((selector) => `${selector} { visibility: hidden !important; }`).join('\n');
       await page.addStyleTag({content: `${STABLE_CSS}\n${hidden}\n${css}`});
       await page.waitForLoadState('networkidle');
       await page.evaluate(() => document.fonts.ready);
       const file = path.join(imgDir(doc, lang), `${path.basename(doc)}-${step}-${lang}.png`);
       fs.mkdirSync(path.dirname(file), {recursive: true});
-      await page.screenshot({path: file, animations: 'disabled', caret: 'hide'});
+      // With an element, only that part of the screen (e.g. one card).
+      const target = element ?? page;
+      await target.screenshot({path: file, animations: 'disabled', caret: 'hide'});
     });
   },
 });
