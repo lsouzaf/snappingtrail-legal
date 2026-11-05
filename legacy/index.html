@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SnappingTrail Collect — Documentation</title>
+  <title>Snapping Trail — Documentation</title>
   <style>
     :root {
       --text: #1c2333;
@@ -25,7 +25,7 @@
       background: linear-gradient(135deg, #f8f9fb 0%, #eceef3 100%);
     }
     .container {
-      max-width: 560px;
+      max-width: 720px;
       width: 100%;
       background: white;
       border-radius: 12px;
@@ -77,6 +77,21 @@
       color: var(--accent);
       transform: translateY(-1px);
     }
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 0 0 32px;
+    }
+    .intro p { margin: 0 0 8px; font-size: 15px; }
+    .intro ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--text-soft); }
+    .intro h3 { font-size: 15px; margin: 0 0 6px; }
+    .note { font-size: 13px; color: var(--text-soft); margin: 10px 0 0; }
+    @media (max-width: 600px) {
+      body { padding: 16px; align-items: flex-start; }
+      .container { padding: 24px; }
+      .intro { grid-template-columns: 1fr; }
+    }
     footer {
       margin-top: 40px;
       padding-top: 20px;
@@ -89,8 +104,27 @@
 </head>
 <body>
   <div class="container">
-    <h1>SnappingTrail Collect</h1>
+    <h1>Snapping Trail</h1>
     <p class="subtitle">Documentation / Documentação</p>
+
+    <div class="intro">
+      <div lang="en">
+        <p>Snapping Trail helps you plan research, collect answers in the field or online, and see what the data says.</p>
+        <h3>Two parts, one account</h3>
+        <ul>
+          <li><strong>The web app</strong>, at your company's address: surveys, share links and QR codes, web interviews, results and integrations.</li>
+          <li><strong>Snapping Trail Collect</strong>, for Android: interviews in the field, even offline.</li>
+        </ul>
+      </div>
+      <div lang="pt-BR">
+        <p>O Snapping Trail ajuda você a planejar pesquisas, coletar respostas em campo ou on-line e ver o que os dados dizem.</p>
+        <h3>Duas partes, uma conta</h3>
+        <ul>
+          <li><strong>O app web</strong>, no endereço da sua empresa: pesquisas, links e QR Codes, entrevistas pela web, resultados e integrações.</li>
+          <li><strong>Snapping Trail Collect</strong>, para Android: entrevistas em campo, mesmo sem internet.</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="section">
       <h2>User Manual / Manual do Usuário</h2>
@@ -101,15 +135,17 @@
     </div>
 
     <div class="section">
-      <h2>Privacy Policy / Política de Privacidade</h2>
+      <h2>Collect app privacy policy / Política de privacidade do app Collect</h2>
       <div class="links">
         <a href="en/">English</a>
         <a href="pt/">Português</a>
       </div>
+      <p class="note" lang="en">The web app's terms and privacy policy are in the app, under Settings → Legal.</p>
+      <p class="note" lang="pt-BR">Os termos e a política de privacidade do app web ficam no próprio app, em Configurações → Legal.</p>
     </div>
 
     <footer>
-      SnappingTrail Collect · Navaho Consultoria
+      Snapping Trail · Navaho Consultoria
     </footer>
   </div>
 </body>
