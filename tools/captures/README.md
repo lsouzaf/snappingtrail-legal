@@ -60,3 +60,20 @@ The screenshots are 1440×900 at scale 2, with reduced motion, the language from
 network idle, and what changes from run to run (the notifications dot, animations) hidden by CSS
 injected only for the capture; `capture(..., {hide: [selectors]})` hides more. Only screens are
 read: a script never creates, edits or deletes data.
+
+## The Collect app's screens
+
+The "Collect app" chapter's images are not taken here: the Collect repository draws them from
+demo data, on the JVM (Roborazzi; `ManualScreenshotsTest`, in
+`app/src/test/screenshots`). After they change there
+(`./gradlew :app:recordRoborazziDebug` in the Collect repository), copy them into the chapter:
+
+```
+tools/sync-collect-screenshots.sh                    # from ../snappingtrailcollect
+tools/sync-collect-screenshots.sh <screenshots dir>  # from elsewhere
+```
+
+It copies, under the same names, the images the chapter's pages use
+(`collect-<screen>-<en|pt>.png`, into `docs/collect-app/img` and
+`i18n/pt/docusaurus-plugin-content-docs/current/collect-app/img`), and fails, naming them, when a
+page uses an image the Collect repository does not have.
