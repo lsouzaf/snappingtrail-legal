@@ -17,7 +17,7 @@ Um administrador os conecta em **Integrações**:
 | Notion | Uma seção datada acrescentada a uma página: o resumo, e os dados num "Ver dados" | Starter e Pro |
 | Webhook | Uma mensagem JSON, assinada se você definir um segredo, para os seus próprios sistemas | Starter e Pro |
 
-Cada destino tem um botão para conferi-lo antes que alguma regra o use: **Testar conexão** no Google Sheets e no Notion, **Enviar mensagem de teste** no Slack e **Conectar** no webhook. **Salvar Configurações** guarda o que você digitou.
+Cada destino tem um botão para conferi-lo antes que alguma regra o use: **Testar conexão** no Google Sheets e no Notion, **Enviar mensagem de teste** no Slack e **Conectar** no webhook. A resposta aparece embaixo do cartão, no idioma da tela: conectado, um campo ainda vazio ou o que o destino respondeu, com as mesmas palavras do histórico de entregas. **Salvar Configurações** guarda o que você digitou.
 
 ![A tela de Integrações](./img/integrations-screen-pt.png)
 
@@ -25,8 +25,9 @@ Cada destino tem um botão para conferi-lo antes que alguma regra o use: **Testa
 
 1. Crie uma conta de serviço no Google Cloud Console e ative a API do Google Sheets no projeto dela.
 2. Baixe a chave JSON da conta e cole em **Chave JSON da conta de serviço**. Depois de salva, a chave nunca mais é mostrada.
-3. Cole o **Spreadsheet ID** da planilha, a parte do endereço dela entre `/d/` e `/edit`.
-4. Compartilhe a planilha, como editora, com o e-mail da conta de serviço, o `client_email` da chave JSON.
+3. Cole o **ID da planilha**, a parte do endereço dela entre `/d/` e `/edit`.
+4. Clique em **Salvar Configurações**. O cartão passa a mostrar o **E-mail da conta de serviço**, com um botão **Copiar**.
+5. Compartilhe a planilha, como editora, com esse e-mail.
 
 Cada conteúdo ganha a sua aba, com o nome dele, criada na primeira entrega.
 
@@ -47,7 +48,7 @@ Informe a **URL do Webhook** que vai receber as mensagens e, de preferência, um
 Em **Regras de Envio**, um administrador escolhe o que enviar, para qual integração e quando:
 
 - **Agendado**: **Diário**, **Semanal** ou **Mensal**, numa hora no fuso da própria regra. Uma regra mensal num dia que o mês não tem é enviada no último dia do mês.
-- **Por evento**: quando algo acontece (veja abaixo).
+- **Por evento**: quando uma pesquisa atinge o mínimo para análise (uma vez por pesquisa) ou, para os sinais da empresa, quando uma entrevista é concluída e os sinais mudaram (veja abaixo).
 
 ![As regras de envio](./img/integrations-rules-pt.png)
 
@@ -58,7 +59,7 @@ O que uma regra pode enviar:
 | Principais achados | Os achados da pesquisa, como a tela os mostra no seu plano | ✓ | ✓ | Free |
 | Destaques por pergunta | Uma linha por pergunta: o que o card diz e a força | ✓ | ✓ | Free |
 | Diferenças entre segmentos | Cada segmento contra os demais, com a faixa de 95% e a taxa de cada segmento | ✓ | ✓ | Pro |
-| Lista de entrevistas | As entrevistas coletadas desde a execução anterior da regra | ✓ | — | Free |
+| Lista de entrevistas | As entrevistas coletadas desde a última entrega da regra que deu certo, na ordem em que foram concluídas | ✓ | — | Free |
 | Respostas das entrevistas | As respostas dessas entrevistas | ✓ | — | Free |
 | Sinais da empresa | Os sinais dos objetivos ativos da empresa | ✓ | ✓ | Pro |
 | Amostra atingida | Um aviso, em JSON, de que uma pesquisa atingiu a amostra mínima | — | ✓ | Pro |
@@ -89,7 +90,12 @@ A coluna **Detalhes** diz o que o destino respondeu, em palavras simples:
 - **Destino não respondeu a tempo**, **Sem resposta do destino** ou **Erro no destino**: o destino estava indisponível.
 - No Google Sheets e no Notion, ela também diz quando uma célula ou a planilha passou de um limite do Google Sheets (nada foi escrito), ou quando uma seção do Notion foi escrita sem os dados.
 
-Quando o destino está indisponível, lento ou pede para esperar, o envio é tentado de novo sozinho, até três vezes, com alguns segundos entre elas. Quando ele recusa (credencial ou endereço errado), não há nova tentativa. Um envio que falhou não é refeito depois: corrija a integração, e a próxima execução da regra passa. As entrevistas de uma execução que falhou, numa regra de lista ou de respostas das entrevistas, não são enviadas de novo.
+Quando o destino está indisponível, lento ou pede para esperar, o envio é tentado de novo sozinho, até três vezes, com alguns segundos entre elas. Quando ele recusa (credencial ou endereço errado), não há nova tentativa. Um envio que falhou não é refeito depois: corrija a integração, e a próxima execução da regra passa.
+
+Uma regra de lista ou de respostas das entrevistas nunca perde entrevistas:
+
+- Quando uma execução agendada falha, a próxima leva tudo o que ficou para trás, junto com o que veio depois.
+- Quando há mais entrevistas do que o limite de linhas do seu plano, a execução envia as primeiras concluídas, até o limite, e a próxima continua dali. Nenhuma entrevista é pulada nem enviada duas vezes, e as respostas de uma entrevista vão sempre juntas.
 
 ## Próximos passos
 
