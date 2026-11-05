@@ -4,14 +4,22 @@ sidebar_position: 8
 
 # Other settings
 
-## 7.1 Enable Offline Collection
+The **Settings** screen has these sections. Tap **Save** to apply a change.
 
-Described in section 5. Keeps login preserved between openings without requiring authentication. Leave it *off* if you prefer to sign in every time you open the app (safer on shared devices).
+## 7.1 Behavior
 
-## 7.2 Advanced configuration
+**Enable Offline Collection**: see [Working without internet](./offline.md). Leave it *off* on a shared device if you want a new sign-in each time the app opens.
 
-By default, the server addresses (API and authentication) are filled in automatically from the company code. If you need to point the app to custom servers (rare, typically only in special cases directed by the contracting company), turn on **Advanced configuration** — the fields become editable.
+## 7.2 Company and servers
 
-## 7.3 Language
+**Company Code**, with **Resolve**: see [First access](./first-access.md). The server addresses (**API Base URL**, **Keycloak Base URL**) are filled in from the company code. Only if your company asks, turn on **Advanced configuration** to edit them.
 
-The app starts in English. When you validate your company code, the language may switch automatically to the language configured by the company (Portuguese, Spanish, French, among others).
+## 7.3 Account and signing out
+
+**Account** shows your **Last online sign-in** and **Logout**. If interviews of yours are still waiting to be sent, the app warns you first: "You have N interview(s) not yet synced. They will be preserved and synced next time you log in. Sign out anyway?" Signing out removes your sign-in and the downloaded surveys from the device, but **keeps the interviews waiting to be sent**.
+
+<img src={require('./img/collect-logout-pending-en.png').default} alt="The warning when signing out with interviews still to be sent" width="300" />
+
+## 7.4 Language
+
+The app starts in English. It switches to your company's language when you validate the company code or sign in. On Android 13 and later you can also choose the app's language in the device's settings for the app.

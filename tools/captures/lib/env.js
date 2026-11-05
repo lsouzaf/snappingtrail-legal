@@ -8,7 +8,10 @@ import path from 'node:path';
 export const ENV_FILE = path.join(os.homedir(), '.config/snappingtrail/docs-captures.env');
 export const KEYS = ['DOCS_USER', 'DOCS_PASSWORD', 'DOCS_EN_URL', 'DOCS_PT_URL'];
 
-/** The four settings, or null when the file or one of them is missing. */
+/** The interviewer's sign-in, for the screens only an interviewer sees: optional. */
+export const OPTIONAL_KEYS = ['DOCS_INTERVIEWER_USER', 'DOCS_INTERVIEWER_PASSWORD'];
+
+/** The four settings (and the optional ones present), or null when the file or one of the four is missing. */
 export function loadEnv() {
   if (!fs.existsSync(ENV_FILE)) return null;
   const parsed = {};
@@ -16,13 +19,14 @@ export function loadEnv() {
     const match = line.match(/^\s*(?:export\s+)?([A-Z_]+)\s*=\s*(.*?)\s*$/);
     if (match) parsed[match[1]] = match[2].replace(/^(['"])(.*)\1$/, '$2');
   }
-  return KEYS.every((key) => parsed[key]) ? Object.fromEntries(KEYS.map((key) => [key, parsed[key]])) : null;
+  if (!KEYS.every((key) => parsed[key])) return null;
+  return Object.fromEntries([...KEYS, ...OPTIONAL_KEYS].filter((key) => parsed[key]).map((key) => [key, parsed[key]]));
 }
 
 /** The text with every setting's value replaced by its name. */
 export function mask(text, env) {
   let out = text;
-  for (const key of KEYS) {
+  for (const key of [...KEYS, ...OPTIONAL_KEYS]) {
     const value = env[key];
     if (!value) continue;
     out = out.split(value).join(`<${key}>`);

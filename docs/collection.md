@@ -21,7 +21,13 @@ All three feed the same results.
 3. If you want, set **Limit responses for this link** (it cannot exceed the survey's own limit) and an **Expiration** date. Both are optional.
 4. Choose **Copy link**, or **QR Code** to **Download PNG** or **Print** it for posters, tables or receipts.
 
+![The share link of a survey](./img/collection-share-en.png)
+
+![The QR code of a link](./img/collection-qr-en.png)
+
 Anyone with the link can answer. The link opens in the language you were using in the app when you copied it, and the respondent cannot switch it. Only the screens change language: the questions appear as you wrote them.
+
+![The survey as the respondent sees it through the link](./img/collection-respondent-en.png)
 
 Each link shows its status: **Active**, **Disabled** or **Expired**.
 
@@ -41,6 +47,8 @@ A pause, a limit or the allowance only stops new interviews: someone already ans
 ## Collect on the web
 
 Interviewers find their surveys under **My Surveys**, choose **Start** on an available survey, and fill in the answers as the respondent speaks. When the interview is done, they can start a **New interview in this survey** or **Choose another survey**.
+
+![The My Surveys screen of an interviewer](./img/collection-my-surveys-en.png)
 
 Administrators, managers, coordinators and analysts can also interview: in the survey, go to **Interviews** and choose **Start Interview**.
 

@@ -7,6 +7,6 @@ sidebar_position: 3
 To use the app you will need:
 
 - An Android device running version 8 (Oreo) or later.
-- **Company code** from the company that contracted your survey. This code is provided by the company — if you do not have it, contact whoever coordinates your survey.
-- **Access credentials** (email and password) created for you by the contracting company.
-- Internet connection **on first access**. Once logged in, you can work offline for subsequent collections.
+- The **company code** of the company that runs your survey. If you do not have it, ask whoever coordinates the survey.
+- The **sign-in** your company created for you.
+- An internet connection to **sign in**: signing in always needs one. After that, you can collect without a connection; to open the app offline later without signing in again, turn on **Enable Offline Collection** (see [Working without internet](./offline.md)).

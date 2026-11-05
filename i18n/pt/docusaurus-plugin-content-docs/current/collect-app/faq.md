@@ -4,26 +4,34 @@ sidebar_position: 9
 
 # Dúvidas frequentes
 
-## Esqueci o código da empresa. Como recupero?
+## Esqueci o código da empresa. Como consigo?
 
-O código é fornecido pela empresa que contratou a pesquisa. Entre em contato com o coordenador da sua pesquisa. Nem sua senha, nem o suporte do SnappingTrail podem recuperar o código.
+O código vem da empresa que conduz a sua pesquisa: peça a quem coordena a pesquisa. O suporte do SnappingTrail não consegue recuperá-lo.
 
 ## Esqueci minha senha. Como redefino?
 
-A senha é gerenciada pelo sistema da sua empresa contratante. Na tela de login do navegador, procure a opção de recuperação de senha — geralmente há um link "Esqueci minha senha" que envia um email de redefinição.
+Na página de login que abre no navegador, use a opção de recuperar a senha ("Esqueci minha senha"), que envia um e-mail para você criar uma nova.
 
-## Perdi acesso à internet no meio de uma entrevista. Perdi as respostas?
+## Perdi a conexão no meio de uma entrevista. Perdi as respostas?
 
-Não. As respostas são salvas automaticamente a cada mudança de pergunta, mesmo sem internet. Você pode finalizar a entrevista normalmente offline, e ela ficará na fila de envio até você ter conexão.
+Não. Cada resposta é salva no aparelho na hora, com ou sem conexão. Finalize a entrevista normalmente: ela fica no aparelho e é enviada sozinha quando a conexão voltar, em qualquer plano.
 
-## Meu app está mostrando pesquisas antigas / não vejo pesquisas novas.
+## Preciso apertar alguma coisa para enviar as entrevistas?
 
-Puxe a lista de Projetos para baixo para forçar uma sincronização. Se ainda faltar alguma pesquisa esperada, confirme com o coordenador se a pesquisa está mesmo ativa no sistema.
+Não. Elas são enviadas sozinhas sempre que houver conexão. O ícone de sincronizar em **Entrevistas Pendentes** só adianta o envio (veja [Enviando as entrevistas](./sending.md)).
+
+## O app me mandou de volta para a tela de login.
+
+A sua sessão expirou ("Sua sessão expirou. Entre de novo."). Entre de novo: as entrevistas que aguardam envio continuam no aparelho.
+
+## O app mostra pesquisas antigas, ou falta uma pesquisa nova.
+
+Puxe a lista de **Projetos** para baixo para atualizá-la. Se a pesquisa continuar faltando, confirme com o coordenador que ela está ativa e que você faz parte do projeto dela.
 
 ## O app ficou lento ou está com comportamento estranho.
 
-Feche completamente o app (deslize dos aplicativos recentes) e abra de novo. Se persistir, reinicie o aparelho. Se ainda assim persistir, entre em contato com o suporte.
+Feche o app por completo (arraste-o para fora dos apps recentes) e abra de novo. Se continuar, reinicie o aparelho. Se ainda continuar, fale com o suporte.
 
-## Preciso trocar de aparelho. E as entrevistas que estão no antigo?
+## Preciso trocar de aparelho, ou desinstalar o app. E as minhas entrevistas?
 
-Entrevistas ainda não enviadas ficam armazenadas apenas no aparelho onde foram coletadas. Antes de desinstalar o app ou trocar de aparelho, envie todas as entrevistas pendentes ao servidor.
+As entrevistas ainda não enviadas existem **só neste aparelho**, e não entram nos backups dele. **Desinstalar o app apaga essas entrevistas.** Antes de desinstalar ou trocar de aparelho, abra **Entrevistas Pendentes** com conexão e confira que nada ficou aguardando envio. Já sair da conta mantém as entrevistas.

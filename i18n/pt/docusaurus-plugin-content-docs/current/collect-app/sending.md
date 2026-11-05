@@ -4,20 +4,29 @@ sidebar_position: 7
 
 # Enviando as entrevistas
 
-## 6.1 Fila de envio
+## 6.1 O envio é automático
 
-Toque no **ícone de nuvem** na barra superior para abrir a fila de envio. Ali você vê todas as entrevistas coletadas que ainda não foram enviadas ao servidor.
+Você não precisa enviar nada à mão. O app envia sozinho as entrevistas que aguardam no aparelho, assim que houver conexão: logo depois que você finaliza uma, quando a conexão volta, quando você abre o app e depois que você entra. Se o servidor não responder, o app tenta de novo mais tarde sozinho, esperando um pouco mais a cada vez. Uma nova tentativa nunca duplica a entrevista.
 
-## 6.2 Enviando
+## 6.2 A tela Entrevistas Pendentes
 
-Com o aparelho conectado à internet, use os controles de envio da tela para transmitir as entrevistas. Você pode enviar todas de uma vez ou selecionar quais quer enviar.
+O **ícone de nuvem** no alto da tela de **Projetos** abre as **Entrevistas Pendentes**, com um número quando há entrevistas aguardando. A lista mostra as entrevistas deste aparelho **de quem está conectado**:
 
-## 6.3 Verificando o envio
+| Status | O que significa |
+|---|---|
+| **Aguardando envio** | Sai sozinha quando houver conexão. |
+| **Enviando** | Está sendo enviada. |
+| **Não enviada** | A última tentativa falhou: "Ainda não enviada. Será tentada de novo automaticamente." |
+| **Enviada** | O servidor já recebeu. |
 
-Depois do envio bem-sucedido, as entrevistas somem da fila. Se algum envio falhar (falta de sinal, erro do servidor), a entrevista permanece na fila e você pode tentar de novo mais tarde.
+O **ícone de sincronizar**, no alto, envia tudo na hora; **Tentar novamente** tenta de novo uma entrevista não enviada, e **Excluir** remove uma entrevista do aparelho de vez.
 
-:::note[Suas entrevistas, seu controle]
+As entrevistas enviadas continuam na lista até você tocar em **Limpar**, que as remove só deste aparelho (o servidor continua com elas), ou até completarem 30 dias.
 
-Cada entrevistador envia apenas as próprias entrevistas — você não vê nem envia o trabalho de outros colegas. A gestão fica com você.
+<img src={require('./img/collect-pending-pt.png').default} alt="A tela Entrevistas Pendentes" width="300" />
+
+:::note[Aparelhos compartilhados]
+
+Se vários entrevistadores usam o mesmo aparelho, cada um vê e envia só as próprias entrevistas. As dos outros continuam guardadas no aparelho e são enviadas quando o dono delas entrar de novo.
 
 :::
