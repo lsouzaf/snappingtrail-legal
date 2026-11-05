@@ -12,9 +12,9 @@ Only **administrators** create and edit surveys. Managers, coordinators and anal
 
 1. Open **Projects** and choose a project.
 2. Choose **New Survey**. Give it a **Survey Title** and, if you want, a **Description**, then choose **Create Survey**.
-3. Add questions with **Text**, **Choice** or **Rating**, or bring ready-made ones with **From catalog**.
+3. Add questions with **Text**, **Choice** or **Rating**.
 
-A new survey starts as a draft.
+A new survey starts as a draft. **Save** keeps your work; **Publish** makes the survey active.
 
 ![The surveys of a project](./img/surveys-list-en.png)
 
@@ -22,38 +22,33 @@ A new survey starts as a draft.
 
 ## Question types
 
-The builder creates three kinds of question:
+| Type | What it measures |
+|---|---|
+| **Text** | A free answer in the respondent's own words: an opinion, a reason, a comment. |
+| **Choice**, with **Single answer** | One option out of a list, such as the location or the plan. |
+| **Choice**, with **Multiple answers** | Every option that applies, such as the services someone uses. |
+| **Yes/No** | A plain yes or no. The shortcut fills in the options **Yes** and **No**. |
+| **Likert** | Agreement with a statement. The shortcut fills in five options, from "Strongly disagree" to "Strongly agree". |
+| **Rating** | A score on a scale, under **Answer scale**. |
 
-- **Text**: a free answer.
-- **Choice**: a list of options, with **Single answer** or **Multiple answers**. The **Yes/No** and **Likert** shortcuts fill in the options for you; Likert goes from "Strongly disagree" to "Strongly agree".
-- **Rating**: a score on a scale. Pick a preset, **NPS** (0 to 10), **CSAT** (1 to 5) or **CES** (1 to 7), or **Custom** for your own scale.
+For a **Rating** question, pick one of the presets or set your own scale:
+
+| Preset | Scale | What it measures |
+|---|---|---|
+| **NPS** | 0 to 10 | How likely someone is to recommend you |
+| **CSAT** | 1 to 5 | How satisfied someone is |
+| **CES** | 1 to 7 | How easy something was to do |
+| **Custom** | Your **Minimum**, **Maximum** and **Step** | Any other score |
 
 ![A choice question](./img/surveys-choice-en.png)
-
-A question brought from the catalog keeps its type, which can be any of these:
-
-| | |
-|---|---|
-| Short text | Long text |
-| Number | Rating |
-| Slider | NPS |
-| Single choice | Multiple choice |
-| Dropdown | Ranking |
-| Likert | Date |
-| Time | Date and time |
-| Yes/No | Statement |
 
 Tick **Required** when every completed interview must answer the question. The answer is checked when the interview is completed, and only for the questions the respondent was shown.
 
 ## Follow-up questions
 
-In a choice question, each option can open a **follow-up question**, shown only to those who chose that option. For example, "Main reason for dissatisfaction" can appear only to those who answered "Dissatisfied"; everyone else never sees it.
+In any choice question (Single answer, Multiple answers, Yes/No or Likert), each option can open a **follow-up question**, shown only to those who chose that option. For example, "Main reason for dissatisfaction" can appear only to those who answered "Dissatisfied"; everyone else never sees it.
 
-Under the option, choose **Add follow-up question** and write it. The follow-up is answered with free text. Tick **Required when shown** if those who see it must answer it.
-
-## The question catalog
-
-The catalog holds ready-made questions, the same for every account. In the builder, **From catalog** opens the **Question Catalog**; the question you pick is copied into your survey, where you can change it like any other.
+Next to the option, choose **Follow-up** and write the question. The follow-up is answered with free text. Tick **Required when shown** if those who see it must answer it.
 
 ## Status
 
@@ -65,11 +60,19 @@ The catalog holds ready-made questions, the same for every account. In the build
 
 **Pause collection** turns an active survey inactive, and **Resume collection** opens it again.
 
+## Active surveys and your plan
+
+Each plan allows a number of active surveys at a time: 2 on **Free**, 30 on **Starter**, and no limit on **Pro** (and during the trial). When your company already has that many, publishing a draft or resuming a paused survey is refused, and the app says, for example:
+
+> The Free plan allows up to 2 active surveys at a time. Pause another survey, or upgrade to Starter, to activate this one.
+
+Surveys that are already active stay active, even after a change to a smaller plan: only the next activation is refused.
+
 ## Change a survey that is no longer a draft
 
 Once a survey leaves the draft, its questions can no longer change: the builder shows them read-only. You can still change the title and the description.
 
-To change the questions, choose **New version**. It creates a new draft with a copy of the questions, which you edit and then make active. The earlier survey keeps its answers.
+To change the questions, choose **New version**. It creates a new draft with a copy of the questions, which you edit and then publish. The earlier survey keeps its answers.
 
 ## Delete a survey
 

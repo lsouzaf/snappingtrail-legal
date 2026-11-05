@@ -12,9 +12,9 @@ Só **administradores** criam e editam pesquisas. Gerentes, coordenadores e anal
 
 1. Abra **Projetos** e escolha um projeto.
 2. Escolha **Nova Pesquisa**. Dê um **Título da Pesquisa** e, se quiser, uma **Descrição**, e escolha **Criar Pesquisa**.
-3. Acrescente perguntas com **Texto**, **Escolha** ou **Avaliação**, ou traga perguntas prontas com **Do catálogo**.
+3. Acrescente perguntas com **Texto**, **Escolha** ou **Avaliação**.
 
-Uma pesquisa nova começa como rascunho.
+Uma pesquisa nova começa como rascunho. **Salvar** guarda o seu trabalho; **Publicar** deixa a pesquisa ativa.
 
 ![As pesquisas de um projeto](./img/surveys-list-pt.png)
 
@@ -22,38 +22,33 @@ Uma pesquisa nova começa como rascunho.
 
 ## Tipos de pergunta
 
-O construtor cria três tipos de pergunta:
+| Tipo | O que mede |
+|---|---|
+| **Texto** | Uma resposta livre, nas palavras do respondente: uma opinião, um motivo, um comentário. |
+| **Escolha**, com **Resposta única** | Uma opção de uma lista, como a unidade ou o plano. |
+| **Escolha**, com **Múltiplas respostas** | Todas as opções que se aplicam, como os serviços que a pessoa usa. |
+| **Sim/Não** | Um sim ou um não. O atalho preenche as opções **Sim** e **Não**. |
+| **Likert** | A concordância com uma afirmação. O atalho preenche cinco opções, de "Discordo totalmente" a "Concordo totalmente". |
+| **Avaliação** | Uma nota numa escala, em **Escala de resposta**. |
 
-- **Texto**: uma resposta livre.
-- **Escolha**: uma lista de opções, com **Resposta única** ou **Múltiplas respostas**. Os atalhos **Sim/Não** e **Likert** preenchem as opções para você; o Likert vai de "Discordo totalmente" a "Concordo totalmente".
-- **Avaliação**: uma nota numa escala. Escolha um predefinido, **NPS** (0 a 10), **CSAT** (1 a 5) ou **CES** (1 a 7), ou **Personalizada** para a sua própria escala.
+Numa pergunta de **Avaliação**, escolha um dos modelos ou defina a sua escala:
+
+| Modelo | Escala | O que mede |
+|---|---|---|
+| **NPS** | 0 a 10 | O quanto a pessoa recomendaria você |
+| **CSAT** | 1 a 5 | O quanto a pessoa está satisfeita |
+| **CES** | 1 a 7 | O quanto foi fácil fazer algo |
+| **Personalizada** | O seu **Mínimo**, **Máximo** e **Incremento** | Qualquer outra nota |
 
 ![Uma pergunta de escolha](./img/surveys-choice-pt.png)
-
-Uma pergunta trazida do catálogo mantém o tipo dela, que pode ser qualquer um destes:
-
-| | |
-|---|---|
-| Texto curto | Texto longo |
-| Número | Avaliação |
-| Controle deslizante | NPS |
-| Escolha única | Múltipla escolha |
-| Lista suspensa | Ordenação |
-| Likert | Data |
-| Hora | Data e hora |
-| Sim/Não | Texto informativo |
 
 Marque **Obrigatória** quando toda entrevista concluída precisar responder a pergunta. A resposta é conferida quando a entrevista é concluída, e só para as perguntas que o respondente viu.
 
 ## Perguntas condicionais
 
-Numa pergunta de escolha, cada opção pode abrir uma **pergunta condicional**, mostrada só para quem escolheu aquela opção. Por exemplo, "Principal motivo de insatisfação" pode aparecer só para quem respondeu "Insatisfeito"; os demais nunca a veem.
+Em qualquer pergunta de escolha (Resposta única, Múltiplas respostas, Sim/Não ou Likert), cada opção pode abrir uma **pergunta condicional**, mostrada só para quem escolheu aquela opção. Por exemplo, "Principal motivo de insatisfação" pode aparecer só para quem respondeu "Insatisfeito"; os demais nunca a veem.
 
-Debaixo da opção, escolha **Adicionar pergunta condicional** e escreva a pergunta. A condicional é respondida com texto livre. Marque **Obrigatória quando exibida** se quem a vê precisa respondê-la.
-
-## O catálogo de perguntas
-
-O catálogo reúne perguntas prontas, as mesmas para todas as contas. No construtor, **Do catálogo** abre o **Catálogo de perguntas**; a pergunta escolhida é copiada para a sua pesquisa, onde você pode alterá-la como qualquer outra.
+Ao lado da opção, escolha **Condicional** e escreva a pergunta. A condicional é respondida com texto livre. Marque **Obrigatória quando exibida** se quem a vê precisa respondê-la.
 
 ## Status
 
@@ -65,11 +60,19 @@ O catálogo reúne perguntas prontas, as mesmas para todas as contas. No constru
 
 **Pausar coleta** deixa uma pesquisa ativa inativa, e **Retomar coleta** a abre de novo.
 
+## Pesquisas ativas e o seu plano
+
+Cada plano permite um número de pesquisas ativas ao mesmo tempo: 2 no **Free**, 30 no **Starter** e sem limite no **Pro** (e durante o período de teste). Quando a sua empresa já tem esse número, publicar um rascunho ou retomar uma pesquisa pausada é recusado, e o app diz, por exemplo:
+
+> O plano Free permite até 2 pesquisas ativas ao mesmo tempo. Pause outra pesquisa, ou mude para o plano Starter, para ativar esta.
+
+As pesquisas que já estão ativas continuam ativas, mesmo depois da mudança para um plano menor: só a próxima ativação é recusada.
+
 ## Altere uma pesquisa que não é mais rascunho
 
 Quando a pesquisa deixa de ser rascunho, as perguntas não podem mais mudar: o construtor as mostra só para leitura. O título e a descrição continuam editáveis.
 
-Para mudar as perguntas, escolha **Nova versão**. Ela cria um novo rascunho com uma cópia das perguntas, que você edita e depois ativa. A pesquisa anterior mantém as respostas dela.
+Para mudar as perguntas, escolha **Nova versão**. Ela cria um novo rascunho com uma cópia das perguntas, que você edita e depois publica. A pesquisa anterior mantém as respostas dela.
 
 ## Exclua uma pesquisa
 
