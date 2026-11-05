@@ -1,6 +1,7 @@
 // The Administration page (docs/administration.md): the list of users, the settings and the
 // billing and plan section. Only screens are read: nothing is saved, created or deleted, and the
-// test fails if any write leaves the browser. The users' emails are blurred in the image.
+// test fails if any write leaves the browser. The users' names and emails are blurred in the image,
+// and so are the prices and the dates of the billing section.
 
 import {expect} from '@playwright/test';
 import {open, signIn, test} from '../lib/capture.js';
@@ -15,9 +16,15 @@ const TEXT = {
   billing: {en: 'Billing & Plan', pt: 'Cobrança & Plano'},
 };
 
-/** The users table's email column (the second), blurred. */
+/** The users table's name and email columns (the first two), blurred. */
 const USERS_CSS = `
-main table td:nth-child(2) { filter: blur(8px) !important; }
+main table td:nth-child(1), main table td:nth-child(2) { filter: blur(8px) !important; }
+`;
+
+/** The billing section's prices (in its buttons) and dates (in its notes), blurred. */
+const BILLING_CSS = `
+[data-capture="billing"] button > span.font-medium { filter: blur(7px) !important; }
+[data-capture="billing"] .bg-amber-50 p { filter: blur(7px) !important; }
 `;
 
 /** Every write to the API recorded. */
@@ -74,6 +81,7 @@ test('billing', async ({page, lang, capture}) => {
   await heading.waitFor();
   const section = heading.locator('xpath=ancestor::div[contains(@class, "rounded-3xl")][1]');
   await scrollToTop(section);
-  await capture(PAGE, 'billing', {element: section});
+  await section.evaluate((el) => el.setAttribute('data-capture', 'billing'));
+  await capture(PAGE, 'billing', {element: section, css: BILLING_CSS});
   expect(writes).toEqual([]);
 });

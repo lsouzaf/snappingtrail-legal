@@ -15,10 +15,10 @@ Under **User Management**, an administrator sees everyone on the account: name, 
 ### Add a user
 
 1. Click **New User**.
-2. Fill in the name and the email, and choose the roles.
+2. Fill in the name and the email, choose the roles, and the status: **Active** or **Inactive**.
 3. Click **Create User**.
 
-An interviewer gets an email with a temporary password and a link to activate the account. On the first sign-in, they confirm the email and choose their own password. An email already on the account, as a team member or a respondent, cannot be used again.
+An active user, administrator or interviewer, gets an email with a temporary password and a link to activate the account. On the first sign-in, they confirm the email and choose their own password. A user created inactive cannot sign in, and gets that email when you reactivate them. An email already on the account, as a team member or a respondent, cannot be used again.
 
 ### Roles
 
@@ -27,10 +27,7 @@ An interviewer gets an email with a temporary password and a link to activate th
 | Role | What they see and do |
 |---|---|
 | **Administrator** | Everything: users, **Integrations**, **Delivery Rules**, the plan, saving the settings, and creating and editing surveys |
-| **Manager**, **Coordinator**, **Analyst** | Projects, objectives, results, reports, exports and the **Delivery History**. They create and edit projects, and see the settings without changing them |
 | **Interviewer** | Only **My Surveys**: the projects they are a member of, where they start interviews of active surveys and see the interviews they made. The same in the Collect app |
-
-**Manager**, **Coordinator** and **Analyst** are not offered under **New User**.
 
 ### Give an interviewer access to a project
 
@@ -39,11 +36,24 @@ Access is by project: an interviewer sees every survey of the projects they are 
 1. Open the project and its **User Management** tab.
 2. Click **Add Existing Member** and choose the user, or **Create New User** to create one straight into the project.
 
-The interviewer gets an email saying they were added. **Remove from Project** takes them out of it.
+The interviewer gets an email saying they were added. **Remove from Project** takes them out of it. An inactive user is not offered.
+
+### Deactivate and reactivate a user
+
+**Deactivate**, on a user's row, asks first and then takes away their access: they can no longer sign in, and the sessions they have open are ended. Their interviews and the interviewer reports stay as they are. **Reactivate** gives the access back.
+
+Interviews still waiting on a deactivated interviewer's phone stay in the Collect app, and go once the interviewer is reactivated and signs in again.
 
 ### Delete a user
 
-The bin on a user's row deletes them. The user loses access immediately, and it cannot be undone. A user who took part in an interview cannot be deleted: their interviews stay on the account.
+The bin on a user's row deletes them. The user loses access immediately, and it cannot be undone. A user who took part in an interview cannot be deleted: deactivate them instead, and their interviews stay on the account.
+
+### What is protected
+
+- Nobody deletes or deactivates their own user.
+- The account always keeps an active administrator: the only one left can be neither deleted nor deactivated.
+
+On those rows, a padlock takes the place of the buttons, and says why.
 
 ## Settings
 
@@ -105,29 +115,35 @@ When a renewal cannot be charged, the plan stays as it is for 7 days, and **Bill
 - In the trial, or without a plan: **Continue with** Starter or Pro opens the payment page.
 - With a plan: **Switch to** the other plan, or **Cancel plan**. A cancelled plan stays until the end of the period already paid, and **Reactivate plan** brings it back.
 
-After moving to a smaller plan, the surveys already active stay active. Only a new activation over the plan's limit is refused.
+After moving to a smaller plan, the users, projects and active surveys you already have stay. Only adding one more over the plan's limit is refused: creating or reactivating a user, creating a project, activating a survey.
 
 ### What each plan includes
 
 | | Free | Starter | Pro |
 |---|---|---|---|
 | Completed interviews per month | 100 | 1,500 | 5,000 |
+| Active users | 4 | 16 | Unlimited |
+| Projects | 1 | Unlimited | Unlimited |
 | Active surveys | 2 | 30 | Unlimited |
 | Integrations | Google Sheets | Google Sheets, Slack, Notion and Webhook | Google Sheets, Slack, Notion and Webhook |
 | Signal thresholds and ranking weights | — | — | ✓ |
 | Rows per export | 500 | 10,000 | Unlimited |
 | Watermark on exports | Yes | No | No |
 
-The full export of the account's history has no row limit and no watermark, on every plan.
+Inactive users do not count toward the limit of active users. The full export of the account's history has no row limit and no watermark, on every plan.
 
 **Completed Interviews Usage** shows how many interviews were completed in the period. Administrators get an email at 80% and at 100% of the plan's interviews. At 120%, collection by link and on the web stops until the next period. On a paid plan the period starts on the billing day; on Free, it is the calendar month.
 
 ## Export the account's history
 
-**Customer History**, under **Settings**, is for administrators, managers, coordinators and analysts:
+**Customer History**, under **Settings**, exports what the account has:
 
 - **PDF**: the account's usage summary and the surveys' activity timeline.
 - **Need all responses? Full export →**: the usage, the timeline and every interview's answers, in a file to download. The link expires after 48 hours; after that, generate a new one.
+
+## Close the account
+
+To close the account, ask support.
 
 ## Next steps
 

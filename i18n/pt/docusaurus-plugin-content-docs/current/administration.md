@@ -15,10 +15,10 @@ Em **Gerenciamento de Usuários**, um administrador vê todos da conta: nome, e-
 ### Adicione um usuário
 
 1. Clique em **Novo Usuário**.
-2. Preencha o nome e o e-mail e escolha as funções.
+2. Preencha o nome e o e-mail, escolha as funções e o status: **Ativo** ou **Inativo**.
 3. Clique em **Criar Usuário**.
 
-Um entrevistador recebe um e-mail com uma senha temporária e um link para ativar a conta. No primeiro acesso, ele confirma o e-mail e escolhe a própria senha. Um e-mail que já está na conta, na equipe ou entre os respondentes, não pode ser usado de novo.
+Um usuário ativo, administrador ou entrevistador, recebe um e-mail com uma senha temporária e um link para ativar a conta. No primeiro acesso, ele confirma o e-mail e escolhe a própria senha. Um usuário criado inativo não consegue entrar, e recebe esse e-mail quando você o reativa. Um e-mail que já está na conta, na equipe ou entre os respondentes, não pode ser usado de novo.
 
 ### Funções
 
@@ -27,10 +27,7 @@ Um entrevistador recebe um e-mail com uma senha temporária e um link para ativa
 | Função | O que vê e faz |
 |---|---|
 | **Administrador** | Tudo: usuários, **Integrações**, **Regras de Envio**, o plano, salvar as configurações, e criar e editar pesquisas |
-| **Gerente**, **Coordenador**, **Analista** | Projetos, objetivos, resultados, relatórios, exportações e o **Histórico de Entregas**. Criam e editam projetos, e veem as configurações sem mudá-las |
 | **Entrevistador** | Só **Minhas Pesquisas**: os projetos de que é membro, onde inicia entrevistas das pesquisas ativas e vê as entrevistas que fez. O mesmo no app Collect |
-
-**Gerente**, **Coordenador** e **Analista** não são oferecidos em **Novo Usuário**.
 
 ### Dê a um entrevistador acesso a um projeto
 
@@ -39,11 +36,24 @@ O acesso é por projeto: o entrevistador vê todas as pesquisas dos projetos de 
 1. Abra o projeto e a aba **Gerenciamento de Usuários** dele.
 2. Clique em **Adicionar Membro Existente** e escolha o usuário, ou em **Criar Novo Usuário** para criar um já no projeto.
 
-O entrevistador recebe um e-mail avisando que foi adicionado. **Remover do Projeto** o tira do projeto.
+O entrevistador recebe um e-mail avisando que foi adicionado. **Remover do Projeto** o tira do projeto. Um usuário inativo não aparece para ser adicionado.
+
+### Desative e reative um usuário
+
+**Desativar**, na linha de um usuário, pede confirmação e tira o acesso dele: ele não consegue mais entrar, e as sessões abertas dele são encerradas. As entrevistas e os relatórios de entrevistadores continuam como estão. **Reativar** devolve o acesso.
+
+As entrevistas que ainda estão pendentes no celular de um entrevistador desativado ficam guardadas no app Collect e vão quando ele for reativado e entrar de novo.
 
 ### Exclua um usuário
 
-A lixeira na linha de um usuário o exclui. Ele perde o acesso na hora, e não há como desfazer. Um usuário que participou de uma entrevista não pode ser excluído: as entrevistas dele continuam na conta.
+A lixeira na linha de um usuário o exclui. Ele perde o acesso na hora, e não há como desfazer. Um usuário que participou de uma entrevista não pode ser excluído: desative-o, e as entrevistas dele continuam na conta.
+
+### O que é protegido
+
+- Ninguém exclui nem desativa o próprio usuário.
+- A conta sempre mantém um administrador ativo: o único que resta não pode ser excluído nem desativado.
+
+Nessas linhas, um cadeado aparece no lugar dos botões e diz o motivo.
 
 ## Configurações
 
@@ -105,29 +115,35 @@ Quando a renovação não pode ser cobrada, o plano continua como está por 7 di
 - No teste, ou sem plano: **Continuar com** Starter ou Pro abre a página de pagamento.
 - Com um plano: **Mudar para** o outro plano, ou **Cancelar plano**. Um plano cancelado vale até o fim do período já pago, e **Reativar plano** o traz de volta.
 
-Depois de passar para um plano menor, as pesquisas que já estavam ativas continuam ativas. Só uma nova ativação acima do limite do plano é recusada.
+Depois de passar para um plano menor, os usuários, os projetos e as pesquisas ativas que você já tem continuam. Só acrescentar mais um acima do limite do plano é recusado: criar ou reativar um usuário, criar um projeto, ativar uma pesquisa.
 
 ### O que cada plano inclui
 
 | | Free | Starter | Pro |
 |---|---|---|---|
 | Entrevistas concluídas por mês | 100 | 1.500 | 5.000 |
+| Usuários ativos | 4 | 16 | Sem limite |
+| Projetos | 1 | Sem limite | Sem limite |
 | Pesquisas ativas | 2 | 30 | Sem limite |
 | Integrações | Google Sheets | Google Sheets, Slack, Notion e Webhook | Google Sheets, Slack, Notion e Webhook |
 | Limites dos sinais e pesos do ranking | — | — | ✓ |
 | Linhas por exportação | 500 | 10.000 | Sem limite |
 | Marca d'água nas exportações | Sim | Não | Não |
 
-A exportação completa do histórico da conta não tem limite de linhas nem marca d'água, em todos os planos.
+Usuários inativos não contam no limite de usuários ativos. A exportação completa do histórico da conta não tem limite de linhas nem marca d'água, em todos os planos.
 
 O **Uso de Entrevistas Concluídas** mostra quantas entrevistas foram concluídas no período. Os administradores recebem um e-mail em 80% e em 100% das entrevistas do plano. Em 120%, a coleta por link e pela web para até o próximo período. Num plano pago, o período começa no dia da cobrança; no Free, é o mês do calendário.
 
 ## Exporte o histórico da conta
 
-O **Histórico do Cliente**, em **Configurações**, é para administradores, gerentes, coordenadores e analistas:
+O **Histórico do Cliente**, em **Configurações**, exporta o que a conta tem:
 
 - **PDF**: o resumo de uso da conta e a linha do tempo de atividade das pesquisas.
 - **Precisa de todas as respostas? Exportação completa →**: o uso, a linha do tempo e as respostas de cada entrevista, num arquivo para baixar. O link expira em 48 horas; depois disso, gere outro.
+
+## Encerre a conta
+
+Para encerrar a conta, peça ao suporte.
 
 ## Próximos passos
 
