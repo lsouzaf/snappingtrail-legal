@@ -4,6 +4,6 @@ sidebar_position: 2
 
 # What SnappingTrail Collect is
 
-SnappingTrail Collect is a professional application for conducting field surveys. You — the **interviewer** — use the app to open surveys configured by your contracting company, apply the questions to respondents, and send collected responses to the server when you have internet.
+SnappingTrail Collect is the Android app for field interviews. You, the **interviewer**, open the surveys your company set up, ask the questions, and the app sends the answers to the server.
 
-The app works with or without a connection. You can spend the whole day in low-signal areas and still collect all responses normally; when the device is back online, you send everything at once.
+It works with or without a connection. Every completed interview is kept on the device first and **sent by itself as soon as there is a connection**, on every plan: you can spend the day where there is no signal and lose nothing.

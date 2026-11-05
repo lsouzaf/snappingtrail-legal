@@ -4,20 +4,29 @@ sidebar_position: 7
 
 # Sending interviews
 
-## 6.1 Sending queue
+## 6.1 Sending is automatic
 
-Tap the **cloud icon** in the top bar to open the sending queue. There you see all collected interviews not yet sent to the server.
+You do not need to send anything by hand. The app sends the interviews waiting on the device by itself, as soon as there is a connection: right after you finish one, when the connection returns, when you open the app and after you sign in. If the server does not answer, the app tries again later by itself, waiting a little longer each time. A retry never creates a duplicate interview.
 
-## 6.2 Sending
+## 6.2 The Pending Interviews screen
 
-With the device connected to the internet, use the screen's sending controls to transmit the interviews. You can send all at once or select which ones to send.
+The **cloud icon** at the top of the **Projects** screen opens **Pending Interviews**, with a badge when some are waiting. It lists the interviews on this device **of the person signed in**:
 
-## 6.3 Confirming the send
+| Status | What it means |
+|---|---|
+| **Waiting to send** | It goes out by itself when there is a connection. |
+| **Sending** | It is being sent. |
+| **Not sent** | The last try failed: "Not sent yet. It will be tried again automatically." |
+| **Sent** | The server has it. |
 
-After a successful send, interviews disappear from the queue. If a send fails (no signal, server error), the interview remains in the queue and you can retry later.
+The **sync icon** at the top sends everything now; **Retry** tries a not-sent interview again, and **Delete** removes an interview from the device for good.
 
-:::note[Your interviews, your control]
+Sent interviews stay listed until you tap **Clean up**, which removes them from this device only (the server keeps them), or until they are 30 days old.
 
-Each interviewer only sends their own interviews — you do not see nor send other colleagues' work. The management stays with you.
+<img src={require('./img/collect-pending-en.png').default} alt="The Pending Interviews screen" width="300" />
+
+:::note[Shared devices]
+
+If several interviewers use the same device, each one sees and sends only their own interviews. The others' stay saved on the device and are sent when their owner signs in again.
 
 :::

@@ -31,8 +31,8 @@ export const test = base.extend({
   lang: ['en', {option: true}],
 
   /** capture(doc, step, {hide, css}) writes <page>-<step>-<lang>.png in the page's img folder. */
-  capture: async ({page, lang}, use) => {
-    await use(async (doc, step, {hide = [], css = ''} = {}) => {
+  capture: async ({page: ownPage, lang}, use) => {
+    await use(async (doc, step, {hide = [], css = '', page = ownPage} = {}) => {
       const hidden = hide.map((selector) => `${selector} { visibility: hidden !important; }`).join('\n');
       await page.addStyleTag({content: `${STABLE_CSS}\n${hidden}\n${css}`});
       await page.waitForLoadState('networkidle');
@@ -67,10 +67,14 @@ export function button(page, label) {
  * one, it fills in the form (the theme may put it in a frame, so it is found by its fields). Done
  * when the app's menu shows.
  */
-export async function signIn(page, lang) {
+export async function signIn(
+  page,
+  lang,
+  {user = process.env.DOCS_USER, password = process.env.DOCS_PASSWORD, ready = 'a[href="/settings"]'} = {},
+) {
   await open(page, lang, '/');
   await button(page, LABEL.login[lang]).click();
-  const menu = page.locator('a[href="/settings"]');
+  const menu = page.locator(ready);
   const deadline = Date.now() + 45_000;
   let form = null;
   while (!form && !(await menu.isVisible())) {
@@ -79,8 +83,8 @@ export async function signIn(page, lang) {
     if (!form) await page.waitForTimeout(500);
   }
   if (form) {
-    await form.locator('input[type="email"], input[name="username"]').first().fill(process.env.DOCS_USER);
-    await form.locator('input[type="password"]').fill(process.env.DOCS_PASSWORD);
+    await form.locator('input[type="email"], input[name="username"]').first().fill(user);
+    await form.locator('input[type="password"]').fill(password);
     await form.locator('button[type="submit"], input[type="submit"]').first().click();
   }
   await menu.waitFor({timeout: 45_000});
