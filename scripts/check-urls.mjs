@@ -1,6 +1,8 @@
 // Checks the build the way GitHub Pages serves it: the addresses that existed before the
-// Docusaurus site still answer with the same pages, /en/manual/ redirects to /manual/, and no
-// copy of static/ or legacy/ leaks into the Portuguese build.
+// Docusaurus site still answer with the same pages, /en/manual/ redirects to /manual/, the short
+// addresses of the Collect privacy policy (/privacy/, /pt/privacidade/) redirect to it, every
+// manual page links to it in its language, and no copy of static/ or legacy/ leaks into the
+// Portuguese build.
 //
 // usage: node scripts/check-urls.mjs <build dir>
 
@@ -50,8 +52,43 @@ const checks = [
       '<link rel="canonical" href="https://docs.snappingtrail.com/manual/">',
     ],
   },
-  {url: '/pt/manual/', has: ['<html lang="pt-BR"', 'Manual do SnappingTrail']},
-  {url: '/manual/', has: ['<html lang="en"', 'SnappingTrail manual']},
+  {
+    url: '/privacy/',
+    has: [
+      '<meta http-equiv="refresh" content="0; url=/en/">',
+      '<link rel="canonical" href="https://docs.snappingtrail.com/en/">',
+    ],
+  },
+  {
+    url: '/pt/privacidade/',
+    has: [
+      '<meta http-equiv="refresh" content="0; url=/pt/">',
+      '<link rel="canonical" href="https://docs.snappingtrail.com/pt/">',
+    ],
+  },
+  {
+    url: '/pt/manual/',
+    has: [
+      '<html lang="pt-BR"',
+      'Manual do SnappingTrail',
+      // The menu and the footer: the Collect privacy policy in Portuguese, and the web app's.
+      'href="/pt/"',
+      '>Privacidade<',
+      'Política de privacidade do SnappingTrail Collect',
+      'Configurações → Legal',
+    ],
+  },
+  {
+    url: '/manual/',
+    has: [
+      '<html lang="en"',
+      'SnappingTrail manual',
+      'href="/en/"',
+      '>Privacy<',
+      'SnappingTrail Collect privacy policy',
+      'Settings → Legal',
+    ],
+  },
   {url: '/manual/collect-app/', has: ['Collect app']},
   {url: '/pt/manual/collect-app/', has: ['App Collect']},
 ];

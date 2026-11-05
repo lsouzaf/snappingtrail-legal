@@ -4,6 +4,27 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+// The locale this build is for (Docusaurus sets it before reading the config, once per locale):
+// the menu's and the footer's links to the Collect privacy policy point at its own page in that
+// language, /en/ or /pt/ — pages outside Docusaurus, so 'pathname://' keeps them as they are, with
+// no locale prefix (a Portuguese page would otherwise link to /pt/en/).
+const locale = process.env.DOCUSAURUS_CURRENT_LOCALE === 'pt' ? 'pt' : 'en';
+const TEXT = {
+  en: {
+    privacy: 'Privacy',
+    privacyPolicy: 'SnappingTrail Collect privacy policy',
+    webApp:
+      'The terms and the privacy policy of the web app are in the app itself, under Settings → Legal.',
+  },
+  pt: {
+    privacy: 'Privacidade',
+    privacyPolicy: 'Política de privacidade do SnappingTrail Collect',
+    webApp:
+      'Os termos e a política de privacidade do app web ficam no próprio app, em Configurações → Legal.',
+  },
+}[locale];
+const privacyHref = `pathname:///${locale}/`;
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'SnappingTrail',
@@ -72,12 +93,14 @@ const config = {
         logo: {alt: 'SnappingTrail', src: 'img/snappingtrail-icon.svg', href: '/manual/'},
         items: [
           {type: 'docSidebar', sidebarId: 'manual', position: 'left', label: 'Manual'},
+          {href: privacyHref, position: 'left', label: TEXT.privacy, target: '_self'},
           {type: 'localeDropdown', position: 'right'},
         ],
       },
       footer: {
         style: 'light',
-        copyright: 'SnappingTrail · Navaho Consultoria',
+        links: [{label: TEXT.privacyPolicy, href: privacyHref, target: '_self'}],
+        copyright: `${TEXT.webApp}<br>SnappingTrail · Navaho Consultoria`,
       },
       prism: {
         theme: prismThemes.github,
