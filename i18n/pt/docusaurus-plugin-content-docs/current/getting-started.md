@@ -43,7 +43,7 @@ Adicione pessoas em **Gerenciamento de Usuários**.
 
 ## Como se orientar
 
-O menu da esquerda muda conforme o seu papel. No alto da tela, **PT / EN** troca o idioma.
+O menu da esquerda muda conforme a sua função. No alto da tela, **PT / EN** troca o idioma.
 
 Os objetivos de pesquisa, que agrupam pesquisas em torno de uma decisão que você precisa tomar, aparecem quando você liga **Ativar Insights**, no pé do menu da esquerda (veja [Resultados](../results)). Eles somem com **Modo Simples**. O selo **Avançado**, no alto, mostra em que modo você está.
 
