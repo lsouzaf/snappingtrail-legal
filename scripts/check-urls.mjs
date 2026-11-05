@@ -30,7 +30,17 @@ function serve(dir) {
 }
 
 const checks = [
-  {url: '/', has: ['<title>SnappingTrail Collect — Documentation</title>', 'href="manual/"', 'href="pt/manual/"']},
+  {
+    url: '/',
+    has: [
+      '<title>Snapping Trail — Documentation</title>',
+      'href="manual/"',
+      'href="pt/manual/"',
+      'href="en/"',
+      'href="pt/"',
+      'Snapping Trail Collect',
+    ],
+  },
   {url: '/en/', has: ['<title>Privacy Policy — SnappingTrail Collect</title>', 'href="../pt/"']},
   {url: '/pt/', has: ['<title>Política de Privacidade — SnappingTrail Collect</title>', 'href="../en/"']},
   {
