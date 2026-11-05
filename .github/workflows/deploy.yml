@@ -1,6 +1,6 @@
 # Builds docs.snappingtrail.com with Docusaurus, checks that the old addresses still answer, and
 # deploys to GitHub Pages (Settings → Pages → Source: "GitHub Actions"). Pull requests only build
-# and check; a push to main also deploys.
+# and check; a push to main also deploys, then checks the live site.
 name: Docs site
 
 on:
@@ -39,6 +39,7 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
+      contents: read # the checkout of scripts/check-live.sh
       pages: write
       id-token: write
     environment:
@@ -47,3 +48,8 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      # The deploy can succeed and still leave a broken site (a missing stylesheet answers 404 while
+      # the page answers 200): the live /manual/ and its CSS must answer 200, or the job fails.
+      - uses: actions/checkout@v4
+      - name: Check the live site (/manual/ and its stylesheet answer 200)
+        run: scripts/check-live.sh https://docs.snappingtrail.com
