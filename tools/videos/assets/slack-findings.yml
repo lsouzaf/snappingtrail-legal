@@ -1,0 +1,29 @@
+# The Slack message of scene 10: FitPlus's main findings as the delivery rule posts them (the Block
+# Kit of manageSurvey's SlackMessageMapper: a header with the content and the survey, a context, the
+# findings with their marker and strength, and the button back to the app). The texts are those the
+# FitPlus reference test (FitPlusSlackMessageTest) and the manual's Results page confirm; the
+# webhook's address never shows in a message.
+channel: "#fitplus-results"
+app: Snapping Trail
+en:
+  header: Main findings · FitPlus satisfaction survey
+  context: "Base: 420 completed interviews"
+  items:
+    - marker: "🟣"
+      strength: Firm
+      text: "Among those who answered '50+' to 'Age range', 52% chose 'Customer service' in 'Main reason for dissatisfaction', against 5% of the others (n = 63 and 357)."
+    - marker: "🟠"
+      strength: Indication
+      text: "21% of the interviews that reached 'Main reason for dissatisfaction' stopped there (62 of 289)."
+  button: Open in Snapping Trail
+pt:
+  header: Principais achados · Pesquisa de satisfação FitPlus
+  context: "Base: 420 entrevistas concluídas"
+  items:
+    - marker: "🟣"
+      strength: Firme
+      text: "Entre os que responderam '50+' em 'Faixa etária', 52% escolheram 'Atendimento' em 'Principal motivo de insatisfação', contra 5% dos demais (n = 63 e 357)."
+    - marker: "🟠"
+      strength: Indício
+      text: "21% das entrevistas que chegaram a 'Principal motivo de insatisfação' pararam nela (62 de 289)."
+  button: Abrir no Snapping Trail
