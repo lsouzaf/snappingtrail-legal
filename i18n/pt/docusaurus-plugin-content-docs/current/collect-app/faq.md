@@ -26,7 +26,7 @@ A sua sessão expirou ("Sua sessão expirou. Entre de novo."). Entre de novo: as
 
 ## O app mostra pesquisas antigas, ou falta uma pesquisa nova.
 
-Puxe a lista de **Projetos** para baixo para atualizá-la. Se a pesquisa continuar faltando, confirme com o administrador da conta da sua empresa que ela está ativa e que você faz parte do projeto dela.
+Puxe a lista de **Projetos** para baixo para atualizá-la. Se a pesquisa continuar faltando, confirme com o administrador da conta da sua empresa que ela está ativa e que você faz parte do projeto dela. Uma pesquisa arquivada não aparece mais no app.
 
 ## O app ficou lento ou está com comportamento estranho.
 

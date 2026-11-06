@@ -56,6 +56,16 @@ Behind this is the 95% range of the difference: the interval where the true diff
 
 ![A finding with its strength](./img/results-finding-en.png)
 
+### Which surveys count
+
+An objective's insights, signals and reports read its active and its inactive surveys: pausing a survey does not take what it collected out of the analysis. An archived survey is left out; restored, it counts again.
+
+### Archive and restore an objective
+
+**Archive**, on an objective's page, takes it out of the way with its surveys. The app asks first, and says how many surveys go with it: the active and the inactive ones, which are archived as described in [Surveys](../surveys). Nothing is deleted. The objectives list hides archived objectives: tick **Show archived** to see them.
+
+**Restore** brings the objective back active, and its archived surveys back inactive. Their delivery rules stay off. Whoever can edit the objective can archive and restore it.
+
 ## Signals
 
 An objective's **Signals** tab lists, survey by survey, everything the analysis detected, with its severity. Where a finding compares a group with the rest of the sample, a signal compares two groups with each other: for example, '50+' with '35–49'.
