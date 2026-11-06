@@ -56,6 +56,16 @@ Por trás disso há a faixa de 95% da diferença: o intervalo em que a diferenç
 
 ![Um achado com a sua força](./img/results-finding-pt.png)
 
+### Quais pesquisas contam
+
+Os insights, os sinais e os relatórios de um objetivo leem as pesquisas ativas e as inativas dele: pausar uma pesquisa não tira da análise o que ela coletou. Uma pesquisa arquivada fica de fora; restaurada, volta a contar.
+
+### Arquive e restaure um objetivo
+
+**Arquivar**, na página do objetivo, tira o objetivo do caminho junto com as pesquisas dele. O app pede confirmação antes e diz quantas pesquisas vão junto: as ativas e as inativas, que são arquivadas como descrito em [Pesquisas](../surveys). Nada é apagado. A lista de objetivos esconde os arquivados: marque **Mostrar arquivados** para vê-los.
+
+**Restaurar** traz o objetivo de volta como ativo, e as pesquisas arquivadas dele como inativas. As regras de envio delas continuam desligadas. Só o administrador da conta arquiva e restaura um objetivo.
+
 ## Sinais
 
 A aba **Sinais** de um objetivo lista, pesquisa por pesquisa, tudo o que a análise detectou, com a gravidade. Onde um achado compara um grupo com o resto da amostra, um sinal compara dois grupos entre si: por exemplo, '50+' com '35–49'.

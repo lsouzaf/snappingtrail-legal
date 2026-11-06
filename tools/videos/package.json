@@ -1,0 +1,17 @@
+{
+  "name": "snappingtrail-docs-videos",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The manual's videos, recorded by Playwright from the DEV tenants and assembled by ffmpeg from a script. Not part of the site's build.",
+  "scripts": {
+    "videos": "node run.js"
+  },
+  "dependencies": {
+    "@playwright/test": "1.64.1",
+    "yaml": "2.8.1"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}

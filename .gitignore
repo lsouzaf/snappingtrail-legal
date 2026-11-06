@@ -6,3 +6,5 @@ tools/captures/node_modules/
 tools/captures/test-results/
 tools/captures/playwright-report/
 tools/captures/.auth/
+tools/videos/node_modules/
+tools/videos/out/
