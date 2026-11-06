@@ -5,7 +5,9 @@
   "type": "module",
   "description": "The manual's videos, recorded by Playwright from the DEV tenants and assembled by ffmpeg from a script. Not part of the site's build.",
   "scripts": {
-    "videos": "node run.js"
+    "videos": "node run.js",
+    "voice": "node narrate.js",
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "@playwright/test": "1.64.1",

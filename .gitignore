@@ -8,3 +8,5 @@ tools/captures/playwright-report/
 tools/captures/.auth/
 tools/videos/node_modules/
 tools/videos/out/
+# The narration made by ElevenLabs: generated, not versioned (voice/README.md stays).
+tools/videos/voice/*/
