@@ -1,0 +1,146 @@
+# Video 7 — sending results to your tools (about 3 minutes). Format: see tools/videos/README.md.
+# Every field of the Integrations screen is blurred; the rule's form is opened and closed without
+# saving.
+
+id: 07-integrations
+title:
+  en: Sending results to your tools
+  pt: Enviando os resultados para as suas ferramentas
+
+integrations: &integrations
+  path: /integrations
+  ready: {within: main, role: heading, text: Google Sheets}
+  mask: [fields]
+  blurText: ['@']
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-integrations
+    minDuration: 7
+    narration:
+      en: Your results can reach your team on their own, in the tools they already use.
+      pt: Os seus resultados podem chegar sozinhos à sua equipe, nas ferramentas que ela já usa.
+    screen:
+      app:
+        <<: *integrations
+      actions:
+        - wait: 1
+        - scroll: {by: 1600, duration: 4}
+        - wait: 1
+
+  - id: 03-sheets
+    minDuration: 10
+    narration:
+      en: Google Sheets is available on every plan. Each kind of content gets its own tab, with readable columns, ready for your own charts.
+      pt: O Google Sheets está disponível em todos os planos. Cada tipo de conteúdo ganha a sua aba, com colunas legíveis, pronta para os seus próprios gráficos.
+    screen:
+      app:
+        <<: *integrations
+      actions:
+        - wait: 1
+        - glide: {within: main, role: heading, text: Google Sheets, duration: 1.5}
+        - highlight: {within: main, role: heading, text: Google Sheets, closest: rounded-2xl, duration: 3}
+        - scroll: {by: 450, duration: 2}
+        - wait: 2
+
+  - id: 04-slack
+    minDuration: 7
+    narration:
+      en: On Starter and Pro, Slack gets a short message with the findings and a link back.
+      pt: No Starter e no Pro, o Slack recebe uma mensagem curta com os achados e um link de volta.
+    screen:
+      # The message as Slack shows it, its reaction bar covered (as in video 1).
+      images:
+        - file: "{assets}/slack-{lang}.png"
+          cover: {x: -282, y: 0, w: 282, h: 34, color: "0xF8F8F8"}
+
+  - id: 05-notion-webhook
+    minDuration: 9
+    narration:
+      en: Notion gets a dated section on a page. And the webhook sends a signed message to your own systems.
+      pt: O Notion recebe uma seção datada numa página. E o webhook manda uma mensagem assinada para os seus próprios sistemas.
+    screen:
+      app:
+        <<: *integrations
+      actions:
+        - scrollTo: {within: main, role: heading, text: Notion, duration: 2}
+        - glide: {within: main, role: heading, text: Notion, duration: 1.2}
+        - wait: 1.5
+        - scrollTo: {within: main, role: heading, text: Webhook, duration: 2}
+        - glide: {within: main, role: heading, text: Webhook, duration: 1.2}
+        - wait: 1
+
+  - id: 06-rules
+    minDuration: 6
+    narration:
+      en: Then you decide what to send, and when, with delivery rules.
+      pt: Depois, você decide o que enviar, e quando, com as regras de envio.
+    screen:
+      app:
+        path: /trigger-rules
+        ready: {within: main, role: button, text: {en: New Rule, pt: Nova Regra}}
+      actions:
+        - wait: 1
+        - glide: {within: main, text: {en: Main findings, pt: Principais achados}, nth: 0, duration: 1.5}
+        - wait: 2
+
+  - id: 07-rule-form
+    minDuration: 11
+    narration:
+      en: A rule can run on a schedule, every day, week or month, or when something happens, like a survey reaching its minimum for analysis.
+      pt: Uma regra pode rodar num horário, todo dia, semana ou mês, ou quando algo acontece, como uma pesquisa atingindo o mínimo para análise.
+    screen:
+      app:
+        path: /trigger-rules
+        ready: {within: main, role: button, text: {en: New Rule, pt: Nova Regra}}
+      actions:
+        - wait: 0.5
+        # The form, opened and closed without saving.
+        - click: {within: main, role: button, text: {en: New Rule, pt: Nova Regra}, duration: 1.2}
+        - waitFor: {role: radio, text: {en: Event-driven, pt: Por evento}}
+        - wait: 1.5
+        - click: {role: radio, text: {en: Event-driven, pt: Por evento}, duration: 1}
+        - wait: 2.5
+        - click: {role: radio, text: {en: Scheduled, pt: Agendado}, duration: 1}
+        - wait: 2
+        - press: Escape
+
+  - id: 08-history
+    minDuration: 8
+    narration:
+      en: The delivery history shows every delivery and how it went. When there’s nothing new, nothing is sent.
+      pt: O histórico de entregas mostra cada envio e como ele foi. Quando não há novidade, nada é enviado.
+    screen:
+      app:
+        path: /deliveries
+        ready: {css: "main table tbody tr"}
+      actions:
+        - wait: 1
+        - scroll: {by: 600, duration: 3}
+        - wait: 2
+
+  - id: 09-delivered
+    minDuration: 9
+    narration:
+      en: "And if a destination is down for a moment, nothing is lost: the next run sends everything that was left behind."
+      pt: "E se um destino ficar fora do ar por um momento, nada se perde: a próxima execução envia tudo o que ficou para trás."
+    screen:
+      app:
+        path: /deliveries
+        ready: {css: "main table tbody tr"}
+      actions:
+        - wait: 1
+        - glide: {css: "main table tbody tr", nth: 0, duration: 1.5}
+        - highlight: {css: "main table tbody tr", nth: 0, duration: 5}
+
+  - id: 10-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing

@@ -1,0 +1,147 @@
+# Video 2 — getting started (about 2.5 minutes). Format: see tools/videos/README.md.
+# The sign-up is filled with example data and its sending answered in the browser: nothing leaves.
+
+id: 02-getting-started
+title:
+  en: Getting started
+  pt: Primeiros passos
+
+# The sign-up form over the public page: a plain backdrop instead of the blurred page.
+backdrop: &backdrop ".fixed.inset-0.backdrop-blur-sm { background: rgb(15 23 42) !important; backdrop-filter: none !important; }"
+
+# Settings: the plan's prices, the billing dates and the trial's days, blurred.
+settingsApp: &settings
+  path: /settings
+  ready: {within: main, role: heading, text: {en: Settings, pt: Configurações}}
+  blurText: ['[$€]\s?\d', 'R\$', '\d{1,2}/\d{1,2}/\d{2,4}', '\b20\d\d\b', 'restantes|remaining|left', '@']
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-welcome
+    minDuration: 6
+    narration:
+      en: Getting started with Snapping Trail takes just a few minutes. Let’s walk through it together.
+      pt: Começar a usar o Snapping Trail leva só alguns minutos. Vamos fazer isso juntos.
+    screen:
+      app:
+        path: /
+        signedIn: false
+        css: *backdrop
+      actions:
+        - wait: 1.5
+        - click: {role: button, text: {en: Create Account, pt: Criar conta}, exact: true, visible: true, duration: 1.6}
+        - waitFor: {css: "form input[type=\"email\"]"}
+        - wait: 1.5
+
+  - id: 03-sign-up
+    minDuration: 11
+    narration:
+      en: Tell us your company’s name, your name and your work email. We’ll send you an email to activate your account and choose your password.
+      pt: Informe o nome da sua empresa, o seu nome e o seu e-mail de trabalho. Você vai receber um e-mail para ativar a conta e escolher a sua senha.
+    screen:
+      app:
+        path: /
+        signedIn: false
+        css: *backdrop
+        # The sign-up, answered in the browser as accepted: no account is created.
+        fake:
+          - {method: POST, path: "^/api/onboarding$", status: 200, body: {}}
+        setup:
+          - click: {role: button, text: {en: Create Account, pt: Criar conta}, exact: true, visible: true}
+          - waitFor: {css: "form input[type=\"email\"]"}
+      actions:
+        - wait: 0.5
+        - type: {css: "form input", nth: 0, value: {en: FitPlus Gyms, pt: Academias FitPlus}, delay: 35, duration: 0.6}
+        - type: {css: "form input", nth: 1, value: {en: Maria Smith, pt: Maria Silva}, delay: 35, duration: 0.6}
+        - type: {css: "form input[type=\"email\"]", value: {en: maria@example.com, pt: maria@exemplo.com.br}, delay: 35, duration: 0.6}
+        - wait: 0.5
+        - click: {css: "form button[type=\"submit\"]"}
+        - wait: 3
+
+  - id: 04-first-project
+    minDuration: 8
+    narration:
+      en: Your company gets its own address, and your account comes with a first project, ready to use.
+      pt: A sua empresa ganha um endereço próprio, e a conta já vem com um primeiro projeto, pronto para usar.
+    screen:
+      app:
+        path: /projects
+        ready: {within: main, role: button, hasText: {en: My first project, pt: Meu primeiro projeto}}
+      actions:
+        - wait: 1
+        - glide: {within: main, role: button, hasText: {en: My first project, pt: Meu primeiro projeto}, duration: 1.5}
+        - highlight: {within: main, role: button, hasText: {en: My first project, pt: Meu primeiro projeto}, duration: 4}
+
+  - id: 05-trial
+    minDuration: 15
+    narration:
+      en: Every new account starts with 14 days of everything in the Pro plan. When the trial ends, you choose the plan that fits you. If you don’t, your account simply moves to Free, and your data stays right where it is.
+      pt: Toda conta nova começa com 14 dias de tudo o que o plano Pro oferece. No fim do teste, você escolhe o plano que combina com você. Se não escolher, a conta passa para o Free, e os seus dados continuam onde estão.
+    screen:
+      app:
+        <<: *settings
+      actions:
+        - wait: 1
+        - scrollTo: {within: main, text: {en: Billing & Plan, pt: Cobrança & Plano}, exact: true, duration: 2}
+        - glide: {within: main, text: {en: Billing & Plan, pt: Cobrança & Plano}, exact: true, duration: 1.5}
+        - highlight: {within: main, text: {en: Billing & Plan, pt: Cobrança & Plano}, exact: true, closest: rounded-3xl, duration: 6}
+
+  - id: 06-team
+    minDuration: 10
+    narration:
+      en: Next, bring in your team. Administrators set up the account. Interviewers collect the answers, on the web or in the Collect app.
+      pt: Depois, traga a sua equipe. Administradores configuram a conta. Entrevistadores coletam as respostas, na web ou no app Collect.
+    screen:
+      app:
+        path: /users
+        ready: {css: "main table tbody tr"}
+        css: "main table td:nth-child(1), main table td:nth-child(2) { filter: blur(8px) !important; }"
+        blurText: ['@']
+      actions:
+        - wait: 2
+        - glide: {css: "main table tbody tr", nth: 2, duration: 1.5}
+        - wait: 1.5
+        - click: {within: main, role: button, text: {en: New User, pt: Novo Usuário}, duration: 1.5}
+        - wait: 3
+
+  - id: 07-time-zone
+    minDuration: 9
+    narration:
+      en: "One small setting makes a big difference: your company’s time zone. It sets the dates of your reports and the time of your weekly summary."
+      pt: "Um ajuste pequeno faz bastante diferença: o fuso da empresa. Ele define as datas dos relatórios e o horário do resumo semanal."
+    screen:
+      app:
+        <<: *settings
+      actions:
+        - wait: 1
+        - scrollTo: {within: main, text: {en: Company time zone, pt: Fuso da empresa}, exact: true, duration: 2}
+        - glide: {within: main, css: "select", nth: 0, duration: 1.5}
+        - highlight: {within: main, text: {en: Company time zone, pt: Fuso da empresa}, exact: true, parent: true, duration: 4}
+
+  - id: 08-language
+    minDuration: 7
+    narration:
+      en: And Snapping Trail speaks your language, in English or Portuguese. Switch at any time.
+      pt: E o Snapping Trail fala a sua língua, em português ou inglês. Troque quando quiser.
+    screen:
+      app:
+        path: /projects
+        ready: {within: main, role: button, hasText: {en: My first project, pt: Meu primeiro projeto}}
+      actions:
+        - wait: 1
+        - click: {role: button, text: {en: PT, pt: EN}, exact: true, duration: 1.5}
+        - wait: 2
+        - click: {role: button, text: {en: EN, pt: PT}, exact: true, duration: 1}
+        - wait: 1.5
+
+  - id: 09-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing

@@ -1,0 +1,163 @@
+# Video 4 — collecting through a link (about 3 minutes). Format: see tools/videos/README.md.
+# Creating the link is answered in the browser: nothing is created. The links are masked and the
+# QR codes blurred; the plan's prices and the billing dates are blurred.
+
+id: 04-collecting-by-link
+title:
+  en: Collecting through a link
+  pt: Coletando por link
+
+openSurvey: &openSurvey
+  - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+  - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
+  - click: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, exact: true}
+openShare: &openShare
+  - *openSurvey
+  - click: {within: main, role: button, text: {en: Share, pt: Compartilhar}}
+  - waitFor: {within: main, role: button, text: {en: Copy link, pt: Copiar link}}
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-share
+    minDuration: 6
+    narration:
+      en: Your survey is active. Now let’s get it in front of people.
+      pt: A pesquisa está ativa. Agora vamos levá-la até as pessoas.
+    screen:
+      app:
+        path: /projects
+        mask: [shareLinks, qrCode]
+        setup: [*openSurvey]
+      actions:
+        - wait: 1
+        - click: {within: main, role: button, text: {en: Share, pt: Compartilhar}, duration: 1.5}
+        - waitFor: {within: main, role: button, text: {en: Copy link, pt: Copiar link}}
+        - wait: 2
+
+  - id: 03-create-link
+    minDuration: 10
+    narration:
+      en: Create a link. You can limit how many answers it takes, and set a date for it to expire. Both are optional.
+      pt: Crie um link. Você pode limitar quantas respostas ele recebe e definir uma data para ele expirar. As duas coisas são opcionais.
+    screen:
+      app:
+        path: /projects
+        mask: [shareLinks, qrCode]
+        # Creating the link, answered in the browser: no link is created.
+        fake:
+          - method: POST
+            path: "^/api/surveys/[^/]+/shares$"
+            status: 201
+            body: {shareId: "00000000-0000-0000-0000-000000000000", token: "example", url: "https://yourcompany.app.snappingtrail.com/s/example", status: ACTIVE, maxResponses: 200, createdAt: "2026-11-06T12:00:00Z"}
+        setup: [*openShare]
+      actions:
+        - wait: 1
+        - click: {within: main, role: button, text: {en: Create link, pt: Criar link}, duration: 1.5}
+        - type: {css: "input[type=\"number\"]", value: "200"}
+        - fill: {css: "input[type=\"date\"]", value: "2026-12-31"}
+        - wait: 1
+        - click: {css: "form button[type=\"submit\"]"}
+        - wait: 2
+
+  - id: 04-copy-qr
+    minDuration: 10
+    narration:
+      en: Copy the link to send by email or message, or download the QR code to print on posters, tables or receipts.
+      pt: Copie o link para mandar por e-mail ou mensagem, ou baixe o QR Code para imprimir em cartazes, mesas ou comprovantes.
+    screen:
+      app:
+        path: /projects
+        mask: [shareLinks, qrCode]
+        setup: [*openShare]
+      actions:
+        - wait: 1
+        - click: {within: main, role: button, text: {en: Copy link, pt: Copiar link}, duration: 1.5}
+        - wait: 1.5
+        - click: {within: main, role: button, text: {en: QR Code, pt: QR Code}, duration: 1.2}
+        - waitFor: {role: link, text: {en: Download PNG, pt: Baixar PNG}}
+        - glide: {role: link, text: {en: Download PNG, pt: Baixar PNG}, duration: 1.5}
+        - wait: 2
+
+  - id: 05-respondent
+    minDuration: 7
+    narration:
+      en: "This is what your respondents see: a clean, simple page, on any phone or computer."
+      pt: "É isto que os respondentes veem: uma página limpa e simples, em qualquer celular ou computador."
+    screen:
+      app:
+        # A browser with no session opens the survey's link (read off camera in the Share tab).
+        respondent:
+          setup: [*openShare]
+        fake:
+          - {method: POST, path: "^/api/public/interviews/?$", status: 200, body: {interviewId: "00000000-0000-0000-0000-000000000000"}}
+          - {method: POST, path: "^/public/interviews/?$", status: 200, body: {interviewId: "00000000-0000-0000-0000-000000000000"}}
+        ready: {css: "button"}
+      actions:
+        - wait: 2
+        - glide: {css: "button", nth: 0, duration: 1.5}
+        - wait: 3
+
+  - id: 06-interviewer
+    minDuration: 10
+    narration:
+      en: Interviewers can also collect on the web, asking the questions and typing in the answers, perfect for phone interviews or a front desk.
+      pt: "Os entrevistadores também podem coletar pela web, fazendo as perguntas e preenchendo as respostas: ideal para entrevistas por telefone ou um balcão de atendimento."
+    screen:
+      app:
+        # The demo interviewer's session; the app brings an interviewer to My Surveys.
+        user: interviewer
+        path: /
+        setup:
+          - waitUrl: "/collect"
+          - waitFor: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}}
+      actions:
+        - wait: 1.5
+        - glide: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, nth: 0, duration: 1.5}
+        - highlight: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, nth: 0, closest: rounded-3xl, duration: 4}
+
+  - id: 07-goals
+    minDuration: 10
+    narration:
+      en: "Set your goals: how many responses you expect, and the minimum the analysis needs before it can tell you what stands out."
+      pt: "Defina as suas metas: quantas respostas você espera e o mínimo de que a análise precisa para mostrar o que se destaca."
+    screen:
+      app:
+        path: /projects
+        setup: [*openSurvey]
+      actions:
+        - wait: 1
+        - glide: {within: main, text: {en: Minimum reached, pt: Mínimo atingido}, duration: 1.2}
+        - wait: 1
+        # The survey's settings, opened and closed without saving.
+        - click: {within: main, role: button, text: {en: Edit, pt: Editar}, nth: 0, duration: 1.2}
+        - wait: 4
+        - press: Escape
+        - wait: 0.5
+
+  - id: 08-allowance
+    minDuration: 13
+    narration:
+      en: Completed interviews count toward your plan’s monthly allowance. You’ll get an email well before you reach it, and interviews from the Collect app are always accepted, so no fieldwork is ever lost.
+      pt: As entrevistas concluídas contam para a franquia mensal do plano. Você recebe um e-mail bem antes de chegar ao limite, e as entrevistas do app Collect são sempre aceitas, para nenhum trabalho de campo se perder.
+    screen:
+      app:
+        path: /settings
+        ready: {within: main, role: heading, text: {en: Settings, pt: Configurações}}
+        blurText: ['[$€]\s?\d', 'R\$', '\d{1,2}/\d{1,2}/\d{2,4}', '\b20\d\d\b', 'restantes|remaining|left', '@']
+      actions:
+        - wait: 1
+        - scrollTo: {within: main, text: {en: Completed Interviews Usage, pt: Uso de Entrevistas Concluídas}, exact: true, duration: 2}
+        - glide: {within: main, text: {en: Completed Interviews Usage, pt: Uso de Entrevistas Concluídas}, exact: true, duration: 1.2}
+        - highlight: {within: main, text: {en: Completed Interviews Usage, pt: Uso de Entrevistas Concluídas}, exact: true, closest: rounded-3xl, duration: 6}
+
+  - id: 09-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing

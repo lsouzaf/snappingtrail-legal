@@ -8,7 +8,11 @@ product is only a new run:
 npm ci                          # once, in this folder
 npm run videos -- 01-overview   # both languages
 npm run videos -- 01-overview --lang pt
+npm run videos -- 03-creating-a-survey --lang en --scene 08-publish   # one scene, to try it out
 ```
+
+The scripts: `01-overview` (what Snapping Trail is), `02-getting-started`, `03-creating-a-survey`,
+`04-collecting-by-link`, `05-collect-app`, `06-results`, `07-integrations` and `08-administration`.
 
 Out come `out/01-overview-en.mp4` and `out/01-overview-pt.mp4` (1920×1080, 30 fps), each with its
 subtitles (`.srt`). `out/` stays out of git, and so does the work folder inside it (frames, cards,
@@ -19,8 +23,11 @@ provisional voice, segments).
 In Docker, like the captures: Playwright's image plus ffmpeg and espeak-ng (`Dockerfile`), built by
 `run.js` the first time (`snappingtrail-docs-videos:1.64.1`). The host installs nothing. The same
 rules as the captures hold: the credentials come from `~/.config/snappingtrail/docs-captures.env`,
-mounted read-only and masked in everything printed; the session is the captures' own; any request to
-the API other than a read fails the scene; share links are masked and QR codes blurred.
+mounted read-only and masked in everything printed; the session is the captures' own (and the demo
+interviewer's, `DOCS_INTERVIEWER_USER`); any request to the API other than a read fails the scene,
+unless the script answers it in the browser with a simulated result (`fake`), so it never leaves;
+share links are masked, QR codes and the texts the script names (emails, prices, billing dates)
+blurred.
 
 ## The script
 
@@ -38,8 +45,20 @@ scenes:
         mask: [shareLinks, qrCode, fields]
         insightsMode: true    # the app's insights mode, as the captures set it
         css: "…"              # extra CSS while recording
+        blurText: ['@']       # regular expressions: every element whose text matches is blurred
+        user: interviewer     # the demo interviewer's session instead of the administrator's
+        respondent: {setup}   # no session: the survey's share link, read in its Share tab by setup
+        fake:                 # writes answered in the browser, never sent (the scene shows them done)
+          - {method: POST, path: "^/api/onboarding$", status: 200, body: {}}
+          - {method: PUT, path: "^/api/surveys/[^/]+$", body: echo}         # the request's own JSON
+          - {method: GET, path: "…", afterWrite: true, patch: {status: ACTIVE}, omit: [questions]}
       actions: [...]          # steps on camera, smooth, with the cursor
 ```
+
+A `fake` GET is read for real and changed in the browser (`patch` over it, `omit` left out), with
+`afterWrite` only once a write was simulated, so the screen agrees with what the scene did. A write
+the script does not answer is refused and fails the scene. `setup` and `actions` can join the
+steps of several YAML anchors (`setup: [*openBuilder, *textQuestion]`).
 
 A screen is one of:
 
@@ -57,11 +76,14 @@ Reports tab, then the Slack message).
 Steps: `wait: 2`, `goto: /path`, `waitFor: target`, `click: target`, `glide: target` (moves the
 cursor), `scroll: {by: 1200, duration: 6}`, `scrollTo: target`, `highlight: target` (a ring around
 it), `zoom: target` (with `scale`, 2 by default; the target is centred, and one that would not fit
-the frame whole fails the scene), `style: {…target, set}` (inline styles, in a setup).
-A target is found by `role` (with `text` as its name), `testid`,
-`css` or `text`, inside `within`, filtered by `hasText`; `exact`, `nth`, `visible`, `parent` (its
-parent element) and `card` (the insight card around it) refine it, and `duration` sets the time of
-the movement. Texts are either one string or `{en, pt}`.
+the frame whole fails the scene), `style: {…target, set}` (inline styles, in a setup),
+`type: {…target, value}` (typed key by key on camera, `delay` in ms), `fill: {…target, value}` (a
+date or a number, at once), `select: {…target, value}`, `press: Escape`, `attr: {…target, name}`
+(for a mask's CSS to find it) and `waitUrl: "/collect"`. A target is found by `role` (with `text` as
+its name), `testid`, `css` or `text`, inside `within`, filtered by `hasText`; `exact`, `nth`,
+`visible`, `parent` (its parent element), `card` (the insight card around it) and `closest` (the
+nearest ancestor with that class) refine it, and `duration` sets the time of the movement. Texts
+and CSS are either one string or `{en, pt}`.
 
 ## The narration: from the provisional voice to ElevenLabs
 

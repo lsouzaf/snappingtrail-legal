@@ -1,5 +1,8 @@
 // The whole video, in each language: narration, recording, assembly and subtitles.
-//   node pipeline.js <video> [--lang en|pt]      (run by run.js, inside the image)
+//   node pipeline.js <video> [--lang en|pt] [--scene <id>]      (run by run.js, inside the image)
+//
+// With --scene, only that scene is made (out/work/<video>/<lang>/<id>.mp4), to try it out; the
+// video and its subtitles are left as they are.
 //
 // For each scene: the narration (the final voice, or the provisional one) sets its length — the
 // longer of the narration plus a short lead and tail, and the scene's minimum —, then its screen is
@@ -23,6 +26,7 @@ const DOCS = {en: path.join(REPO, 'docs'), pt: path.join(REPO, 'i18n/pt/docusaur
 const args = process.argv.slice(2);
 const video = args[0];
 const only = args.includes('--lang') ? [args[args.indexOf('--lang') + 1]] : LANGS;
+const sceneOnly = args.includes('--scene') ? args[args.indexOf('--scene') + 1] : null;
 const script = loadScript(DIR, video);
 
 async function scenePart(browser, part, i, seconds, lang, work, scene) {
@@ -55,6 +59,7 @@ async function make(browser, lang) {
   let start = 0;
   let provisional = 0;
   for (const scene of script.scenes) {
+    if (sceneOnly && scene.id !== sceneOnly) continue;
     const text = pick(scene.narration, lang);
     const voice = narration(DIR, work, video, lang, scene.id, text);
     if (voice?.provisional) provisional += 1;
@@ -72,6 +77,11 @@ async function make(browser, lang) {
     entries.push({start, seconds: voice?.seconds ?? 0, text});
     console.log(`  ${lang} ${scene.id}: ${seconds.toFixed(1)} s${voice ? ` (narration ${voice.seconds.toFixed(1)} s${voice.provisional ? ', provisional voice' : ''})` : ''}`);
     start += seconds;
+  }
+  if (sceneOnly) {
+    if (!segments.length) throw new Error(`No scene ${sceneOnly} in ${video}`);
+    console.log(`${path.relative(DIR, segments[0])}: ${start.toFixed(1)} s`);
+    return;
   }
   const outDir = path.join(DIR, 'out');
   const mp4 = concat(segments, path.join(outDir, `${video}-${lang}.mp4`));

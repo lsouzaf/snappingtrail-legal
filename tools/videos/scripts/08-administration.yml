@@ -1,0 +1,137 @@
+# Video 8 — managing your account (about 2.5 minutes). Format: see tools/videos/README.md.
+# The users' names and emails, the plan's prices and the billing dates are blurred. New User and
+# Deactivate are opened and closed without saving; nothing is archived.
+
+id: 08-administration
+title:
+  en: Managing your account
+  pt: Administrando a sua conta
+
+users: &users
+  path: /users
+  ready: {css: "main table tbody tr"}
+  css: "main table td:nth-child(1), main table td:nth-child(2) { filter: blur(8px) !important; }"
+  blurText: ['@']
+settings: &settings
+  path: /settings
+  ready: {within: main, role: heading, text: {en: Settings, pt: Configurações}}
+  blurText: ['[$€]\s?\d', 'R\$', '\d{1,2}/\d{1,2}/\d{2,4}', '\b20\d\d\b', 'restantes|remaining|left', '@']
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-users
+    minDuration: 7
+    narration:
+      en: Administrators keep the account running smoothly. Let’s look at the essentials.
+      pt: Os administradores mantêm a conta funcionando bem. Vamos ver o essencial.
+    screen:
+      app:
+        <<: *users
+      actions:
+        - wait: 1
+        - glide: {css: "main table tbody tr", nth: 3, duration: 2}
+        - wait: 3
+
+  - id: 03-new-user
+    minDuration: 7
+    narration:
+      en: Add people with New User. Each one gets an email to set their password.
+      pt: Adicione pessoas em Novo Usuário. Cada uma recebe um e-mail para definir a senha.
+    screen:
+      app:
+        <<: *users
+      actions:
+        - wait: 0.5
+        - click: {within: main, role: button, text: {en: New User, pt: Novo Usuário}, duration: 1.5}
+        - wait: 3.5
+        - click: {role: button, text: {en: Cancel, pt: Cancelar}, exact: true, duration: 1}
+        - wait: 0.5
+
+  - id: 04-deactivate
+    minDuration: 9
+    narration:
+      en: When someone leaves, deactivate them. They can no longer sign in, and everything they collected stays in your account.
+      pt: Quando alguém sai da empresa, desative essa pessoa. Ela não consegue mais entrar, e tudo o que coletou continua na sua conta.
+    screen:
+      app:
+        <<: *users
+      actions:
+        - wait: 0.5
+        - click: {within: main, role: button, text: {en: Deactivate, pt: Desativar}, nth: 1, duration: 1.5}
+        - waitFor: {role: dialog}
+        - wait: 4
+        - click: {within: "[role=\"dialog\"]", role: button, text: {en: Cancel, pt: Cancelar}, exact: true, duration: 1}
+        - wait: 0.5
+
+  - id: 05-archive
+    minDuration: 9
+    narration:
+      en: Finished a piece of research? Archive it. It leaves your lists, and its data stays safe, ready to restore.
+      pt: Terminou uma pesquisa de mercado? Arquive. Ela sai das suas listas, e os dados ficam guardados, prontos para restaurar.
+    screen:
+      app:
+        path: /objectives
+        insightsMode: true
+        setup:
+          - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+          - waitFor: {within: main, role: button, text: {en: Archive, pt: Arquivar}}
+      actions:
+        - wait: 1
+        - glide: {within: main, role: button, text: {en: Archive, pt: Arquivar}, duration: 1.5}
+        - highlight: {within: main, role: button, text: {en: Archive, pt: Arquivar}, duration: 4}
+
+  - id: 06-settings
+    minDuration: 9
+    narration:
+      en: In Settings, set your company’s time zone, and turn on the weekly summary, sent every Friday evening.
+      pt: Em Configurações, defina o fuso da empresa e ligue o resumo semanal, enviado toda sexta à noite.
+    screen:
+      app:
+        <<: *settings
+      actions:
+        - wait: 1
+        - scrollTo: {within: main, text: {en: Email Notifications, pt: Notificações por E-mail}, exact: true, duration: 2}
+        - glide: {within: main, text: {en: Company time zone, pt: Fuso da empresa}, exact: true, duration: 1.2}
+        - wait: 1
+        - glide: {within: main, text: {en: Weekly Summary, pt: Resumo Semanal}, exact: true, duration: 1.2}
+        - highlight: {within: main, text: {en: Email Notifications, pt: Notificações por E-mail}, exact: true, closest: rounded-3xl, duration: 3}
+
+  - id: 07-legal
+    minDuration: 6
+    narration:
+      en: You’ll also find the terms and the privacy policy there, whenever you need them.
+      pt: Ali você também encontra os termos e a política de privacidade, sempre que precisar.
+    screen:
+      app:
+        <<: *settings
+      actions:
+        - wait: 0.5
+        - scrollTo: {within: main, text: Legal, exact: true, duration: 2.5}
+        - glide: {within: main, role: link, text: {en: Privacy Policy, pt: Política de Privacidade}, duration: 1.5}
+        - wait: 2
+
+  - id: 08-billing
+    minDuration: 7
+    narration:
+      en: And under Billing and Plan, see your usage and change your plan at any time.
+      pt: E em Cobrança e Plano, acompanhe o seu uso e mude de plano quando quiser.
+    screen:
+      app:
+        <<: *settings
+      actions:
+        - wait: 1
+        - scrollTo: {within: main, text: {en: Billing & Plan, pt: Cobrança & Plano}, exact: true, duration: 1.5}
+        - glide: {within: main, text: {en: Completed Interviews Usage, pt: Uso de Entrevistas Concluídas}, exact: true, duration: 1.5}
+        - wait: 3
+
+  - id: 09-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing
