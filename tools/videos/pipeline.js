@@ -14,7 +14,7 @@ import {LANGS, loadScript, partsOf, pick} from './lib/script.js';
 import {narration} from './lib/voice.js';
 import {renderCard} from './lib/cards.js';
 import {recordApp} from './lib/record.js';
-import {LEAD, TAIL, appVideo, concat, imagesVideo, segment, srt, stillVideo} from './lib/assemble.js';
+import {LEAD, TAIL, appVideo, concat, coverArea, imagesVideo, segment, srt, stillVideo} from './lib/assemble.js';
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(DIR, '../..');
@@ -33,8 +33,13 @@ async function scenePart(browser, part, i, seconds, lang, work, scene) {
     return {file: stillVideo(png, seconds, out), seconds};
   }
   if (part.images) {
-    const images = part.images.map((p) => p.replace('{docs}', DOCS[lang]).replace('{assets}', path.join(DIR, 'assets')).replace('{lang}', lang));
-    for (const img of images) if (!fs.existsSync(img)) throw new Error(`${scene.id}: no image ${img}`);
+    const fill = (p) => p.replace('{docs}', DOCS[lang]).replace('{assets}', path.join(DIR, 'assets')).replace('{lang}', lang);
+    const images = part.images.map((entry, j) => {
+      const img = fill(typeof entry === 'string' ? entry : entry.file);
+      if (!fs.existsSync(img)) throw new Error(`${scene.id}: no image ${img}`);
+      // A copy with an area covered (the original stays as it is).
+      return entry.cover ? coverArea(img, entry.cover, path.join(work, 'covered', `${scene.id}-${i}-${j}.png`)) : img;
+    });
     return {file: imagesVideo(images, seconds, out), seconds};
   }
   const frames = path.join(work, 'frames', `${scene.id}-${i}`);

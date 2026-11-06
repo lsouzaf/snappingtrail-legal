@@ -33,6 +33,14 @@ export function stillVideo(image, d, out) {
   return out;
 }
 
+/** A copy of [image] with a box filled with [color]; a negative x or y counts from the right or bottom. */
+export function coverArea(image, {x, y, w, h, color}, out) {
+  fs.mkdirSync(path.dirname(out), {recursive: true});
+  const at = (v, side) => (v < 0 ? `${side}${v}` : String(v));
+  ffmpeg(['-i', image, '-vf', `drawbox=x=${at(x, 'iw')}:y=${at(y, 'ih')}:w=${w}:h=${h}:color=${color}:t=fill`, '-frames:v', '1', out]);
+  return out;
+}
+
 /** The video of one image or several, one after the other with a 0.6 s cross-fade, over [d] seconds. */
 export function imagesVideo(images, d, out) {
   const x = 0.6;

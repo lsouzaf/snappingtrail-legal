@@ -47,6 +47,8 @@ A screen is one of:
 - `images`: images one after the other with a cross-fade (the Collect app's captures, the Slack
   message); `{docs}` is the language's docs folder, `{assets}` this folder's `assets` and `{lang}`
   the language.
+  An image can also be `{file, cover: {x, y, w, h, color}}`: the video uses a copy with that box
+  filled (a negative `x` or `y` counts from the right or bottom), and the original stays as it is.
 - `card`: `opening` (logo and title) or `closing` (logo, the manual's address and its line).
 
 A scene can also have `parts`, each a screen with its `share` of the scene's time (scene 10: the

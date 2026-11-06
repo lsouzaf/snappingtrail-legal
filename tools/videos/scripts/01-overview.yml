@@ -87,11 +87,28 @@ scenes:
         - "{docs}/collect-app/img/collect-question-choice-{lang}.png"
         - "{docs}/collect-app/img/collect-final-saved-{lang}.png"
 
+  - id: 06b-objective
+    minDuration: 14
+    narration:
+      en: "In advanced mode, you can go one step further, and organize your surveys around a research objective: the decision you need to make, like how to keep members from leaving. Snapping Trail then reads all those surveys together, with that decision in mind."
+      pt: "No modo avançado, você pode ir um passo além e organizar suas pesquisas em torno de um objetivo de pesquisa: a decisão que você precisa tomar, como evitar que os alunos cancelem. O Snapping Trail passa a ler todas essas pesquisas juntas, com essa decisão em mente."
+    screen:
+      app:
+        path: /objectives
+        insightsMode: true
+        ready: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+      actions:
+        - wait: 2
+        - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+        - waitFor: {within: main, css: "p.max-w-2xl"}
+        - wait: 1
+        - highlight: {within: main, css: "p.max-w-2xl", duration: 2}
+
   - id: 07-insights
     minDuration: 16
     narration:
-      en: "And here's where Snapping Trail really shines. It reads the answers for you, and tells you what really stands out. Look at this: among members aged 50 and over, 52% point to customer service. For everyone else, it's just 5%."
-      pt: "E é aqui que o Snapping Trail faz a diferença. Ele lê as respostas por você e mostra o que realmente se destaca. Veja só: entre os alunos de 50 anos ou mais, 52% apontam o atendimento. Entre os demais, só 5%."
+      en: "And here's where Snapping Trail really shines. It reads the answers for you, and tells you what really stands out. Look at this: asked for their main reason for dissatisfaction, 52% of members aged 50 and over point to customer service. Among everyone else, it's just 5%."
+      pt: "E é aqui que o Snapping Trail faz a diferença. Ele lê as respostas por você e mostra o que realmente se destaca. Veja só: quando perguntados sobre o principal motivo de insatisfação, 52% dos alunos de 50 anos ou mais apontam o atendimento. Entre os demais, só 5%."
     screen:
       app: &insights
         path: /objectives
@@ -164,7 +181,10 @@ scenes:
             - glide: {within: main, text: {en: Executive summary, pt: Resumo executivo}, exact: true, duration: 1.5}
         - share: 0.5
           # The message as Slack shows it, captured by the owner (assets/slack-en.png, slack-pt.png).
-          images: ["{assets}/slack-{lang}.png"]
+          # Slack's reaction bar, at the top right of the capture, covered with the message's background.
+          images:
+            - file: "{assets}/slack-{lang}.png"
+              cover: {x: -282, y: 0, w: 282, h: 34, color: "0xF8F8F8"}
 
   - id: 11-signup
     minDuration: 7
