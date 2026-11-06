@@ -29,11 +29,11 @@ async function scenePart(browser, part, i, seconds, lang, work, scene) {
   const out = path.join(work, 'parts', `${scene.id}-${i}.mp4`);
   fs.mkdirSync(path.dirname(out), {recursive: true});
   if (part.card) {
-    const png = await renderCard(browser, part.card, path.join(work, 'cards', `${part.card}.png`), {dir: DIR, repo: REPO, lang, script});
+    const png = await renderCard(browser, part.card, path.join(work, 'cards', `${part.card}.png`), {repo: REPO, lang, script});
     return {file: stillVideo(png, seconds, out), seconds};
   }
   if (part.images) {
-    const images = part.images.map((p) => p.replace('{docs}', DOCS[lang]).replace('{lang}', lang));
+    const images = part.images.map((p) => p.replace('{docs}', DOCS[lang]).replace('{assets}', path.join(DIR, 'assets')).replace('{lang}', lang));
     for (const img of images) if (!fs.existsSync(img)) throw new Error(`${scene.id}: no image ${img}`);
     return {file: imagesVideo(images, seconds, out), seconds};
   }

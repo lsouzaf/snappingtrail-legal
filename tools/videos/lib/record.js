@@ -203,9 +203,22 @@ async function step(page, s, lang, onCamera) {
     }, handle);
     return sleep(s.highlight.duration ?? 3);
   }
+  if (s.style) {
+    // Inline styles on an element, as in `style: {…target, set: 'max-width: 860px'}` (in a setup, off camera).
+    const handle = await locate(page, s.style, lang).elementHandle();
+    return page.evaluate(({el, css}) => { el.style.cssText += `;${css}`; }, {el: handle, css: s.style.set});
+  }
   if (s.zoom) {
+    // The page scaled around a point chosen so the target ends up centred, and whole: a target that
+    // would not fit the frame at that scale fails the scene.
     const box = await locate(page, s.zoom, lang).boundingBox();
     if (!box) throw new Error('zoom: nothing on screen');
+    const scale = s.zoom.scale ?? 2;
+    const margin = 40;
+    if (box.width * scale > W - 2 * margin || box.height * scale > H - 2 * margin) {
+      throw new Error(`zoom: the target (${Math.round(box.width)}×${Math.round(box.height)}) does not fit the frame at ${scale}×`);
+    }
+    const origin = (c, size) => Math.min(size, Math.max(0, (scale * c - size / 2) / (scale - 1)));
     const ms = (s.zoom.duration ?? 1.5) * 1000;
     await page.evaluate(
       ({x, y, scale, ms}) => {
@@ -214,7 +227,7 @@ async function step(page, s, lang, onCamera) {
         root.style.transition = `transform ${ms}ms cubic-bezier(.4,0,.2,1)`;
         root.style.transform = `scale(${scale})`;
       },
-      {x: box.x + box.width / 2, y: box.y + box.height / 2, scale: s.zoom.scale ?? 2.5, ms},
+      {x: origin(box.x + box.width / 2, W), y: origin(box.y + box.height / 2, H), scale, ms},
     );
     await page.mouse.move(-50, -50);
     return sleep(ms / 1000 + 0.1);

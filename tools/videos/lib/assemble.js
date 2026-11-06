@@ -33,14 +33,13 @@ export function stillVideo(image, d, out) {
   return out;
 }
 
-/** The video of several images, one after the other with a 0.6 s cross-fade, over [d] seconds. */
+/** The video of one image or several, one after the other with a 0.6 s cross-fade, over [d] seconds. */
 export function imagesVideo(images, d, out) {
-  if (images.length === 1) return stillVideo(images[0], d, out);
   const x = 0.6;
   const each = (d + (images.length - 1) * x) / images.length;
   const inputs = images.flatMap((img) => ['-loop', '1', '-framerate', String(FPS), '-t', each.toFixed(3), '-i', img]);
-  // A phone screen, centred on the page's background, a little smaller than the frame.
-  const scale = `scale=-2:960,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=${BG},setsar=1,fps=${FPS},format=yuv420p`;
+  // Centred on the page's background, a little smaller than the frame (a phone screen 960 high).
+  const scale = `scale=1680:960:force_original_aspect_ratio=decrease:flags=lanczos,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=${BG},setsar=1,fps=${FPS},format=yuv420p`;
   const chains = images.map((_, i) => `[${i}:v]${scale}[v${i}]`);
   let last = 'v0';
   for (let i = 1; i < images.length; i += 1) {

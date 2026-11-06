@@ -114,10 +114,16 @@ scenes:
     screen:
       app:
         <<: *insights
+        setup:
+          - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+          - click: {within: main, role: button, text: {en: Insights, pt: Insights}, exact: true}
+          - waitFor: {testid: insight-strip}
+          # The first finding wrapped, so that it fits the frame whole at 2×.
+          - style: {within: main, text: {en: "Among those who answered '50+'", pt: "Entre os que responderam '50+'"}, set: "max-width: 860px"}
       actions:
         - scrollTo: {testid: insight-strip, parent: true, duration: 0.1}
         - wait: 1
-        - zoom: {within: main, text: {en: Firm, pt: Firme}, exact: true, scale: 3, duration: 1.5}
+        - zoom: {within: main, text: {en: "Among those who answered '50+'", pt: "Entre os que responderam '50+'"}, scale: 2, duration: 1.5}
         - wait: 6
 
   - id: 09-dropout-trend
@@ -157,7 +163,8 @@ scenes:
             - scrollTo: {within: main, text: {en: Available reports, pt: Relatórios disponíveis}, exact: true, duration: 1.5}
             - glide: {within: main, text: {en: Executive summary, pt: Resumo executivo}, exact: true, duration: 1.5}
         - share: 0.5
-          card: slack
+          # The message as Slack shows it, captured by the owner (assets/slack-en.png, slack-pt.png).
+          images: ["{assets}/slack-{lang}.png"]
 
   - id: 11-signup
     minDuration: 7
@@ -169,10 +176,13 @@ scenes:
         path: /
         signedIn: false
         css: ".fixed.inset-0.backdrop-blur-sm { background: rgb(15 23 42) !important; backdrop-filter: none !important; }"
+        # The form opened off camera: it is on screen from the scene's first frame.
+        setup:
+          - click: {role: button, text: {en: Create Account, pt: Criar conta}, exact: true, visible: true}
+          - waitFor: {css: "form input[type=\"email\"]"}
       actions:
         - wait: 1
-        - click: {role: button, text: {en: Create Account, pt: Criar conta}, exact: true, visible: true}
-        - waitFor: {css: "form input[type=\"email\"]"}
+        - glide: {css: "form input[type=\"email\"]", duration: 1.5}
         - wait: 3
 
   - id: 12-closing

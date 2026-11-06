@@ -44,17 +44,19 @@ scenes:
 A screen is one of:
 
 - `app`: a screen of the app, with `setup` and `actions`.
-- `images`: images one after the other with a cross-fade (the Collect app's captures);
-  `{docs}` is the language's docs folder and `{lang}` the language.
-- `card`: `opening` (logo and title), `closing` (logo, the manual's address and its line) or
-  `slack` (FitPlus's findings as the Slack message shows them, from `assets/slack-findings.yml`).
+- `images`: images one after the other with a cross-fade (the Collect app's captures, the Slack
+  message); `{docs}` is the language's docs folder, `{assets}` this folder's `assets` and `{lang}`
+  the language.
+- `card`: `opening` (logo and title) or `closing` (logo, the manual's address and its line).
 
 A scene can also have `parts`, each a screen with its `share` of the scene's time (scene 10: the
 Reports tab, then the Slack message).
 
 Steps: `wait: 2`, `goto: /path`, `waitFor: target`, `click: target`, `glide: target` (moves the
 cursor), `scroll: {by: 1200, duration: 6}`, `scrollTo: target`, `highlight: target` (a ring around
-it), `zoom: target` (with `scale`). A target is found by `role` (with `text` as its name), `testid`,
+it), `zoom: target` (with `scale`, 2 by default; the target is centred, and one that would not fit
+the frame whole fails the scene), `style: {…target, set}` (inline styles, in a setup).
+A target is found by `role` (with `text` as its name), `testid`,
 `css` or `text`, inside `within`, filtered by `hasText`; `exact`, `nth`, `visible`, `parent` (its
 parent element) and `card` (the insight card around it) refine it, and `duration` sets the time of
 the movement. Texts are either one string or `{en, pt}`.
