@@ -147,3 +147,24 @@ follows its narration (0.4 s before it, 0.8 s after it, never less than `minDura
 prints each scene's length. Look at a frame of each scene in `out/` before publishing. A scene
 whose screen ends long before the voice, or the other way round, needs its actions or its
 `minDuration` adjusted. `npm test` checks the command against a simulated API: nothing leaves.
+
+## The YouTube packages
+
+```sh
+npm run youtube                          # every video, both languages
+npm run youtube -- 04-collecting-by-link --lang pt
+```
+
+From the videos already made, `out/youtube/<video>-<lang>/` gets the mp4 and the srt, a 1280×720
+`thumbnail.png` (the opening card's look: the logo, the name and the video's title) and
+`youtube.txt`: the title, the description and the tags, ready to paste. It runs in the videos'
+image, like `npm run videos`, and reads nothing from DEV.
+
+- Each script's `youtube` block holds the YouTube title, the description's sentence, the manual's
+  page (`""` for the manual's root) and the tags added to the common ones.
+- A scene that starts a chapter carries `chapter: {en, pt}`; the scenes after it belong to it, the
+  opening card belongs to the first and the closing to the last. The times come from the real
+  length of each scene in that language (`out/work/<video>/<lang>/<scene>.mp4`).
+- YouTube's rules are checked: the first chapter at 0:00, at least three, each 10 s or longer. A
+  short chapter stops the package with its name: merge it into its neighbour by moving `chapter`.
+- After making a video again, make its package again: the chapters follow the new lengths.

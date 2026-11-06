@@ -7,6 +7,20 @@ title:
   en: Sending results to your tools
   pt: Enviando os resultados para as suas ferramentas
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "Send your results to Slack, Notion, Google Sheets and webhooks"
+    pt: "Envie seus resultados para Slack, Notion, Google Sheets e webhooks"
+  summary:
+    en: "Let your results reach your team on their own, in Google Sheets, Slack, Notion or your own systems, with delivery rules and a delivery history."
+    pt: "Faça os resultados chegarem sozinhos à sua equipe, no Google Sheets, no Slack, no Notion ou nos seus sistemas, com regras e histórico de entregas."
+  page: "integrations"
+  tags:
+    en: ["Slack", "Notion", "Google Sheets"]
+    pt: ["Slack", "Notion", "Google Sheets"]
+
 integrations: &integrations
   path: /integrations
   ready: {within: main, role: heading, text: Google Sheets}
@@ -20,6 +34,7 @@ scenes:
       card: opening
 
   - id: 02-integrations
+    chapter: {en: "Google Sheets", pt: "Google Sheets"}
     minDuration: 7
     narration:
       en: Your results can reach your team on their own, in the tools they already use.
@@ -48,6 +63,7 @@ scenes:
         - wait: 2
 
   - id: 04-slack
+    chapter: {en: "Slack, Notion and webhook", pt: "Slack, Notion e webhook"}
     minDuration: 7
     narration:
       en: On Starter and Pro, Slack gets a short message with the findings and a link back.
@@ -75,6 +91,7 @@ scenes:
         - wait: 1
 
   - id: 06-rules
+    chapter: {en: "Delivery rules", pt: "Regras de envio"}
     minDuration: 6
     narration:
       en: Then you decide what to send, and when, with delivery rules.
@@ -110,6 +127,7 @@ scenes:
         - press: Escape
 
   - id: 08-history
+    chapter: {en: "Delivery history", pt: "Histórico de entregas"}
     minDuration: 8
     narration:
       en: The delivery history shows every delivery and how it went. When there’s nothing new, nothing is sent.

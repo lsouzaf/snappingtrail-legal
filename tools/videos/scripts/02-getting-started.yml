@@ -6,6 +6,20 @@ title:
   en: Getting started
   pt: Primeiros passos
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "Getting started with Snapping Trail"
+    pt: "Primeiros passos no Snapping Trail"
+  summary:
+    en: "Sign up, meet your first project and your 14-day trial, bring in your team and set your company’s time zone."
+    pt: "Crie a conta, conheça o primeiro projeto e os 14 dias de teste, traga a sua equipe e defina o fuso da empresa."
+  page: "getting-started"
+  tags:
+    en: ["sign up", "free trial", "time zone"]
+    pt: ["criar conta", "teste grátis", "fuso horário"]
+
 # The sign-up form over the public page: a plain backdrop instead of the blurred page.
 backdrop: &backdrop ".fixed.inset-0.backdrop-blur-sm { background: rgb(15 23 42) !important; backdrop-filter: none !important; }"
 
@@ -22,6 +36,7 @@ scenes:
       card: opening
 
   - id: 02-welcome
+    chapter: {en: "Signing up", pt: "Criando a conta"}
     minDuration: 6
     narration:
       en: Getting started with Snapping Trail takes just a few minutes. Let’s walk through it together.
@@ -63,6 +78,7 @@ scenes:
         - wait: 3
 
   - id: 04-first-project
+    chapter: {en: "First project and trial", pt: "Primeiro projeto e teste"}
     minDuration: 8
     narration:
       en: Your company gets its own address, and your account comes with a first project, ready to use.
@@ -91,6 +107,7 @@ scenes:
         - highlight: {within: main, text: {en: Billing & Plan, pt: Cobrança & Plano}, exact: true, closest: rounded-3xl, duration: 6}
 
   - id: 06-team
+    chapter: {en: "Your team", pt: "A sua equipe"}
     minDuration: 10
     narration:
       en: Next, bring in your team. Administrators set up the account. Interviewers collect the answers, on the web or in the Collect app.
@@ -109,6 +126,7 @@ scenes:
         - wait: 3
 
   - id: 07-time-zone
+    chapter: {en: "Time zone and language", pt: "Fuso e idioma"}
     minDuration: 9
     narration:
       en: "One small setting makes a big difference: your company’s time zone. It sets the dates of your reports and the time of your weekly summary."

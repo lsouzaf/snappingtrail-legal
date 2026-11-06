@@ -6,6 +6,20 @@ title:
   en: The Collect app
   pt: O app Collect
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "Field interviews with the Collect app, even offline"
+    pt: "Entrevistas em campo com o app Collect, até sem internet"
+  summary:
+    en: "Interview people in the field with the Collect app, free on Android, with or without a signal."
+    pt: "Entreviste pessoas em campo com o app Collect, gratuito para Android, com ou sem sinal."
+  page: "collect-app"
+  tags:
+    en: ["Android app", "data collection app", "interviewer app"]
+    pt: ["app Android", "app de coleta", "app do entrevistador"]
+
 scenes:
   - id: 01-opening
     minDuration: 3
@@ -13,6 +27,7 @@ scenes:
       card: opening
 
   - id: 02-login
+    chapter: {en: "Signing in", pt: "Entrando no app"}
     minDuration: 9
     narration:
       en: When your team goes out into the field, the Collect app goes with them. It’s free on Android, and it works with or without a signal.
@@ -29,6 +44,7 @@ scenes:
       images: ["{docs}/collect-app/img/collect-settings-{lang}.png"]
 
   - id: 04-projects
+    chapter: {en: "Projects and answers", pt: "Projetos e respostas"}
     minDuration: 7
     narration:
       en: They’ll see the projects they’re part of, with every active survey ready to go.
@@ -45,6 +61,7 @@ scenes:
       images: ["{docs}/collect-app/img/collect-question-choice-{lang}.png"]
 
   - id: 06-rating
+    chapter: {en: "Every answer saved", pt: "Cada resposta salva"}
     minDuration: 8
     narration:
       en: Every answer is saved as it’s given, so nothing is lost if the phone rings or the battery runs low.
@@ -61,6 +78,7 @@ scenes:
       images: ["{docs}/collect-app/img/collect-question-follow-up-{lang}.png"]
 
   - id: 08-saved
+    chapter: {en: "No signal, no problem", pt: "Sem sinal, sem problema"}
     minDuration: 9
     narration:
       en: No signal? No problem. The interview is kept safely on the phone, and sent on its own as soon as there’s a connection.
@@ -77,6 +95,7 @@ scenes:
       images: ["{docs}/collect-app/img/collect-pending-{lang}.png"]
 
   - id: 10-sent
+    chapter: {en: "Sent", pt: "Enviada"}
     minDuration: 8
     narration:
       en: Once it reaches Snapping Trail, the interview counts in your results, alongside every answer from the web.

@@ -136,7 +136,7 @@ test('without the env file, the command stops and says so / sem o arquivo, o com
 });
 
 test('the command shows the total and sends nothing without a yes / mostra o total e não envia sem confirmação', () => {
-  const run = command(['01-overview', '--lang', 'pt', '--scene', '02-welcome'], {input: 'n\n'});
+  const run = command(['01-overview', '--lang', 'pt', '--scene', '02-welcome', '--force'], {input: 'n\n'});
   assert.equal(run.status, 1);
   assert.match(run.stdout, /Total to send to ElevenLabs: \d+ characters, 1 scenes\./);
   assert.match(run.stdout, /Nothing sent\./);

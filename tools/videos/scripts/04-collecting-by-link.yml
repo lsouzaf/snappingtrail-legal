@@ -7,6 +7,20 @@ title:
   en: Collecting through a link
   pt: Coletando por link
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "Collect answers with a link or a QR code"
+    pt: "Colete respostas por link ou QR Code"
+  summary:
+    en: "Get your survey in front of people with a link or a QR code, collect on the web as an interviewer, and set your goals."
+    pt: "Leve a sua pesquisa até as pessoas com um link ou um QR Code, colete pela web como entrevistador e defina as suas metas."
+  page: "collection"
+  tags:
+    en: ["QR code survey", "survey link", "web interviews"]
+    pt: ["pesquisa por QR Code", "link de pesquisa", "entrevista pela web"]
+
 openSurvey: &openSurvey
   - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
   - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
@@ -23,6 +37,7 @@ scenes:
       card: opening
 
   - id: 02-share
+    chapter: {en: "Creating a link", pt: "Criando um link"}
     minDuration: 6
     narration:
       en: Your survey is active. Now let’s get it in front of people.
@@ -64,6 +79,7 @@ scenes:
         - wait: 1.5
 
   - id: 04-copy-qr
+    chapter: {en: "Link and QR code", pt: "Link e QR Code"}
     minDuration: 10
     narration:
       en: Copy the link to send by email or message, or download the QR code to print on posters, tables or receipts.
@@ -83,6 +99,7 @@ scenes:
         - wait: 2
 
   - id: 05-respondent
+    chapter: {en: "Respondents and interviewers", pt: "Respondentes e entrevistadores"}
     minDuration: 7
     narration:
       en: "This is what your respondents see: a clean, simple page, on any phone or computer."
@@ -120,6 +137,7 @@ scenes:
         - highlight: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, nth: 0, closest: rounded-3xl, duration: 4}
 
   - id: 07-goals
+    chapter: {en: "Goals", pt: "Metas"}
     minDuration: 10
     narration:
       en: "Set your goals: how many responses you expect, and the minimum the analysis needs before it can tell you what stands out."
@@ -139,6 +157,7 @@ scenes:
         - wait: 0.5
 
   - id: 08-allowance
+    chapter: {en: "Monthly allowance", pt: "Franquia mensal"}
     minDuration: 13
     narration:
       en: Completed interviews count toward your plan’s monthly allowance. You’ll get an email well before you reach it, and interviews from the Collect app are always accepted, so no fieldwork is ever lost.

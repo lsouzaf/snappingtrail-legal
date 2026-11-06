@@ -6,6 +6,20 @@ title:
   en: What Snapping Trail is
   pt: O que é o Snapping Trail
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "What is Snapping Trail? A 2-minute tour"
+    pt: "O que é o Snapping Trail? Um tour de 2 minutos"
+  summary:
+    en: "A quick tour of Snapping Trail, from building a survey and collecting the answers to the findings it brings to light."
+    pt: "Um tour rápido pelo Snapping Trail, da criação da pesquisa e da coleta das respostas aos achados que ele traz à tona."
+  page: ""
+  tags:
+    en: ["product tour", "customer satisfaction survey"]
+    pt: ["tour do produto", "pesquisa de clientes"]
+
 scenes:
   - id: 01-opening
     minDuration: 3
@@ -13,6 +27,7 @@ scenes:
       card: opening
 
   - id: 02-welcome
+    chapter: {en: "Welcome", pt: "Boas-vindas"}
     minDuration: 7
     narration:
       en: Welcome to Snapping Trail. In the next couple of minutes, you'll see what it can do for you.
@@ -26,6 +41,7 @@ scenes:
         - scroll: {by: 2400, duration: 9}
 
   - id: 03-fitplus
+    chapter: {en: "Building a survey", pt: "Montando a pesquisa"}
     minDuration: 12
     narration:
       en: "Picture FitPlus, a gym chain with a question every business knows: why are our members leaving? To find out, they ran a satisfaction survey across their three locations."
@@ -57,6 +73,7 @@ scenes:
         - scroll: {by: 2200, duration: 9}
 
   - id: 05-share
+    chapter: {en: "Collecting answers", pt: "Coletando respostas"}
     minDuration: 7
     narration:
       en: Members can answer through a simple link, or a QR code on the front desk…
@@ -88,6 +105,7 @@ scenes:
         - "{docs}/collect-app/img/collect-final-saved-{lang}.png"
 
   - id: 06b-objective
+    chapter: {en: "Research objectives", pt: "Objetivos de pesquisa"}
     minDuration: 14
     narration:
       en: "In advanced mode, you can go one step further, and organize your surveys around a research objective: the decision you need to make, like how to keep members from leaving. Snapping Trail then reads all those surveys together, with that decision in mind."
@@ -105,6 +123,7 @@ scenes:
         - highlight: {within: main, css: "p.max-w-2xl", duration: 2}
 
   - id: 07-insights
+    chapter: {en: "Findings", pt: "Achados"}
     minDuration: 16
     narration:
       en: "And here's where Snapping Trail really shines. It reads the answers for you, and tells you what really stands out. Look at this: asked for their main reason for dissatisfaction, 52% of members aged 50 and over point to customer service. Among everyone else, it's just 5%."
@@ -160,6 +179,7 @@ scenes:
         - glide: {testid: insight-type, hasText: {en: Trend, pt: Tendência}, card: true, duration: 1.5}
 
   - id: 10-share-results
+    chapter: {en: "Sharing and trying it free", pt: "Compartilhar e experimentar"}
     minDuration: 13
     narration:
       en: When you're ready to share, download a report, or let the results reach your team on their own, in Slack, Notion, Google Sheets or your own systems.
