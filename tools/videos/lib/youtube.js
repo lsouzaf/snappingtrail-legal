@@ -7,7 +7,9 @@ import path from 'node:path';
 import {LANGS, pick} from './script.js';
 
 export const MANUAL = {en: 'https://docs.snappingtrail.com/manual/', pt: 'https://docs.snappingtrail.com/pt/manual/'};
+export const SITE = 'https://snappingtrail.com';
 export const READ = {en: 'Read the full manual:', pt: 'Leia o manual completo:'};
+export const TRIAL = {en: 'Start your 14-day free trial:', pt: 'Comece os seus 14 dias de teste grátis:'};
 export const SIGNATURE = 'Snapping Trail · Navaho Consultoria';
 export const COMMON_TAGS = {
   en: ['Snapping Trail', 'survey', 'research', 'customer feedback', 'field research', 'offline survey', 'survey analytics'],
@@ -57,7 +59,7 @@ export function manualUrl(page, lang) {
   return page ? `${MANUAL[lang]}${page}/` : MANUAL[lang];
 }
 
-/** The description: the sentence, the chapters, the manual's address and the signature. */
+/** The description: the sentence, the chapters, the trial's invitation, the manual's address and the signature. */
 export function description(script, lang, list) {
   const yt = script.youtube;
   return [
@@ -65,6 +67,7 @@ export function description(script, lang, list) {
     '',
     ...list.map((c) => `${timestamp(c.start)} ${c.name}`),
     '',
+    `${TRIAL[lang]} ${SITE}`,
     `${READ[lang]} ${manualUrl(yt.page, lang)}`,
     SIGNATURE,
   ].join('\n');

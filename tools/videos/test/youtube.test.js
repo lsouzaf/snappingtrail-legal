@@ -47,9 +47,10 @@ test('the description: the sentence, the chapters, the manual and the signature 
   const list = chapters(SCENES, [3, 6, 5, 12, 8, 5], 'en');
   assert.equal(description(SCRIPT, 'en', list), [
     'What it shows.', '', '0:00 Start', '0:14 Middle', '0:26 End', '',
+    'Start your 14-day free trial: https://snappingtrail.com',
     'Read the full manual: https://docs.snappingtrail.com/manual/surveys/', 'Snapping Trail · Navaho Consultoria',
   ].join('\n'));
-  assert.match(description({...SCRIPT, youtube: {...SCRIPT.youtube, page: ''}}, 'pt', list), /Leia o manual completo: https:\/\/docs\.snappingtrail\.com\/pt\/manual\/\n/);
+  assert.match(description({...SCRIPT, youtube: {...SCRIPT.youtube, page: ''}}, 'pt', list), /Comece os seus 14 dias de teste grátis: https:\/\/snappingtrail\.com\nLeia o manual completo: https:\/\/docs\.snappingtrail\.com\/pt\/manual\/\n/);
 });
 
 test('the tags are the common ones plus the video\'s / as tags comuns mais as do vídeo', () => {
