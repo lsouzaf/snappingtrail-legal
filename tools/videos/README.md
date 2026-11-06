@@ -8,7 +8,11 @@ product is only a new run:
 npm ci                          # once, in this folder
 npm run videos -- 01-overview   # both languages
 npm run videos -- 01-overview --lang pt
+npm run videos -- 03-creating-a-survey --lang en --scene 08-publish   # one scene, to try it out
 ```
+
+The scripts: `01-overview` (what Snapping Trail is), `02-getting-started`, `03-creating-a-survey`,
+`04-collecting-by-link`, `05-collect-app`, `06-results`, `07-integrations` and `08-administration`.
 
 Out come `out/01-overview-en.mp4` and `out/01-overview-pt.mp4` (1920×1080, 30 fps), each with its
 subtitles (`.srt`). `out/` stays out of git, and so does the work folder inside it (frames, cards,
@@ -19,8 +23,11 @@ provisional voice, segments).
 In Docker, like the captures: Playwright's image plus ffmpeg and espeak-ng (`Dockerfile`), built by
 `run.js` the first time (`snappingtrail-docs-videos:1.64.1`). The host installs nothing. The same
 rules as the captures hold: the credentials come from `~/.config/snappingtrail/docs-captures.env`,
-mounted read-only and masked in everything printed; the session is the captures' own; any request to
-the API other than a read fails the scene; share links are masked and QR codes blurred.
+mounted read-only and masked in everything printed; the session is the captures' own (and the demo
+interviewer's, `DOCS_INTERVIEWER_USER`); any request to the API other than a read fails the scene,
+unless the script answers it in the browser with a simulated result (`fake`), so it never leaves;
+share links are masked, QR codes and the texts the script names (emails, prices, billing dates)
+blurred.
 
 ## The script
 
@@ -38,8 +45,20 @@ scenes:
         mask: [shareLinks, qrCode, fields]
         insightsMode: true    # the app's insights mode, as the captures set it
         css: "…"              # extra CSS while recording
+        blurText: ['@']       # regular expressions: every element whose text matches is blurred
+        user: interviewer     # the demo interviewer's session instead of the administrator's
+        respondent: {setup}   # no session: the survey's share link, read in its Share tab by setup
+        fake:                 # writes answered in the browser, never sent (the scene shows them done)
+          - {method: POST, path: "^/api/onboarding$", status: 200, body: {}}
+          - {method: PUT, path: "^/api/surveys/[^/]+$", body: echo}         # the request's own JSON
+          - {method: GET, path: "…", afterWrite: true, patch: {status: ACTIVE}, omit: [questions]}
       actions: [...]          # steps on camera, smooth, with the cursor
 ```
+
+A `fake` GET is read for real and changed in the browser (`patch` over it, `omit` left out), with
+`afterWrite` only once a write was simulated, so the screen agrees with what the scene did. A write
+the script does not answer is refused and fails the scene. `setup` and `actions` can join the
+steps of several YAML anchors (`setup: [*openBuilder, *textQuestion]`).
 
 A screen is one of:
 
@@ -57,23 +76,74 @@ Reports tab, then the Slack message).
 Steps: `wait: 2`, `goto: /path`, `waitFor: target`, `click: target`, `glide: target` (moves the
 cursor), `scroll: {by: 1200, duration: 6}`, `scrollTo: target`, `highlight: target` (a ring around
 it), `zoom: target` (with `scale`, 2 by default; the target is centred, and one that would not fit
-the frame whole fails the scene), `style: {…target, set}` (inline styles, in a setup).
-A target is found by `role` (with `text` as its name), `testid`,
-`css` or `text`, inside `within`, filtered by `hasText`; `exact`, `nth`, `visible`, `parent` (its
-parent element) and `card` (the insight card around it) refine it, and `duration` sets the time of
-the movement. Texts are either one string or `{en, pt}`.
+the frame whole fails the scene), `style: {…target, set}` (inline styles, in a setup),
+`type: {…target, value}` (typed key by key on camera, `delay` in ms), `fill: {…target, value}` (a
+date or a number, at once), `select: {…target, value}`, `press: Escape`, `attr: {…target, name}`
+(for a mask's CSS to find it) and `waitUrl: "/collect"`. A target is found by `role` (with `text` as
+its name), `testid`, `css` or `text`, inside `within`, filtered by `hasText`; `exact`, `nth`,
+`visible`, `parent` (its parent element), `card` (the insight card around it) and `closest` (the
+nearest ancestor with that class) refine it, and `duration` sets the time of the movement. Texts
+and CSS are either one string or `{en, pt}`.
 
-## The narration: from the provisional voice to ElevenLabs
+## The narration: ElevenLabs
 
-Each scene's narration is one file per language. Until the final voice exists, espeak-ng reads the
-script's text — a robotic voice, there only to set the timing. To use ElevenLabs:
+Each scene's narration is one file per language, `voice/<video>/<lang>/<scene id>.mp3` (`.wav` and
+`.m4a` also work). A scene without one gets a provisional voice, espeak-ng — robotic, there only to
+set the timing — and the run says how many still do. The mp3 files are generated, not versioned.
 
-1. Generate each scene's narration from the script's text, in each language.
-2. Save it as `voice/<video>/<lang>/<scene id>.mp3` (`.wav` and `.m4a` also work), for example
-   `voice/01-overview/pt/07-insights.mp3`.
-3. Run `npm run videos -- 01-overview` again.
+### Generating it
 
-A scene with its file in `voice/` uses it; a scene without one keeps the provisional voice, and the
-run says how many still do. The scene's length follows the new narration (0.4 s before it, 0.8 s
-after it, never less than `minDuration`), and so do the subtitles, which always come from the
-script's text: change the text in the script and in the audio together.
+```sh
+npm run voice -- 01-overview                              # every scene, both languages
+npm run voice -- 01-overview --lang pt                    # one language
+npm run voice -- 01-overview --lang pt --scene 07-insights --force   # make one scene again
+npm run videos -- 01-overview                             # then the video, with the new voice
+```
+
+`npm run voice` runs on the host (Node 20.12 or later, no Docker). It reads the API key and the two
+voices from `~/.config/snappingtrail/videos.env`, outside the repository:
+
+```
+ELEVENLABS_API_KEY=…
+ELEVENLABS_VOICE_ID_PT=…
+ELEVENLABS_VOICE_ID_EN=…
+```
+
+Never read that file with `cat` nor print its values; the command masks them in anything it shows.
+Without the file, it stops and says so.
+
+- It sends each scene's text to ElevenLabs' text-to-speech API with the multilingual model
+  (`eleven_multilingual_v2`), in the language's voice. That model works out the language from the
+  text and refuses a language in the call; the models that take one (`eleven_turbo_v2_5`,
+  `eleven_flash_v2_5`) get it as `language_code`.
+- Before sending anything, it shows how many characters it will send, per language and in total,
+  and asks; `--yes` skips the question.
+- A scene that already has its mp3 is left alone; `--force` makes it again (with `--scene`, just
+  that one).
+- At the end it shows the characters the API charged, and the account's usage before and after.
+  On an API error it stops with the status: the scenes already made stay, and a new run makes the
+  rest.
+
+### Fixing a word's pronunciation
+
+The voice reads the scene's `narration`, the same text as the subtitles. When a word comes out
+wrong, give the voice its own text with `voiceText`, a string or `{en, pt}` (either may be left
+out); the subtitles keep `narration`:
+
+```yaml
+narration:
+  en: Snapping Trail speaks your language.
+  pt: O Snapping Trail fala a sua língua.
+voiceText:
+  pt: O Snépping Treil fala a sua língua.
+```
+
+Then make that scene again: `npm run voice -- <video> --lang pt --scene <id> --force`.
+
+### Checking it
+
+Listen to the mp3 files in `voice/<video>/<lang>/`, then make the video: each scene's length
+follows its narration (0.4 s before it, 0.8 s after it, never less than `minDuration`), and the run
+prints each scene's length. Look at a frame of each scene in `out/` before publishing. A scene
+whose screen ends long before the voice, or the other way round, needs its actions or its
+`minDuration` adjusted. `npm test` checks the command against a simulated API: nothing leaves.

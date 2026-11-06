@@ -37,6 +37,14 @@ export function loadScript(dir, video) {
     if (scene.narration) {
       for (const lang of LANGS) if (!pick(scene.narration, lang)) problems.push(`${where}: no narration in ${lang}`);
     }
+    // voiceText: what the voice reads instead of the narration, to fix a word's pronunciation;
+    // the subtitles keep the narration.
+    if (scene.voiceText != null) {
+      if (!scene.narration) problems.push(`${where}: voiceText without narration`);
+      const v = scene.voiceText;
+      const ok = typeof v === 'string' || (typeof v === 'object' && Object.keys(v).every((k) => LANGS.includes(k) && typeof v[k] === 'string' && v[k]));
+      if (!ok) problems.push(`${where}: voiceText is a text, or {en, pt} (either may be left out)`);
+    }
     if (!scene.screen) {
       problems.push(`${where}: no screen`);
       continue;

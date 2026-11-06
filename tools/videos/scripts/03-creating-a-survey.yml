@@ -1,0 +1,212 @@
+# Video 3 — creating a survey (about 3.5 minutes). Format: see tools/videos/README.md.
+# The builder is the draft "Welcome survey" / "Pesquisa de boas-vindas" of FitPlus's project, which
+# the owner keeps as an empty draft: each scene builds on screen what the earlier ones built (off
+# camera), and nothing is saved — publishing is answered in the browser.
+
+id: 03-creating-a-survey
+title:
+  en: Creating a survey
+  pt: Criando uma pesquisa
+
+# The draft's builder, empty.
+builder: &builder
+  path: /projects
+  setup: &openBuilder
+    - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+    - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
+    - click: {within: main, text: {en: Welcome survey, pt: Pesquisa de boas-vindas}, exact: true}
+    - click: {within: main, role: button, text: {en: Questions, pt: Perguntas}}
+    - waitFor: {within: main, role: button, text: {en: Publish, pt: Publicar}}
+
+# What each scene adds, off camera, before the next one goes on.
+textQuestion: &textQuestion
+  - click: {within: main, role: button, text: {en: Text, pt: Texto}, nth: 0}
+  - type: {css: {en: "input[placeholder=\"Question text...\"]", pt: "input[placeholder=\"Texto da pergunta...\"]"}, nth: 0, value: {en: What brought you to FitPlus?, pt: O que trouxe você à FitPlus?}}
+choiceQuestion: &choiceQuestion
+  - click: {within: main, role: button, text: {en: Choice, pt: Escolha}, nth: 0}
+  - type: {css: {en: "input[placeholder=\"Question text...\"]", pt: "input[placeholder=\"Texto da pergunta...\"]"}, nth: 1, value: {en: How satisfied are you with your visit?, pt: Quanto você está satisfeito com a sua visita?}}
+  - type: {css: {en: "input[placeholder=\"Option 1\"]", pt: "input[placeholder=\"Opção 1\"]"}, value: {en: Very satisfied, pt: Muito satisfeito}, delay: 30, duration: 0.5}
+  - type: {css: {en: "input[placeholder=\"Option 2\"]", pt: "input[placeholder=\"Opção 2\"]"}, value: {en: Satisfied, pt: Satisfeito}, delay: 30, duration: 0.5}
+  - click: {within: main, role: button, text: {en: Add option, pt: Adicionar opção}}
+  - type: {css: {en: "input[placeholder=\"Option 3\"]", pt: "input[placeholder=\"Opção 3\"]"}, value: {en: Neutral, pt: Neutro}, delay: 30, duration: 0.5}
+  - click: {within: main, role: button, text: {en: Add option, pt: Adicionar opção}}
+  - type: {css: {en: "input[placeholder=\"Option 4\"]", pt: "input[placeholder=\"Opção 4\"]"}, value: {en: Dissatisfied, pt: Insatisfeito}, delay: 30, duration: 0.5}
+ratingQuestion: &ratingQuestion
+  - click: {within: main, role: button, text: {en: Rating, pt: Avaliação}, nth: 0}
+  - type: {css: {en: "input[placeholder=\"Question text...\"]", pt: "input[placeholder=\"Texto da pergunta...\"]"}, nth: 2, value: {en: How likely are you to recommend FitPlus to a friend?, pt: Qual a chance de você recomendar a FitPlus a um amigo?}}
+  - click: {within: main, role: button, text: {en: Edit scale, pt: Editar escala}}
+  - click: {within: main, role: button, text: NPS, exact: true}
+required: &required
+  - click: {within: main, text: {en: Required, pt: Obrigatória}, exact: true, nth: 2}
+# The choice question segments the answers (its classification panel, opened and closed), so
+# publishing raises no "no segment question" warning.
+segmenting: &segmenting
+  - click: {within: main, role: button, text: {en: Edit classification, pt: Editar classificação}, nth: 1}
+  - click: {within: main, text: {en: Use this question to segment responses, pt: Usar esta pergunta para segmentar respostas}, exact: true}
+  - click: {css: "main button:not([title]):has(> span:text-is(\"close\"))", nth: 0}
+followUp: &followUp
+  - click: {within: main, role: button, text: {en: Follow-up, pt: Condicional}, nth: 3}
+  - type: {css: {en: "input[placeholder=\"Follow-up question...\"]", pt: "input[placeholder=\"Pergunta condicional...\"]"}, value: {en: What could we do better?, pt: O que podemos melhorar?}}
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-project
+    minDuration: 6
+    narration:
+      en: Every survey lives inside a project. Let’s build one for FitPlus.
+      pt: Toda pesquisa fica dentro de um projeto. Vamos criar uma para a FitPlus.
+    screen:
+      app:
+        path: /projects
+        setup:
+          - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+      actions:
+        - wait: 1
+        - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}, duration: 1.2}
+        - wait: 1
+        - glide: {within: main, text: {en: Welcome survey, pt: Pesquisa de boas-vindas}, exact: true, duration: 1.5}
+        - wait: 1
+
+  - id: 03-text
+    minDuration: 8
+    narration:
+      en: Start with the questions. A text question lets people answer in their own words.
+      pt: Comece pelas perguntas. Uma pergunta de texto deixa as pessoas responderem com as próprias palavras.
+    screen:
+      app:
+        <<: *builder
+      actions:
+        - wait: 1
+        - click: {within: main, role: button, text: {en: Text, pt: Texto}, nth: 0}
+        - type: {css: {en: "input[placeholder=\"Question text...\"]", pt: "input[placeholder=\"Texto da pergunta...\"]"}, nth: 0, value: {en: What brought you to FitPlus?, pt: O que trouxe você à FitPlus?}}
+        - wait: 1.5
+
+  - id: 04-choice
+    minDuration: 7
+    narration:
+      en: A choice question offers a list of options. Allow a single answer, or several at once.
+      pt: Uma pergunta de escolha oferece uma lista de opções. Permita uma resposta só, ou várias de uma vez.
+    screen:
+      app:
+        path: /projects
+        setup: [*openBuilder, *textQuestion]
+      # The choice question at the pace of the narration: the options set at once.
+      actions:
+        - click: {within: main, role: button, text: {en: Choice, pt: Escolha}, nth: 0, duration: 0.6}
+        - type: {css: {en: "input[placeholder=\"Question text...\"]", pt: "input[placeholder=\"Texto da pergunta...\"]"}, nth: 1, value: {en: How satisfied are you with your visit?, pt: Quanto você está satisfeito com a sua visita?}, delay: 30, duration: 0.5}
+        - fill: {css: {en: "input[placeholder=\"Option 1\"]", pt: "input[placeholder=\"Opção 1\"]"}, value: {en: Very satisfied, pt: Muito satisfeito}, duration: 0.3}
+        - fill: {css: {en: "input[placeholder=\"Option 2\"]", pt: "input[placeholder=\"Opção 2\"]"}, value: {en: Satisfied, pt: Satisfeito}, duration: 0.3}
+        - click: {within: main, role: button, text: {en: Add option, pt: Adicionar opção}, duration: 0.4}
+        - fill: {css: {en: "input[placeholder=\"Option 3\"]", pt: "input[placeholder=\"Opção 3\"]"}, value: {en: Neutral, pt: Neutro}, duration: 0.3}
+        - click: {within: main, role: button, text: {en: Add option, pt: Adicionar opção}, duration: 0.4}
+        - fill: {css: {en: "input[placeholder=\"Option 4\"]", pt: "input[placeholder=\"Opção 4\"]"}, value: {en: Dissatisfied, pt: Insatisfeito}, duration: 0.3}
+
+  - id: 05-rating
+    minDuration: 9
+    narration:
+      en: For scores, use a rating. Ready-made scales like NPS, CSAT and CES are one click away, or you can set your own.
+      pt: Para notas, use uma avaliação. Escalas prontas como NPS, CSAT e CES estão a um clique, ou você define a sua.
+    screen:
+      app:
+        path: /projects
+        setup: [*openBuilder, *textQuestion, *choiceQuestion]
+      actions:
+        - scrollTo: {within: main, role: button, text: {en: Rating, pt: Avaliação}, nth: 0, duration: 0.1}
+        - click: {within: main, role: button, text: {en: Rating, pt: Avaliação}, nth: 0, duration: 0.6}
+        - type: {css: {en: "input[placeholder=\"Question text...\"]", pt: "input[placeholder=\"Texto da pergunta...\"]"}, nth: 2, value: {en: How likely are you to recommend FitPlus to a friend?, pt: Qual a chance de você recomendar a FitPlus a um amigo?}, delay: 30, duration: 0.5}
+        - click: {within: main, role: button, text: {en: Edit scale, pt: Editar escala}, duration: 0.8}
+        - wait: 0.5
+        - click: {within: main, role: button, text: NPS, exact: true, duration: 0.8}
+        - wait: 1
+
+  - id: 06-required
+    minDuration: 6
+    narration:
+      en: Mark a question as required when every interview needs that answer.
+      pt: Marque uma pergunta como obrigatória quando toda entrevista precisar daquela resposta.
+    screen:
+      app:
+        path: /projects
+        setup: [*openBuilder, *textQuestion, *choiceQuestion, *ratingQuestion]
+      actions:
+        - scrollTo: {within: main, text: {en: Required, pt: Obrigatória}, exact: true, nth: 2, duration: 1}
+        - click: {within: main, text: {en: Required, pt: Obrigatória}, exact: true, nth: 2}
+        - wait: 2
+
+  - id: 07-follow-up
+    minDuration: 12
+    narration:
+      en: "Here’s a favorite: follow-up questions. Pick an option, like “Dissatisfied”, and add a question that only appears to those who chose it."
+      pt: "E aqui está um recurso muito útil: as perguntas condicionais. Escolha uma opção, como “Insatisfeito”, e acrescente uma pergunta que só aparece para quem a escolheu."
+    screen:
+      app:
+        path: /projects
+        setup: [*openBuilder, *textQuestion, *choiceQuestion, *ratingQuestion, *required]
+      actions:
+        - scrollTo: {within: main, role: button, text: {en: Follow-up, pt: Condicional}, nth: 3, duration: 1}
+        - wait: 1
+        - click: {within: main, role: button, text: {en: Follow-up, pt: Condicional}, nth: 3}
+        - type: {css: {en: "input[placeholder=\"Follow-up question...\"]", pt: "input[placeholder=\"Pergunta condicional...\"]"}, value: {en: What could we do better?, pt: O que podemos melhorar?}}
+        - wait: 2
+
+  - id: 08-publish
+    minDuration: 8
+    narration:
+      en: When everything looks right, publish. Your survey is now active and ready for answers.
+      pt: Quando tudo estiver certo, publique. A pesquisa fica ativa e pronta para receber respostas.
+    screen:
+      app:
+        path: /projects
+        # Publishing, answered in the browser with the survey as sent (now ACTIVE): nothing is saved.
+        # The survey read again afterwards is shown as published, with the questions on screen.
+        fake:
+          - {method: PUT, path: "^/api/surveys/[^/]+$", status: 200, body: echo}
+          - {method: GET, path: "^/api/surveys/[^/]+$", afterWrite: true, patch: {status: ACTIVE}, omit: [questions]}
+        setup: [*openBuilder, *textQuestion, *choiceQuestion, *ratingQuestion, *required, *followUp, *segmenting]
+      actions:
+        - wait: 1
+        - scrollTo: {within: main, role: button, text: {en: Publish, pt: Publicar}, exact: true, duration: 1.5}
+        - click: {within: main, role: button, text: {en: Publish, pt: Publicar}, exact: true, duration: 1.2}
+        - wait: 4
+
+  - id: 09-new-version
+    minDuration: 11
+    narration:
+      en: Once people start answering, the questions stay locked, so your results stay comparable. Need a change? Create a new version.
+      pt: Depois que as respostas começam, as perguntas ficam travadas, para os resultados continuarem comparáveis. Precisa mudar algo? Crie uma nova versão.
+    screen:
+      parts:
+        - share: 0.55
+          app:
+            path: /projects
+            setup:
+              - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+              - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
+              - click: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, exact: true}
+              - click: {within: main, role: button, text: {en: Questions, pt: Perguntas}}
+          actions:
+            - wait: 1
+            - highlight: {within: main, text: {en: "This survey is not a draft. To edit questions, create a new version.", pt: "Esta pesquisa não é rascunho. Para editar perguntas, crie uma nova versão."}, exact: true, parent: true, duration: 4}
+        - share: 0.45
+          app:
+            path: /objectives
+            insightsMode: true
+            setup:
+              - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+              - waitFor: {within: main, role: button, text: {en: New version, pt: Nova versão}}
+          actions:
+            - wait: 1
+            - glide: {within: main, role: button, text: {en: New version, pt: Nova versão}, duration: 1.5}
+            - highlight: {within: main, role: button, text: {en: New version, pt: Nova versão}, duration: 2}
+
+  - id: 10-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing
