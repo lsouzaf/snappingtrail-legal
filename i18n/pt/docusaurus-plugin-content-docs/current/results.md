@@ -64,7 +64,7 @@ Os insights, os sinais e os relatórios de um objetivo leem as pesquisas ativas 
 
 **Arquivar**, na página do objetivo, tira o objetivo do caminho junto com as pesquisas dele. O app pede confirmação antes e diz quantas pesquisas vão junto: as ativas e as inativas, que são arquivadas como descrito em [Pesquisas](../surveys). Nada é apagado. A lista de objetivos esconde os arquivados: marque **Mostrar arquivados** para vê-los.
 
-**Restaurar** traz o objetivo de volta como ativo, e as pesquisas arquivadas dele como inativas. As regras de envio delas continuam desligadas. Quem pode editar o objetivo pode arquivá-lo e restaurá-lo.
+**Restaurar** traz o objetivo de volta como ativo, e as pesquisas arquivadas dele como inativas. As regras de envio delas continuam desligadas. Só o administrador da conta arquiva e restaura um objetivo.
 
 ## Sinais
 

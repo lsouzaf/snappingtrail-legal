@@ -64,7 +64,7 @@ An objective's insights, signals and reports read its active and its inactive su
 
 **Archive**, on an objective's page, takes it out of the way with its surveys. The app asks first, and says how many surveys go with it: the active and the inactive ones, which are archived as described in [Surveys](../surveys). Nothing is deleted. The objectives list hides archived objectives: tick **Show archived** to see them.
 
-**Restore** brings the objective back active, and its archived surveys back inactive. Their delivery rules stay off. Whoever can edit the objective can archive and restore it.
+**Restore** brings the objective back active, and its archived surveys back inactive. Their delivery rules stay off. Only the account administrator archives and restores an objective.
 
 ## Signals
 
