@@ -23,7 +23,7 @@ if (!env) {
 }
 const args = process.argv.slice(2);
 if (!args[0]) {
-  console.error('usage: npm run videos -- <video> [--lang en|pt]   (e.g. 01-overview)');
+  console.error('usage: npm run videos -- <video> [--lang en|pt] [--scene <id>]   (e.g. 01-overview)');
   process.exit(2);
 }
 

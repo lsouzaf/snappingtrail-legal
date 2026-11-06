@@ -1,0 +1,175 @@
+# Video 6 — reading your results (about 3.5 minutes). Format: see tools/videos/README.md.
+# Only screens are read: the survey's Analytics and Reports tabs, the objective's Insights and Signals.
+
+id: 06-results
+title:
+  en: Reading your results
+  pt: Lendo os resultados
+
+openSurvey: &openSurvey
+  - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+  - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
+  - click: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, exact: true}
+analytics: &analytics
+  path: /projects
+  setup:
+    - *openSurvey
+    - click: {within: main, role: button, text: Analytics}
+    - waitFor: {within: main, text: {en: Filter by segment, pt: Filtrar por segmento}, exact: true}
+insights: &insights
+  path: /objectives
+  insightsMode: true
+  setup:
+    - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+    - click: {within: main, role: button, text: {en: Insights, pt: Insights}, exact: true}
+    - waitFor: {testid: insight-strip}
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-analytics
+    minDuration: 7
+    narration:
+      en: As answers come in, your results take shape. Let’s see how to read them.
+      pt: À medida que as respostas chegam, os resultados tomam forma. Vamos ver como lê-los.
+    screen:
+      app:
+        <<: *analytics
+      actions:
+        - wait: 1
+        - glide: {within: main, text: {en: Responses, pt: Respostas}, exact: true, nth: 0, duration: 1.5}
+        - wait: 3
+
+  - id: 03-answer-cards
+    minDuration: 8
+    narration:
+      en: Every question gets a card, with the share of each answer and the most chosen one highlighted.
+      pt: Cada pergunta ganha um cartão, com a porcentagem de cada resposta e a mais escolhida em destaque.
+    screen:
+      app:
+        <<: *analytics
+      actions:
+        - wait: 0.5
+        - scrollTo: {within: main, text: {en: Detailed question analysis, pt: Análise detalhada por pergunta}, exact: true, duration: 2.5}
+        - scroll: {by: 300, duration: 1.5}
+        - wait: 3
+
+  - id: 04-segment
+    minDuration: 8
+    narration:
+      en: Want to focus on one group? Filter by segment, like a single location or age range.
+      pt: Quer olhar para um grupo só? Filtre por segmento, como uma unidade ou uma faixa etária.
+    screen:
+      app:
+        <<: *analytics
+      actions:
+        - scrollTo: {within: main, text: {en: Filter by segment, pt: Filtrar por segmento}, exact: true, duration: 1.5}
+        - click: {within: main, role: button, hasText: {en: North Side, pt: Zona Norte}, nth: 0, duration: 1.2}
+        - wait: 4
+
+  - id: 05-findings
+    minDuration: 9
+    narration:
+      en: "But the real magic is in the findings: the few things in your data most worth your attention, written in plain words."
+      pt: "Mas o melhor está nos achados: as poucas coisas nos seus dados que mais merecem atenção, escritas em palavras simples."
+    screen:
+      app:
+        <<: *insights
+      actions:
+        - wait: 2
+        - scrollTo: {testid: insight-strip, parent: true, duration: 2}
+        - wait: 3
+
+  - id: 06-segment-difference
+    minDuration: 10
+    narration:
+      en: A segment difference shows a group answering differently from everyone else, like members over 50 pointing to customer service.
+      pt: Uma diferença entre segmentos mostra um grupo respondendo diferente de todos os outros, como os alunos de mais de 50 anos apontando o atendimento.
+    screen:
+      app:
+        <<: *insights
+      actions:
+        - scrollTo: {testid: insight-strip, parent: true, duration: 0.1}
+        - wait: 1
+        - highlight: {testid: insight-strip, parent: true, duration: 5}
+        - glide: {testid: insight-strip, parent: true, duration: 1.5}
+
+  - id: 07-dropout-trend
+    minDuration: 9
+    narration:
+      en: Dropout shows where people stop answering. And a trend shows an answer becoming more common over time.
+      pt: O abandono mostra onde as pessoas param de responder. E uma tendência mostra uma resposta ficando mais comum com o tempo.
+    screen:
+      app:
+        <<: *insights
+      actions:
+        - wait: 1
+        - scrollTo: {testid: insight-type, hasText: {en: Dropout, pt: Abandono}, card: true, duration: 2}
+        - glide: {testid: insight-type, hasText: {en: Dropout, pt: Abandono}, card: true, duration: 1.5}
+        - wait: 1
+        - scrollTo: {testid: insight-type, hasText: {en: Trend, pt: Tendência}, card: true, duration: 2}
+        - glide: {testid: insight-type, hasText: {en: Trend, pt: Tendência}, card: true, duration: 1.5}
+
+  - id: 08-strength
+    minDuration: 13
+    narration:
+      en: Each finding tells you how sure it is. Firm means even the cautious reading of the data still shows it. Indication means it’s worth watching as more answers arrive.
+      pt: Cada achado diz o quanto tem certeza. Firme quer dizer que até a leitura mais cautelosa dos dados ainda o mostra. Indício quer dizer que vale acompanhar enquanto chegam mais respostas.
+    screen:
+      app:
+        <<: *insights
+      actions:
+        - scrollTo: {testid: insight-strip, parent: true, duration: 0.1}
+        - wait: 1
+        - glide: {within: main, text: {en: Firm, pt: Firme}, exact: true, nth: 0, duration: 1.5}
+        - highlight: {within: main, text: {en: Firm, pt: Firme}, exact: true, nth: 0, duration: 3}
+        - scrollTo: {within: main, text: {en: Indication, pt: Indício}, exact: true, nth: 0, duration: 2}
+        - glide: {within: main, text: {en: Indication, pt: Indício}, exact: true, nth: 0, duration: 1.5}
+        - highlight: {within: main, text: {en: Indication, pt: Indício}, exact: true, nth: 0, duration: 3}
+
+  - id: 09-signals
+    minDuration: 8
+    narration:
+      en: For a deeper look, the Signals tab lists everything the analysis noticed, survey by survey.
+      pt: Para ir mais fundo, a aba Sinais lista tudo o que a análise percebeu, pesquisa por pesquisa.
+    screen:
+      app:
+        path: /objectives
+        insightsMode: true
+        setup:
+          - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+      actions:
+        - wait: 1
+        - click: {within: main, role: button, text: {en: Signals, pt: Sinais}, exact: true, duration: 1.5}
+        - wait: 2
+        - scroll: {by: 500, duration: 3}
+
+  - id: 10-reports
+    minDuration: 10
+    narration:
+      en: And when it’s time to share, download a report as PDF, Excel, CSV or JSON, from a one-page summary to the full survey.
+      pt: E na hora de compartilhar, baixe um relatório em PDF, Excel, CSV ou JSON, de um resumo de uma página até a pesquisa completa.
+    screen:
+      app:
+        path: /projects
+        setup:
+          - *openSurvey
+          - click: {within: main, role: button, text: {en: Reports, pt: Relatórios}}
+          - waitFor: {within: main, text: {en: Executive summary, pt: Resumo executivo}, exact: true}
+      actions:
+        - wait: 1
+        - scrollTo: {within: main, text: {en: Available reports, pt: Relatórios disponíveis}, exact: true, duration: 1.5}
+        - glide: {within: main, text: {en: Executive summary, pt: Resumo executivo}, exact: true, duration: 1.5}
+        - glide: {within: main, text: {en: Full survey, pt: Pesquisa completa}, exact: true, duration: 1.5}
+        - wait: 2
+
+  - id: 11-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing

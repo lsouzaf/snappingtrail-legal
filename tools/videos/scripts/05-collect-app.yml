@@ -1,0 +1,93 @@
+# Video 5 — the Collect app (about 3 minutes). Format: see tools/videos/README.md.
+# Every screen is a capture of the app (Roborazzi, the manual's own images), one after the other.
+
+id: 05-collect-app
+title:
+  en: The Collect app
+  pt: O app Collect
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-login
+    minDuration: 9
+    narration:
+      en: When your team goes out into the field, the Collect app goes with them. It’s free on Android, and it works with or without a signal.
+      pt: Quando a sua equipe vai a campo, o app Collect vai junto. Ele é gratuito para Android e funciona com ou sem sinal.
+    screen:
+      images: ["{docs}/collect-app/img/collect-login-{lang}.png"]
+
+  - id: 03-company-code
+    minDuration: 8
+    narration:
+      en: The first time, the interviewer types in your company’s code, which the administrator shares, and signs in.
+      pt: Na primeira vez, o entrevistador digita o código da empresa, que o administrador passa, e entra na conta.
+    screen:
+      images: ["{docs}/collect-app/img/collect-settings-{lang}.png"]
+
+  - id: 04-projects
+    minDuration: 7
+    narration:
+      en: They’ll see the projects they’re part of, with every active survey ready to go.
+      pt: Ele vê os projetos de que participa, com todas as pesquisas ativas prontas para usar.
+    screen:
+      images: ["{docs}/collect-app/img/collect-projects-{lang}.png"]
+
+  - id: 05-choice
+    minDuration: 9
+    narration:
+      en: Answering is quick. Choices and ratings move on by themselves, so the interviewer can keep their eyes on the person in front of them.
+      pt: Responder é rápido. Escolhas e avaliações avançam sozinhas, e o entrevistador pode manter a atenção em quem está à frente dele.
+    screen:
+      images: ["{docs}/collect-app/img/collect-question-choice-{lang}.png"]
+
+  - id: 06-rating
+    minDuration: 8
+    narration:
+      en: Every answer is saved as it’s given, so nothing is lost if the phone rings or the battery runs low.
+      pt: Cada resposta é salva na hora, e nada se perde se o telefone tocar ou a bateria acabar.
+    screen:
+      images: ["{docs}/collect-app/img/collect-question-rating-{lang}.png"]
+
+  - id: 07-follow-up
+    minDuration: 6
+    narration:
+      en: Follow-up questions appear right where they belong, only when they’re needed.
+      pt: As perguntas condicionais aparecem no lugar certo, só quando são necessárias.
+    screen:
+      images: ["{docs}/collect-app/img/collect-question-follow-up-{lang}.png"]
+
+  - id: 08-saved
+    minDuration: 9
+    narration:
+      en: No signal? No problem. The interview is kept safely on the phone, and sent on its own as soon as there’s a connection.
+      pt: Sem sinal? Sem problema. A entrevista fica guardada no celular e é enviada sozinha assim que houver conexão.
+    screen:
+      images: ["{docs}/collect-app/img/collect-final-saved-{lang}.png"]
+
+  - id: 09-pending
+    minDuration: 8
+    narration:
+      en: The pending list shows what’s still waiting to go out, and lets the interviewer send it right away if they want.
+      pt: A lista de pendentes mostra o que ainda está esperando para sair e permite enviar na hora, se o entrevistador quiser.
+    screen:
+      images: ["{docs}/collect-app/img/collect-pending-{lang}.png"]
+
+  - id: 10-sent
+    minDuration: 8
+    narration:
+      en: Once it reaches Snapping Trail, the interview counts in your results, alongside every answer from the web.
+      pt: Quando chega ao Snapping Trail, a entrevista entra nos resultados, junto com as respostas da web.
+    screen:
+      images: ["{docs}/collect-app/img/collect-final-sent-{lang}.png"]
+
+  - id: 11-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing

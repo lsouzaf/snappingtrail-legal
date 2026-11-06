@@ -5,8 +5,10 @@
 // ffconcat list of their durations, which ffmpeg turns into the scene's video.
 //
 // The rules of the captures hold: nothing is written in DEV — any request to the API other than a
-// read is refused and fails the scene —, the share links are masked and the QR codes blurred, and
-// no trace, video or screenshot of the sign-in is kept.
+// read is refused and fails the scene, unless the script answers it in the browser with a simulated
+// result (`fake`), so it never leaves —, the share links are masked, the QR codes blurred, the
+// texts the script names (emails, prices, dates) blurred, and no trace, video or screenshot of the
+// sign-in is kept.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -90,6 +92,31 @@ function maskLinksScript(masked) {
   else start();
 }
 
+/**
+ * Blurs, on screen only, every element whose own text matches one of [patterns] (regular
+ * expressions, as strings), as the screen changes: emails, prices, dates of billing.
+ */
+function blurTextScript(patterns) {
+  const res = patterns.map((p) => new RegExp(p));
+  const apply = () => {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      const el = n.parentElement;
+      if (!el || el.dataset.blurred) continue;
+      if (res.some((r) => r.test(n.textContent))) {
+        el.dataset.blurred = '1';
+        el.style.filter = 'blur(7px)';
+      }
+    }
+  };
+  const start = () => {
+    apply();
+    new MutationObserver(apply).observe(document.body, {subtree: true, childList: true, characterData: true});
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+}
+
 /** The element a step points at: by role, test id, CSS or text, in [within], the nth match. */
 export function locate(page, t, lang) {
   const root = t.within ? page.locator(t.within).first() : page;
@@ -97,7 +124,7 @@ export function locate(page, t, lang) {
   let loc;
   if (t.role) loc = root.getByRole(t.role, text ? {name: text, exact: !!t.exact} : {});
   else if (t.testid) loc = root.getByTestId(t.testid);
-  else if (t.css) loc = root.locator(t.css);
+  else if (t.css) loc = root.locator(pick(t.css, lang));
   else loc = root.getByText(text, {exact: !!t.exact});
   if (t.hasText) loc = loc.filter({hasText: pick(t.hasText, lang)});
   if (t.visible) loc = loc.filter({visible: true});
@@ -105,26 +132,39 @@ export function locate(page, t, lang) {
   if (t.parent) loc = loc.locator('xpath=..');
   // An insight's whole card, from its type chip.
   if (t.card) loc = loc.locator('xpath=ancestor::div[contains(@class, "rounded-2xl")][1]');
+  // The nearest ancestor with that class (a section of a page, a table row).
+  if (t.closest) loc = loc.locator(`xpath=ancestor::*[contains(concat(" ", normalize-space(@class), " "), " ${t.closest} ")][1]`);
   return loc;
 }
 
 const sleep = (s) => new Promise((r) => setTimeout(r, s * 1000));
 const ease = (x) => (x < 0.5 ? 2 * x * x : 1 - (-2 * x + 2) ** 2 / 2);
 
-/** Moves the cursor to (x, y) in [seconds], eased. */
+/**
+ * Moves the cursor to (x, y) in [seconds], eased. Paced by the clock, not by a count of steps: each
+ * move takes a while with the screencast on, so the glide skips ahead when it falls behind.
+ */
 async function glideTo(page, x, y, seconds) {
   const from = await page.evaluate(() => [window.__cx ?? 960, window.__cy ?? 980]);
-  const steps = Math.max(2, Math.round(seconds * 60));
-  for (let i = 1; i <= steps; i += 1) {
-    const k = ease(i / steps);
+  const ms = Math.max(1, seconds * 1000);
+  const t0 = Date.now();
+  for (;;) {
+    const f = Math.min(1, (Date.now() - t0) / ms);
+    const k = ease(f);
     await page.mouse.move(from[0] + (x - from[0]) * k, from[1] + (y - from[1]) * k);
-    await sleep(seconds / steps);
+    if (f >= 1) break;
+    await sleep(0.016);
   }
 }
 
 async function centerOf(locator) {
   await locator.waitFor({state: 'visible'});
-  const box = await locator.boundingBox();
+  let box = await locator.boundingBox();
+  // Out of the frame: brought into view first (a script should scroll to it, smoothly, before).
+  if (box && (box.y < 0 || box.y + box.height > H || box.x < 0 || box.x + box.width > W)) {
+    await locator.scrollIntoViewIfNeeded();
+    box = await locator.boundingBox();
+  }
   if (!box) throw new Error('A step points at something with no box on screen');
   return [box.x + Math.min(box.width / 2, 220), box.y + Math.min(box.height / 2, 40)];
 }
@@ -191,6 +231,46 @@ async function step(page, s, lang, onCamera) {
     const [x, y] = await centerOf(locate(page, s.glide, lang));
     return glideTo(page, x, y, s.glide.duration ?? 1.5);
   }
+  if (s.type) {
+    // Typed key by key on camera (the cursor goes to the field first); filled at once off camera.
+    const target = locate(page, s.type, lang);
+    const text = pick(s.type.value, lang);
+    if (!onCamera) return target.fill(text);
+    const [x, y] = await centerOf(target);
+    await glideTo(page, x, y, s.type.duration ?? 0.8);
+    await target.click();
+    await page.keyboard.type(text, {delay: s.type.delay ?? 55});
+    return sleep(0.3);
+  }
+  if (s.fill) {
+    // Set at once (a date, a number), after the cursor reaches the field on camera.
+    const target = locate(page, s.fill, lang);
+    if (onCamera) {
+      const [x, y] = await centerOf(target);
+      await glideTo(page, x, y, s.fill.duration ?? 0.8);
+    }
+    await target.fill(pick(s.fill.value, lang));
+    return sleep(onCamera ? 0.4 : 0);
+  }
+  if (s.select) {
+    const target = locate(page, s.select, lang);
+    if (onCamera) {
+      const [x, y] = await centerOf(target);
+      await glideTo(page, x, y, s.select.duration ?? 0.8);
+    }
+    await target.selectOption(pick(s.select.value, lang));
+    return sleep(onCamera ? 0.4 : 0);
+  }
+  if (s.press) {
+    await page.keyboard.press(s.press);
+    return sleep(onCamera ? 0.4 : 0.2);
+  }
+  if (s.attr) {
+    // An attribute on an element, for a mask's CSS to find it (in a setup, off camera).
+    const handle = await locate(page, s.attr, lang).elementHandle();
+    return page.evaluate(({el, name, value}) => el.setAttribute(name, value), {el: handle, name: s.attr.name, value: s.attr.value ?? '1'});
+  }
+  if (s.waitUrl) return page.waitForURL(new RegExp(s.waitUrl));
   if (s.scroll) return smoothScroll(page, {by: s.scroll.by, seconds: s.scroll.duration ?? 3});
   if (s.scrollTo) {
     return smoothScroll(page, {target: locate(page, s.scrollTo, lang), seconds: s.scrollTo.duration ?? 2});
@@ -235,11 +315,25 @@ async function step(page, s, lang, onCamera) {
   throw new Error(`Unknown step ${JSON.stringify(s)}`);
 }
 
-async function signIn(page, lang) {
+/** Whose session a part records in: the account's administrator, or the demo interviewer. */
+const USERS = {
+  admin: {user: () => process.env.DOCS_USER, password: () => process.env.DOCS_PASSWORD, ready: 'a[href="/settings"]'},
+  interviewer: {
+    user: () => process.env.DOCS_INTERVIEWER_USER,
+    password: () => process.env.DOCS_INTERVIEWER_PASSWORD,
+    ready: 'a[href="/collect"]',
+  },
+};
+
+const stateOf = (lang, who) => (who === 'admin' ? statePath(lang) : statePath(lang).replace(/\.json$/, `-${who}.json`));
+
+export async function signIn(page, lang, who = 'admin') {
+  const as = USERS[who];
+  if (!as.user()) throw new Error(`No ${who} sign-in in the env file`);
   await page.goto(`/?lang=${lang}`);
   await page.waitForLoadState('networkidle');
   await page.getByRole('button', {name: LOGIN[lang], exact: true}).filter({visible: true}).first().click();
-  const menu = page.locator('a[href="/settings"]');
+  const menu = page.locator(as.ready);
   const deadline = Date.now() + 45_000;
   let form = null;
   while (!form && !(await menu.isVisible())) {
@@ -250,17 +344,24 @@ async function signIn(page, lang) {
     if (!form) await sleep(0.5);
   }
   if (form) {
-    await form.locator('input[type="email"], input[name="username"]').first().fill(process.env.DOCS_USER);
-    await form.locator('input[type="password"]').fill(process.env.DOCS_PASSWORD);
+    await form.locator('input[type="email"], input[name="username"]').first().fill(as.user());
+    await form.locator('input[type="password"]').fill(as.password());
     await form.locator('button[type="submit"], input[type="submit"]').first().click();
   }
   await menu.waitFor({timeout: 45_000});
   await page.waitForLoadState('networkidle');
 }
 
-/** A browser context in the language's tenant, signed in (or not), refusing every write to the API. */
-async function openContext(browser, lang, signedIn) {
-  const state = statePath(lang);
+/**
+ * A browser context in the language's tenant, signed in as [who] (or not), refusing every write to
+ * the API — except those [fake] answers in the browser with a simulated result: {method, path (a
+ * regular expression of the path), status, body (an object, or 'echo': the request's own JSON, less
+ * [omit])}. Those never leave the browser. A GET in [fake] is read for real and changed in the
+ * browser ([patch] over it, [omit] left out), so the screen agrees with what the scene simulated —
+ * with [afterWrite], only once a write was simulated.
+ */
+export async function openContext(browser, lang, signedIn, {who = 'admin', fake = []} = {}) {
+  const state = stateOf(lang, who);
   const context = await browser.newContext({
     baseURL: TENANT[lang](),
     viewport: {width: W, height: H},
@@ -272,10 +373,33 @@ async function openContext(browser, lang, signedIn) {
     ...(signedIn && fs.existsSync(state) ? {storageState: state} : {}),
   });
   const writes = [];
+  let simulated = 0;
   await context.route('**/*', async (route) => {
     const r = route.request();
-    if (!['GET', 'HEAD', 'OPTIONS'].includes(r.method()) && /\/api\//.test(new URL(r.url()).pathname)) {
-      writes.push(`${r.method()} ${new URL(r.url()).pathname}`);
+    const pathname = new URL(r.url()).pathname;
+    const answer = fake.find(
+      (f) => f.method === r.method() && new RegExp(f.path).test(pathname) && (!f.afterWrite || simulated > 0),
+    );
+    if (answer && r.method() === 'GET') {
+      // A read, changed in the browser to match what the scene simulated: the real answer, with
+      // [patch] over it and [omit] left out.
+      const real = await route.fetch();
+      const body = {...(await real.json()), ...(answer.patch ?? {})};
+      for (const k of answer.omit ?? []) delete body[k];
+      return route.fulfill({response: real, json: body});
+    }
+    if (['GET', 'HEAD', 'OPTIONS'].includes(r.method())) return route.continue();
+    if (answer) {
+      simulated += 1;
+      let body = answer.body ?? {};
+      if (body === 'echo') {
+        body = {...(r.postDataJSON() ?? {})};
+        for (const k of answer.omit ?? []) delete body[k];
+      }
+      return route.fulfill({status: answer.status ?? 200, contentType: 'application/json', body: JSON.stringify(body)});
+    }
+    if (/\/(api|public)\//.test(pathname)) {
+      writes.push(`${r.method()} ${pathname}`);
       return route.abort();
     }
     return route.continue();
@@ -287,28 +411,65 @@ async function openContext(browser, lang, signedIn) {
  * Records one app part: setup off camera, then the actions on camera, held until [minSeconds].
  * Writes the frames and frames.ffconcat in [workDir]; returns the seconds recorded.
  */
+/**
+ * The path of the survey's share link, for a respondent's part: read, off camera, in a session of
+ * the account after [respondent.setup] (the survey's Share tab), from the screen's text or fields.
+ */
+async function shareLinkPath(browser, respondent, lang) {
+  const {context, writes} = await openContext(browser, lang, true);
+  const page = await context.newPage();
+  await page.goto(`${respondent.path ?? '/projects'}?lang=${lang}`);
+  await page.waitForLoadState('networkidle');
+  if (!(await page.locator(USERS.admin.ready).isVisible().catch(() => false))) {
+    await signIn(page, lang);
+    await context.storageState({path: stateOf(lang, 'admin')});
+    await page.goto(`${respondent.path ?? '/projects'}?lang=${lang}`);
+    await page.waitForLoadState('networkidle');
+  }
+  for (const s of (respondent.setup ?? []).flat(Infinity)) await step(page, s, lang, false);
+  const link = await page.evaluate(() => {
+    const re = /https?:\/\/\S*?(\/s\/[A-Za-z0-9_-]+)/;
+    const texts = [...document.querySelectorAll('input')].map((i) => i.value).concat(document.body.innerText);
+    for (const t of texts) {
+      const m = re.exec(t);
+      if (m) return m[1];
+    }
+    return null;
+  });
+  await context.close();
+  if (writes.length) throw new Error(`A write would have left the browser: ${writes.join(', ')}`);
+  if (!link) throw new Error('No share link on the screen');
+  return link;
+}
+
 export async function recordApp(browser, app, actions, lang, workDir, minSeconds) {
-  const signedIn = app.signedIn !== false;
-  const {context, writes} = await openContext(browser, lang, signedIn);
+  // A respondent has no session at all, and opens the survey's link.
+  const signedIn = app.signedIn !== false && !app.respondent;
+  const who = app.user ?? 'admin';
+  const appPath = app.respondent ? await shareLinkPath(browser, app.respondent, lang) : app.path;
+  const at = `${appPath}${appPath.includes('?') ? '&' : '?'}lang=${lang}`;
+  const {context, writes} = await openContext(browser, lang, signedIn, {who, fake: app.fake ?? []});
   await context.addInitScript(cursorScript);
   if (app.insightsMode) await context.addInitScript(() => localStorage.setItem('researchpro_mode', 'advanced'));
   if (app.mask?.includes('shareLinks')) await context.addInitScript(maskLinksScript, MASKED_URL(lang));
+  if (app.blurText?.length) await context.addInitScript(blurTextScript, app.blurText);
   const page = await context.newPage();
 
   if (signedIn) {
-    await page.goto(`${app.path}?lang=${lang}`);
+    await page.goto(at);
     await page.waitForLoadState('networkidle');
-    if (!(await page.locator('a[href="/settings"]').isVisible().catch(() => false))) {
-      await signIn(page, lang);
-      await context.storageState({path: statePath(lang)});
+    if (!(await page.locator(USERS[who].ready).isVisible().catch(() => false))) {
+      await signIn(page, lang, who);
+      await context.storageState({path: stateOf(lang, who)});
     }
   }
-  await page.goto(`${app.path}?lang=${lang}`);
+  await page.goto(at);
   await page.waitForLoadState('networkidle');
   const css = [STABLE_CSS, ...(app.mask ?? []).map((m) => MASK_CSS[m] ?? ''), app.css ?? ''].join('\n');
   await page.addStyleTag({content: css});
   if (app.ready) await locate(page, app.ready, lang).waitFor({state: 'visible'});
-  for (const s of app.setup ?? []) await step(page, s, lang, false);
+  // A setup can join the steps of several YAML anchors: lists of lists, flattened.
+  for (const s of (app.setup ?? []).flat(Infinity)) await step(page, s, lang, false);
   await page.addStyleTag({content: css});
   await page.mouse.move(W / 2, H - 120);
   await page.evaluate(() => document.fonts.ready);
@@ -327,7 +488,7 @@ export async function recordApp(browser, app, actions, lang, workDir, minSeconds
   });
   await cdp.send('Page.startScreencast', {format: 'jpeg', quality: 92, maxWidth: W, maxHeight: H, everyNthFrame: 1});
   const t0 = Date.now() / 1000;
-  for (const s of actions ?? []) await step(page, s, lang, true);
+  for (const s of (actions ?? []).flat(Infinity)) await step(page, s, lang, true);
   const elapsed = Date.now() / 1000 - t0;
   if (elapsed < minSeconds) await sleep(minSeconds - elapsed);
   const seconds = Date.now() / 1000 - t0;
