@@ -6,7 +6,7 @@ sidebar_position: 9
 
 ## Esqueci o código da empresa. Como consigo?
 
-O código vem da empresa que conduz a sua pesquisa: peça a quem coordena a pesquisa. O suporte do SnappingTrail não consegue recuperá-lo.
+O código vem da empresa que conduz a sua pesquisa: peça ao administrador da conta da sua empresa. O suporte do SnappingTrail não consegue recuperá-lo.
 
 ## Esqueci minha senha. Como redefino?
 
@@ -26,7 +26,7 @@ A sua sessão expirou ("Sua sessão expirou. Entre de novo."). Entre de novo: as
 
 ## O app mostra pesquisas antigas, ou falta uma pesquisa nova.
 
-Puxe a lista de **Projetos** para baixo para atualizá-la. Se a pesquisa continuar faltando, confirme com o coordenador que ela está ativa e que você faz parte do projeto dela.
+Puxe a lista de **Projetos** para baixo para atualizá-la. Se a pesquisa continuar faltando, confirme com o administrador da conta da sua empresa que ela está ativa e que você faz parte do projeto dela.
 
 ## O app ficou lento ou está com comportamento estranho.
 
