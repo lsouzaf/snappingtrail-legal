@@ -79,7 +79,7 @@ Na aba **Relatórios** de uma pesquisa, o botão de webhook de um relatório o e
 
 ## Histórico de Entregas
 
-O **Histórico de Entregas** lista cada exportação e a entrega dela: quando, o quê, em qual formato, para qual canal e como foi. Administradores, gerentes, coordenadores e analistas podem vê-lo.
+O **Histórico de Entregas** lista cada exportação e a entrega dela: quando, o quê, em qual formato, para qual canal e como foi. Os administradores podem vê-lo.
 
 ![O histórico de entregas](./img/integrations-history-pt.png)
 

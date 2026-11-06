@@ -50,7 +50,7 @@ Interviewers find their surveys under **My Surveys**, choose **Start** on an ava
 
 ![The My Surveys screen of an interviewer](./img/collection-my-surveys-en.png)
 
-Administrators, managers, coordinators and analysts can also interview: in the survey, go to **Interviews** and choose **Start Interview**.
+Administrators can also interview: in the survey, go to **Interviews** and choose **Start Interview**.
 
 ## Set your goals
 
