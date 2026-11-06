@@ -39,7 +39,7 @@ scenes:
         - wait: 2
 
   - id: 03-create-link
-    minDuration: 10
+    minDuration: 8
     narration:
       en: Create a link. You can limit how many answers it takes, and set a date for it to expire. Both are optional.
       pt: Crie um link. Você pode limitar quantas respostas ele recebe e definir uma data para ele expirar. As duas coisas são opcionais.
@@ -55,13 +55,13 @@ scenes:
             body: {shareId: "00000000-0000-0000-0000-000000000000", token: "example", url: "https://yourcompany.app.snappingtrail.com/s/example", status: ACTIVE, maxResponses: 200, createdAt: "2026-11-06T12:00:00Z"}
         setup: [*openShare]
       actions:
-        - wait: 1
-        - click: {within: main, role: button, text: {en: Create link, pt: Criar link}, duration: 1.5}
+        - wait: 0.5
+        - click: {within: main, role: button, text: {en: Create link, pt: Criar link}, duration: 1.2}
         - type: {css: "input[type=\"number\"]", value: "200"}
         - fill: {css: "input[type=\"date\"]", value: "2026-12-31"}
-        - wait: 1
-        - click: {css: "form button[type=\"submit\"]"}
-        - wait: 2
+        - wait: 0.5
+        - click: {css: "form button[type=\"submit\"]", duration: 1}
+        - wait: 1.5
 
   - id: 04-copy-qr
     minDuration: 10
