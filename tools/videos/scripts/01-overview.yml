@@ -1,0 +1,214 @@
+# Video 1 — what Snapping Trail is (about 2.5 minutes). English on the fitplusd tenant, Portuguese
+# on fitplusb (DOCS_EN_URL and DOCS_PT_URL). Format: see tools/videos/README.md.
+
+id: 01-overview
+title:
+  en: What Snapping Trail is
+  pt: O que é o Snapping Trail
+
+scenes:
+  - id: 01-opening
+    minDuration: 3
+    screen:
+      card: opening
+
+  - id: 02-welcome
+    minDuration: 7
+    narration:
+      en: Welcome to Snapping Trail. In the next couple of minutes, you'll see what it can do for you.
+      pt: Boas-vindas ao Snapping Trail. Nos próximos minutos, você vai ver o que ele pode fazer por você.
+    screen:
+      app:
+        path: /
+        signedIn: false
+      actions:
+        - wait: 1
+        - scroll: {by: 2400, duration: 9}
+
+  - id: 03-fitplus
+    minDuration: 12
+    narration:
+      en: "Picture FitPlus, a gym chain with a question every business knows: why are our members leaving? To find out, they ran a satisfaction survey across their three locations."
+      pt: "Imagine a FitPlus, uma rede de academias com uma pergunta que toda empresa conhece: por que os nossos alunos estão indo embora? Para descobrir, ela fez uma pesquisa de satisfação nas três unidades."
+    screen:
+      app:
+        path: /projects
+        ready: {within: main, role: heading}
+      actions:
+        - wait: 2
+        - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+        - wait: 3
+
+  - id: 04-builder
+    minDuration: 10
+    narration:
+      en: Putting the survey together is quick. You choose your questions, add ratings, and set up follow-ups that only show up when they make sense.
+      pt: Montar a pesquisa é rápido. Você escolhe as perguntas, acrescenta avaliações e cria condicionais que só aparecem quando fazem sentido.
+    screen:
+      app:
+        path: /projects
+        setup:
+          - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+          - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
+          - click: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, exact: true}
+          - click: {within: main, role: button, text: {en: Questions, pt: Perguntas}}
+      actions:
+        - wait: 1
+        - scroll: {by: 2200, duration: 9}
+
+  - id: 05-share
+    minDuration: 7
+    narration:
+      en: Members can answer through a simple link, or a QR code on the front desk…
+      pt: Os alunos podem responder por um link simples, ou por um QR Code no balcão…
+    screen:
+      app:
+        path: /projects
+        mask: [shareLinks, qrCode]
+        setup:
+          - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+          - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
+          - click: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, exact: true}
+          - click: {within: main, role: button, text: {en: Share, pt: Compartilhar}}
+          - waitFor: {within: main, role: button, text: {en: Copy link, pt: Copiar link}}
+      actions:
+        - wait: 2
+        - click: {within: main, role: button, text: {en: QR Code, pt: QR Code}}
+        - wait: 3
+
+  - id: 06-collect
+    minDuration: 10
+    narration:
+      en: …and your team can interview people in person, with the Collect app. It works even with no signal at all, and every answer arrives safely.
+      pt: …e a sua equipe pode entrevistar as pessoas pessoalmente, com o app Collect. Ele funciona até sem sinal nenhum, e toda resposta chega em segurança.
+    screen:
+      images:
+        - "{docs}/collect-app/img/collect-projects-{lang}.png"
+        - "{docs}/collect-app/img/collect-question-choice-{lang}.png"
+        - "{docs}/collect-app/img/collect-final-saved-{lang}.png"
+
+  - id: 06b-objective
+    minDuration: 14
+    narration:
+      en: "In advanced mode, you can go one step further, and organize your surveys around a research objective: the decision you need to make, like how to keep members from leaving. Snapping Trail then reads all those surveys together, with that decision in mind."
+      pt: "No modo avançado, você pode ir um passo além e organizar suas pesquisas em torno de um objetivo de pesquisa: a decisão que você precisa tomar, como evitar que os alunos cancelem. O Snapping Trail passa a ler todas essas pesquisas juntas, com essa decisão em mente."
+    screen:
+      app:
+        path: /objectives
+        insightsMode: true
+        ready: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+      actions:
+        - wait: 2
+        - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+        - waitFor: {within: main, css: "p.max-w-2xl"}
+        - wait: 1
+        - highlight: {within: main, css: "p.max-w-2xl", duration: 2}
+
+  - id: 07-insights
+    minDuration: 16
+    narration:
+      en: "And here's where Snapping Trail really shines. It reads the answers for you, and tells you what really stands out. Look at this: asked for their main reason for dissatisfaction, 52% of members aged 50 and over point to customer service. Among everyone else, it's just 5%."
+      pt: "E é aqui que o Snapping Trail faz a diferença. Ele lê as respostas por você e mostra o que realmente se destaca. Veja só: quando perguntados sobre o principal motivo de insatisfação, 52% dos alunos de 50 anos ou mais apontam o atendimento. Entre os demais, só 5%."
+    screen:
+      app: &insights
+        path: /objectives
+        insightsMode: true
+        setup:
+          - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+          - click: {within: main, role: button, text: {en: Insights, pt: Insights}, exact: true}
+          - waitFor: {testid: insight-strip}
+      actions:
+        - wait: 3
+        - scrollTo: {testid: insight-strip, parent: true, duration: 2}
+        - highlight: {testid: insight-strip, parent: true, duration: 6}
+        - glide: {testid: insight-strip, parent: true, duration: 2}
+
+  - id: 08-strength
+    minDuration: 11
+    narration:
+      en: It's also honest about how sure it is. When a finding is firm, you can act on it with confidence. When it's an indication, it's worth keeping an eye on as more answers come in.
+      pt: Ele também é honesto sobre o quanto tem certeza. Quando um achado é firme, você pode agir com confiança. Quando é um indício, vale acompanhar enquanto chegam mais respostas.
+    screen:
+      app:
+        <<: *insights
+        setup:
+          - click: {within: main, text: {en: FitPlus member retention, pt: Retenção de alunos da FitPlus}, exact: true}
+          - click: {within: main, role: button, text: {en: Insights, pt: Insights}, exact: true}
+          - waitFor: {testid: insight-strip}
+          # The first finding wrapped, so that it fits the frame whole at 2×.
+          - style: {within: main, text: {en: "Among those who answered '50+'", pt: "Entre os que responderam '50+'"}, set: "max-width: 860px"}
+      actions:
+        - scrollTo: {testid: insight-strip, parent: true, duration: 0.1}
+        - wait: 1
+        - zoom: {within: main, text: {en: "Among those who answered '50+'", pt: "Entre os que responderam '50+'"}, scale: 2, duration: 1.5}
+        - wait: 6
+
+  - id: 09-dropout-trend
+    minDuration: 8
+    narration:
+      en: You'll also see where people stop answering, and which opinions are growing over time.
+      pt: Você também vê onde as pessoas param de responder e quais opiniões estão crescendo com o tempo.
+    screen:
+      app:
+        <<: *insights
+      actions:
+        - wait: 1
+        - scrollTo: {testid: insight-type, hasText: {en: Dropout, pt: Abandono}, card: true, duration: 2}
+        - glide: {testid: insight-type, hasText: {en: Dropout, pt: Abandono}, card: true, duration: 1.5}
+        - wait: 1
+        - scrollTo: {testid: insight-type, hasText: {en: Trend, pt: Tendência}, card: true, duration: 2}
+        - glide: {testid: insight-type, hasText: {en: Trend, pt: Tendência}, card: true, duration: 1.5}
+
+  - id: 10-share-results
+    minDuration: 13
+    narration:
+      en: When you're ready to share, download a report, or let the results reach your team on their own, in Slack, Notion, Google Sheets or your own systems.
+      pt: Na hora de compartilhar, baixe um relatório, ou deixe os resultados chegarem sozinhos à sua equipe, no Slack, no Notion, no Google Sheets ou nos seus próprios sistemas.
+    screen:
+      parts:
+        - share: 0.5
+          app:
+            path: /projects
+            setup:
+              - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
+              - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
+              - click: {within: main, text: {en: FitPlus satisfaction survey, pt: Pesquisa de satisfação FitPlus}, exact: true}
+              - click: {within: main, role: button, text: {en: Reports, pt: Relatórios}}
+              - waitFor: {within: main, text: {en: Executive summary, pt: Resumo executivo}, exact: true}
+          actions:
+            - wait: 1
+            - scrollTo: {within: main, text: {en: Available reports, pt: Relatórios disponíveis}, exact: true, duration: 1.5}
+            - glide: {within: main, text: {en: Executive summary, pt: Resumo executivo}, exact: true, duration: 1.5}
+        - share: 0.5
+          # The message as Slack shows it, captured by the owner (assets/slack-en.png, slack-pt.png).
+          # Slack's reaction bar, at the top right of the capture, covered with the message's background.
+          images:
+            - file: "{assets}/slack-{lang}.png"
+              cover: {x: -282, y: 0, w: 282, h: 34, color: "0xF8F8F8"}
+
+  - id: 11-signup
+    minDuration: 7
+    narration:
+      en: You can try everything free for 14 days, and see what your own data has to say.
+      pt: Você pode experimentar tudo de graça por 14 dias e descobrir o que os seus próprios dados têm a dizer.
+    screen:
+      app:
+        path: /
+        signedIn: false
+        css: ".fixed.inset-0.backdrop-blur-sm { background: rgb(15 23 42) !important; backdrop-filter: none !important; }"
+        # The form opened off camera: it is on screen from the scene's first frame.
+        setup:
+          - click: {role: button, text: {en: Create Account, pt: Criar conta}, exact: true, visible: true}
+          - waitFor: {css: "form input[type=\"email\"]"}
+      actions:
+        - wait: 1
+        - glide: {css: "form input[type=\"email\"]", duration: 1.5}
+        - wait: 3
+
+  - id: 12-closing
+    minDuration: 5
+    narration:
+      en: Everything you saw is in the manual.
+      pt: Tudo o que você viu está no manual.
+    screen:
+      card: closing

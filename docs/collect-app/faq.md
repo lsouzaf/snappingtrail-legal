@@ -26,7 +26,7 @@ Your session expired ("Your session has expired. Sign in again."). Sign in again
 
 ## The app is showing old surveys, or a new survey is missing.
 
-Pull the **Projects** list down to refresh it. If the survey is still missing, check with your company's account administrator that it is active and that you are part of its project.
+Pull the **Projects** list down to refresh it. If the survey is still missing, check with your company's account administrator that it is active and that you are part of its project. An archived survey no longer appears in the app.
 
 ## The app got slow or is behaving strangely.
 

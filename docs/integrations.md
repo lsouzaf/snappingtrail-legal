@@ -73,6 +73,10 @@ Each destination gets the content in its own form; there is no format to choose.
 
 When there is nothing new, nothing is sent, and the history says **Nothing new in the period**.
 
+While a survey is paused, its rules send nothing, and the history says **Survey paused**, which is not a failure; once you resume it, the next run sends as usual.
+
+Archiving a survey turns its rules off, and the list says **Off: the survey was archived**. Restoring the survey does not turn them back on: turn on again, by hand, the ones you want (see [Surveys](../surveys)). A rule of an archived survey cannot be turned on, nor created: restore the survey first.
+
 ### Send a report now
 
 On a survey's **Reports** tab, a report card's webhook button sends that report to your webhook straight away, in JSON. It needs the Starter or Pro plan and a configured webhook.

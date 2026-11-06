@@ -73,6 +73,10 @@ Cada destino recebe o conteúdo na forma dele; não há formato para escolher. U
 
 Quando não há novidade, nada é enviado, e o histórico mostra **Sem novidades no período**.
 
+Enquanto uma pesquisa está pausada, as regras dela não enviam nada, e o histórico mostra **Pesquisa pausada**, que não conta como falha; quando você a retoma, a próxima execução envia normalmente.
+
+Arquivar uma pesquisa desliga as regras dela, e a lista mostra **Desligada: a pesquisa foi arquivada**. Restaurar a pesquisa não as religa: ligue de novo, à mão, as que quiser (veja [Pesquisas](../surveys)). Uma regra de pesquisa arquivada não pode ser ligada nem criada: restaure a pesquisa antes.
+
 ### Envie um relatório agora
 
 Na aba **Relatórios** de uma pesquisa, o botão de webhook de um relatório o envia na hora para o seu webhook, em JSON. Ele pede o plano Starter ou Pro e um webhook configurado.

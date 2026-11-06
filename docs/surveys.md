@@ -57,12 +57,28 @@ Next to the option, choose **Follow-up** and write the question. The follow-up i
 | Draft | Being built. Nobody can answer it yet. |
 | Active | Open for answers. A survey needs at least one question to become active. |
 | Inactive | Closed for new interviews. Interviews already started can still be completed, and the answers are kept. |
+| Archived | Out of the way, with everything it collected. It takes no answers. |
 
-**Pause collection** turns an active survey inactive, and **Resume collection** opens it again.
+**Pause collection** turns an active survey inactive, and **Resume collection** opens it again. A paused survey stays in its objective's insights: pausing keeps what was collected.
+
+## Archive and restore a survey
+
+**Archive** takes an active or inactive survey out of the way without deleting anything. The app asks first. Once archived, the survey:
+
+- takes no answers, through a link, a QR code or the Collect app;
+- leaves the lists, of the web app and of the Collect app (tick **Show archived** to see it again in the web app);
+- no longer counts toward your plan's active surveys;
+- leaves its objective's insights, signals and reports (see [Results](../results));
+- keeps its answers, its own analysis and its reports;
+- has its delivery rules turned off: the [Integrations](../integrations) rules list says **Off: the survey was archived**.
+
+**Restore** brings it back inactive. Resuming it then counts toward your plan's active surveys, like any resume. Its delivery rules stay off: turn on again the ones you want.
+
+Only the account administrator archives and restores a survey. Archiving its objective archives it too.
 
 ## Active surveys and your plan
 
-Each plan allows a number of active surveys at a time: 2 on **Free**, 30 on **Starter**, and no limit on **Pro** (and during the trial). When your company already has that many, publishing a draft or resuming a paused survey is refused, and the app says, for example:
+Each plan allows a number of active surveys at a time (inactive and archived ones do not count): 2 on **Free**, 30 on **Starter**, and no limit on **Pro** (and during the trial). When your company already has that many, publishing a draft or resuming a paused survey is refused, and the app says, for example:
 
 > The Free plan allows up to 2 active surveys at a time. Pause another survey, or upgrade to Starter, to activate this one.
 
@@ -76,7 +92,7 @@ To change the questions, choose **New version**. It creates a new draft with a c
 
 ## Delete a survey
 
-Only a draft with no answers can be deleted, and it is deleted for good. A survey that has been active is not deleted: pause its collection instead.
+Only a draft with no answers can be deleted, and it is deleted for good. A survey that has been active is not deleted: pause its collection, or archive it to take it out of the way.
 
 ## Next steps
 
