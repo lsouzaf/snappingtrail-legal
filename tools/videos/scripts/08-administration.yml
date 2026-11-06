@@ -37,7 +37,7 @@ scenes:
         - wait: 3
 
   - id: 03-new-user
-    minDuration: 7
+    minDuration: 6
     narration:
       en: Add people with New User. Each one gets an email to set their password.
       pt: Adicione pessoas em Novo Usuário. Cada uma recebe um e-mail para definir a senha.
@@ -45,11 +45,11 @@ scenes:
       app:
         <<: *users
       actions:
-        - wait: 0.5
-        - click: {within: main, role: button, text: {en: New User, pt: Novo Usuário}, duration: 1.5}
-        - wait: 3.5
-        - click: {role: button, text: {en: Cancel, pt: Cancelar}, exact: true, duration: 1}
-        - wait: 0.5
+        - wait: 0.3
+        - click: {within: main, role: button, text: {en: New User, pt: Novo Usuário}, duration: 1}
+        - wait: 2.5
+        - click: {role: button, text: {en: Cancel, pt: Cancelar}, exact: true, duration: 0.8}
+        - wait: 0.3
 
   - id: 04-deactivate
     minDuration: 9
