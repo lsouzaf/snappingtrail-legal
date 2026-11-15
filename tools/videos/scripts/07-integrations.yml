@@ -38,7 +38,7 @@ scenes:
     minDuration: 7
     narration:
       en: Your results can reach your team on their own, in the tools they already use.
-      pt: Os seus resultados podem chegar sozinhos à sua equipe, nas ferramentas que ela já usa.
+      pt: Os seus resultados podem chegar sozinhos para a sua equipe, nas ferramentas que ela já usa.
     screen:
       app:
         <<: *integrations
@@ -131,7 +131,7 @@ scenes:
     minDuration: 8
     narration:
       en: The delivery history shows every delivery and how it went. When there’s nothing new, nothing is sent.
-      pt: O histórico de entregas mostra cada envio e como ele foi. Quando não há novidade, nada é enviado.
+      pt: O histórico de entregas mostra cada envio e o resultado dele. Quando não há novidades no período, nada é enviado.
     screen:
       app:
         path: /deliveries

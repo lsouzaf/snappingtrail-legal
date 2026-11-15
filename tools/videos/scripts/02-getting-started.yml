@@ -96,7 +96,7 @@ scenes:
     minDuration: 15
     narration:
       en: Every new account starts with 14 days of everything in the Pro plan. When the trial ends, you choose the plan that fits you. If you don’t, your account simply moves to Free, and your data stays right where it is.
-      pt: Toda conta nova começa com 14 dias de tudo o que o plano Pro oferece. No fim do teste, você escolhe o plano que combina com você. Se não escolher, a conta passa para o Free, e os seus dados continuam onde estão.
+      pt: Toda conta nova começa com 14 dias de tudo o que o plano Pro oferece. No fim do teste, você escolhe o plano que combina com você. Se você não escolher nenhum, a conta passa para o plano Free, e os seus dados continuam onde estão.
     screen:
       app:
         <<: *settings
