@@ -161,7 +161,7 @@ scenes:
     minDuration: 13
     narration:
       en: Completed interviews count toward your plan’s monthly allowance. You’ll get an email well before you reach it, and interviews from the Collect app are always accepted, so no fieldwork is ever lost.
-      pt: As entrevistas concluídas contam para a franquia mensal do plano. Você recebe um e-mail bem antes de chegar ao limite, e as entrevistas do app Collect são sempre aceitas, para nenhum trabalho de campo se perder.
+      pt: Cada entrevista concluída entra na franquia mensal do plano. Você recebe um e-mail bem antes de chegar ao limite, e as entrevistas do app Collect são sempre aceitas, para nenhum trabalho de campo se perder.
     screen:
       app:
         path: /settings
