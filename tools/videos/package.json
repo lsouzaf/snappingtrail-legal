@@ -7,6 +7,7 @@
   "scripts": {
     "videos": "node run.js",
     "voice": "node narrate.js",
+    "youtube": "node youtube.js",
     "test": "node --test test/*.test.js"
   },
   "dependencies": {

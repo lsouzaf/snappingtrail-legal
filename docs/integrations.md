@@ -6,6 +6,8 @@ sidebar_position: 7
 
 Snapping Trail can send your results to the tools your team already uses, on a schedule or when something happens, with no one having to download a report.
 
+<ManualVideo n="07" />
+
 ## Destinations
 
 An administrator connects them under **Integrations**:

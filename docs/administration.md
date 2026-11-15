@@ -6,6 +6,8 @@ sidebar_position: 8
 
 An administrator manages the account's users, settings and plan. Everyone else sees the settings, but only an administrator can change them.
 
+<ManualVideo n="08" />
+
 ## Users
 
 Under **User Management**, an administrator sees everyone on the account: name, email, roles and status.

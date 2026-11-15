@@ -7,6 +7,20 @@ title:
   en: Managing your account
   pt: Administrando a sua conta
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "Managing your account: users, settings and plan"
+    pt: "Administrando a sua conta: usuários, configurações e plano"
+  summary:
+    en: "Keep your account running: users, archiving, settings, the legal documents and your plan."
+    pt: "Mantenha a conta em ordem: usuários, arquivamento, configurações, os documentos legais e o seu plano."
+  page: "administration"
+  tags:
+    en: ["user management", "account settings", "billing"]
+    pt: ["gestão de usuários", "configurações da conta", "plano"]
+
 users: &users
   path: /users
   ready: {css: "main table tbody tr"}
@@ -24,6 +38,7 @@ scenes:
       card: opening
 
   - id: 02-users
+    chapter: {en: "Users", pt: "Usuários"}
     minDuration: 7
     narration:
       en: Administrators keep the account running smoothly. Let’s look at the essentials.
@@ -52,6 +67,7 @@ scenes:
         - wait: 0.3
 
   - id: 04-deactivate
+    chapter: {en: "Deactivate and archive", pt: "Desativar e arquivar"}
     minDuration: 9
     narration:
       en: When someone leaves, deactivate them. They can no longer sign in, and everything they collected stays in your account.
@@ -85,6 +101,7 @@ scenes:
         - highlight: {within: main, role: button, text: {en: Archive, pt: Arquivar}, duration: 4}
 
   - id: 06-settings
+    chapter: {en: "Settings", pt: "Configurações"}
     minDuration: 9
     narration:
       en: In Settings, set your company’s time zone, and turn on the weekly summary, sent every Friday evening.
@@ -115,6 +132,7 @@ scenes:
         - wait: 2
 
   - id: 08-billing
+    chapter: {en: "Billing and plan", pt: "Cobrança e plano"}
     minDuration: 7
     narration:
       en: And under Billing and Plan, see your usage and change your plan at any time.

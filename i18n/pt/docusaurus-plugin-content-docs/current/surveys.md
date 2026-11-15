@@ -8,6 +8,8 @@ Uma pesquisa é o questionário que os seus respondentes preenchem. As pesquisas
 
 Só **administradores** criam e editam pesquisas. Os entrevistadores veem as pesquisas ativas dos seus projetos em **Minhas Pesquisas**.
 
+<ManualVideo n="03" />
+
 ## Crie uma pesquisa
 
 1. Abra **Projetos** e escolha um projeto.

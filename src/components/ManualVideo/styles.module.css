@@ -1,0 +1,27 @@
+/* A 16:9 player as wide as the text column, on any screen; the link below it uses the theme's
+   link colour, so it reads in both the light and the dark theme. */
+.video {
+  margin: 0 0 var(--ifm-spacing-vertical);
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--ifm-global-radius);
+  overflow: hidden;
+  background: var(--ifm-color-emphasis-200);
+}
+
+.frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.link {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
