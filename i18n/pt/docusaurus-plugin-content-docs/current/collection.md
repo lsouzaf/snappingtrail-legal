@@ -14,6 +14,8 @@ Uma pesquisa só recebe respostas enquanto está **Ativa**. Há três formas de 
 
 As três alimentam os mesmos resultados.
 
+<ManualVideo n="04" />
+
 ## Compartilhe um link ou um QR Code
 
 1. Abra a pesquisa e vá em **Compartilhar**.

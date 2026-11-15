@@ -6,6 +6,8 @@ sidebar_position: 1
 
 This manual explains how to use **SnappingTrail Collect** to collect survey responses in the field, online or offline. It is organized from first use to more advanced situations — you can read it end to end, or jump to the section you need to consult.
 
+<ManualVideo n="05" />
+
 ## In this chapter
 
 1. [What SnappingTrail Collect is](./what-is.md)

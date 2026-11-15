@@ -8,6 +8,8 @@ A survey is the questionnaire your respondents answer. Surveys live inside a **p
 
 Only **administrators** create and edit surveys. Interviewers see the active surveys of their projects under **My Surveys**.
 
+<ManualVideo n="03" />
+
 ## Create a survey
 
 1. Open **Projects** and choose a project.

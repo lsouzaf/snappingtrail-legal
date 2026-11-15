@@ -6,6 +6,8 @@ sidebar_position: 6
 
 Snapping Trail does more than count answers: it tells you which differences between groups are firm, which are only indications, and where people drop out.
 
+<ManualVideo n="06" />
+
 ## Where to find your results
 
 - **A survey's Analytics tab**: the totals, the answers to every question, the survey's findings, and filters by segment.

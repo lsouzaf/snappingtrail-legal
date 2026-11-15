@@ -8,6 +8,20 @@ title:
   en: Creating a survey
   pt: Criando uma pesquisa
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "How to create a survey"
+    pt: "Como criar uma pesquisa"
+  summary:
+    en: "Build a survey step by step: text, choice and rating questions, required answers, follow-ups, and publishing."
+    pt: "Monte uma pesquisa passo a passo: perguntas de texto, de escolha e de avaliação, respostas obrigatórias, condicionais e a publicação."
+  page: "surveys"
+  tags:
+    en: ["survey builder", "NPS", "follow-up questions"]
+    pt: ["criar pesquisa", "NPS", "perguntas condicionais"]
+
 # The draft's builder, empty.
 builder: &builder
   path: /projects
@@ -55,6 +69,7 @@ scenes:
       card: opening
 
   - id: 02-project
+    chapter: {en: "Starting a survey", pt: "Começando a pesquisa"}
     minDuration: 6
     narration:
       en: Every survey lives inside a project. Let’s build one for FitPlus.
@@ -86,6 +101,7 @@ scenes:
         - wait: 1.5
 
   - id: 04-choice
+    chapter: {en: "Choice and rating", pt: "Escolha e avaliação"}
     minDuration: 7
     narration:
       en: A choice question offers a list of options. Allow a single answer, or several at once.
@@ -124,6 +140,7 @@ scenes:
         - wait: 1
 
   - id: 06-required
+    chapter: {en: "Required and follow-up", pt: "Obrigatória e condicional"}
     minDuration: 6
     narration:
       en: Mark a question as required when every interview needs that answer.
@@ -154,6 +171,7 @@ scenes:
         - wait: 2
 
   - id: 08-publish
+    chapter: {en: "Publishing and new versions", pt: "Publicação e novas versões"}
     minDuration: 8
     narration:
       en: When everything looks right, publish. Your survey is now active and ready for answers.

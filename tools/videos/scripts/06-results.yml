@@ -6,6 +6,20 @@ title:
   en: Reading your results
   pt: Lendo os resultados
 
+# The YouTube package (npm run youtube): title, the description's sentence, the manual's page
+# (empty for the manual's root) and the tags added to the common ones.
+youtube:
+  title:
+    en: "Reading your results: findings, firm or indication"
+    pt: "Lendo os resultados: achados, firme ou indício"
+  summary:
+    en: "Read your results: the answer cards, the segment filter, and the findings, each with how sure it is."
+    pt: "Leia os resultados: os cartões de respostas, o filtro por segmento e os achados, cada um com o quanto tem certeza."
+  page: "results"
+  tags:
+    en: ["survey results", "data analysis", "segmentation"]
+    pt: ["resultados da pesquisa", "análise de dados", "segmentação"]
+
 openSurvey: &openSurvey
   - click: {within: main, role: button, hasText: {en: FitPlus demo, pt: Demonstração FitPlus}}
   - click: {within: main, role: button, text: {en: Surveys, pt: Pesquisas}}
@@ -31,6 +45,7 @@ scenes:
       card: opening
 
   - id: 02-analytics
+    chapter: {en: "Answers and segments", pt: "Respostas e segmentos"}
     minDuration: 7
     narration:
       en: As answers come in, your results take shape. Let’s see how to read them.
@@ -71,6 +86,7 @@ scenes:
         - wait: 4
 
   - id: 05-findings
+    chapter: {en: "Findings", pt: "Achados"}
     minDuration: 9
     narration:
       en: "But the real magic is in the findings: the few things in your data most worth your attention, written in plain words."
@@ -98,6 +114,7 @@ scenes:
         - glide: {testid: insight-strip, parent: true, duration: 1.5}
 
   - id: 07-dropout-trend
+    chapter: {en: "Dropout, trend and strength", pt: "Abandono, tendência e força"}
     minDuration: 9
     narration:
       en: Dropout shows where people stop answering. And a trend shows an answer becoming more common over time.
@@ -131,6 +148,7 @@ scenes:
         - highlight: {within: main, text: {en: Indication, pt: Indício}, exact: true, nth: 0, duration: 3}
 
   - id: 09-signals
+    chapter: {en: "Signals and reports", pt: "Sinais e relatórios"}
     minDuration: 8
     narration:
       en: For a deeper look, the Signals tab lists everything the analysis noticed, survey by survey.
