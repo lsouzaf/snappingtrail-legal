@@ -6,6 +6,8 @@ sidebar_position: 6
 
 O Snapping Trail faz mais do que contar respostas: ele mostra quais diferenças entre grupos são firmes, quais são só indícios, e onde as pessoas desistem.
 
+<ManualVideo n="06" />
+
 ## Onde ver os resultados
 
 - **A aba Analytics de uma pesquisa**: os totais, as respostas de cada pergunta, os achados da pesquisa e filtros por segmento.

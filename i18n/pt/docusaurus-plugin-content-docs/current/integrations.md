@@ -6,6 +6,8 @@ sidebar_position: 7
 
 O Snapping Trail pode enviar os seus resultados para as ferramentas que a sua equipe já usa, num horário ou quando algo acontece, sem ninguém precisar baixar um relatório.
 
+<ManualVideo n="07" />
+
 ## Destinos
 
 Um administrador os conecta em **Integrações**:

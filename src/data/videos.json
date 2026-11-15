@@ -1,0 +1,37 @@
+{
+  "availableFrom": "2026-11-23",
+  "videos": {
+    "01": {
+      "en": {"id": "w4n7EkdrS-I", "title": "What is Snapping Trail? A 2-minute tour"},
+      "pt": {"id": "OTc-ic5EWR0", "title": "O que é o Snapping Trail? Um tour de 2 minutos"}
+    },
+    "02": {
+      "en": {"id": "80yQRbeTMSc", "title": "Getting started with Snapping Trail"},
+      "pt": {"id": "SMJ8w1KdZss", "title": "Primeiros passos no Snapping Trail"}
+    },
+    "03": {
+      "en": {"id": "3q821rIFMyc", "title": "How to create a survey"},
+      "pt": {"id": "2h8JNzozN2Y", "title": "Como criar uma pesquisa"}
+    },
+    "04": {
+      "en": {"id": "6eHSvAqbWPA", "title": "Collect answers with a link or a QR code"},
+      "pt": {"id": "kpctRo0jJnk", "title": "Colete respostas por link ou QR Code"}
+    },
+    "05": {
+      "en": {"id": "pOjVxMsaRg4", "title": "Field interviews with the Collect app, even offline"},
+      "pt": {"id": "ZVjacd3fBKI", "title": "Entrevistas em campo com o app Collect, até sem internet"}
+    },
+    "06": {
+      "en": {"id": "myu-5YDacAs", "title": "Reading your results: findings, firm or indication"},
+      "pt": {"id": "5B1lzqpGF7I", "title": "Lendo os resultados: achados, firme ou indício"}
+    },
+    "07": {
+      "en": {"id": "1Y8efiaMNaA", "title": "Send your results to Slack, Notion, Google Sheets and webhooks"},
+      "pt": {"id": "DAY_zSZllnk", "title": "Envie seus resultados para Slack, Notion, Google Sheets e webhooks"}
+    },
+    "08": {
+      "en": {"id": "8GRjvJT8Rr0", "title": "Managing your account: users, settings and plan"},
+      "pt": {"id": "M1EAh8Mp2EA", "title": "Administrando a sua conta: usuários, configurações e plano"}
+    }
+  }
+}

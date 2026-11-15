@@ -6,6 +6,8 @@ sidebar_position: 8
 
 Um administrador cuida dos usuários, das configurações e do plano da conta. Os demais veem as configurações, mas só um administrador as muda.
 
+<ManualVideo n="08" />
+
 ## Usuários
 
 Em **Gerenciamento de Usuários**, um administrador vê todos da conta: nome, e-mail, funções e status.

@@ -6,6 +6,8 @@ sidebar_position: 1
 
 Este manual explica como usar o **SnappingTrail Collect** para coletar respostas de pesquisas em campo, com ou sem conexão à internet. Está organizado do primeiro uso até situações mais avançadas — você pode ler do começo ao fim, ou pular direto para a seção que precisa consultar.
 
+<ManualVideo n="05" />
+
 ## Neste capítulo
 
 1. [O que é o SnappingTrail Collect](./what-is.md)

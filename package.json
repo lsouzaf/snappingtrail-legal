@@ -10,7 +10,8 @@
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
     "write-translations": "docusaurus write-translations",
-    "check-urls": "node scripts/check-urls.mjs build"
+    "check-urls": "node scripts/check-urls.mjs build",
+    "check:videos": "node scripts/check-videos.mjs build"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",

@@ -8,6 +8,8 @@ Snapping Trail helps you plan research, collect answers in the field or online, 
 
 This page takes you from creating your account to your first survey.
 
+<ManualVideo n="02" />
+
 ## Create your account
 
 1. On the Snapping Trail website, choose **Create Account**.

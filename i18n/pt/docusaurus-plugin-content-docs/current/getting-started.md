@@ -8,6 +8,8 @@ O Snapping Trail ajuda você a planejar uma pesquisa, coletar respostas em campo
 
 Esta página leva você da criação da conta até a primeira pesquisa.
 
+<ManualVideo n="02" />
+
 ## Crie sua conta
 
 1. No site do Snapping Trail, escolha **Criar conta**.

@@ -14,6 +14,8 @@ A survey takes answers only while it is **Active**. There are three ways to coll
 
 All three feed the same results.
 
+<ManualVideo n="04" />
+
 ## Share a link or a QR code
 
 1. Open the survey and go to **Share**.
